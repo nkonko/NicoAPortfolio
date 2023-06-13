@@ -1,0 +1,17 @@
+[
+  {"name":"C#", "iconMap":"csharp", "isPlainIcon": false},
+  {"name":"TypeScript", "iconMap":"typescript", "isPlainIcon": false},
+  {"name":"Angular", "iconMap":"angularjs", "isPlainIcon": false},
+  {"name":"JavaScript", "iconMap":"javascript", "isPlainIcon": false},
+  {"name":".NET 7", "iconMap":"dotnetcore", "isPlainIcon": false},
+  {"name":"Azure Devops", "iconMap":"azure", "isPlainIcon": false},
+  {"name":"Selenium", "iconMap":"selenium-original", "isPlainIcon": true},
+  {"name":"HTML5", "iconMap":"html5-plain-wordmark", "isPlainIcon": true},
+  {"name":"Microsoft SQL Server", "iconMap":"microsoftsqlserver-plain-wordmark", "isPlainIcon": true},
+  {"name":"Sass", "iconMap":"sass-original", "isPlainIcon": true},
+  {"name":"Git", "iconMap":"github-original", "isPlainIcon": true},
+  {"name":"MySQL", "iconMap":"mysql-plain-wordmark", "isPlainIcon": true},
+  {"name":"JIRA", "iconMap":"jira-plain-wordmark", "isPlainIcon": true},
+  {"name":"Angular Material", "iconMap":"angularjs-plain", "isPlainIcon": true},
+  {"name":"Bootstrap", "iconMap":"bootstrap-plain", "isPlainIcon": true}
+]
