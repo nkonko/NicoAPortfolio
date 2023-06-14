@@ -23,7 +23,7 @@ export class AboutComponent implements OnInit {
     this.summary$ = this.profileRes$.pipe(
       filter(res => res.profile != null),
       map(res => {
-        const rawSummary = res.profile!.basics.summary
+        const rawSummary = res.profile!.basics.summary;
 
         let dotArray = rawSummary.split('.\n');
         let newArray: string[] = [];
@@ -33,10 +33,10 @@ export class AboutComponent implements OnInit {
 
           element = element.replace(/\n/, "<b>\n");
           element = element.replace(/:\n/, ":</b>\n");
-          newArray.push(`${element}.`)
+          newArray.push(`${element}.`);
         }
 
-        return newArray.join('<br><br>')
+        return newArray.join('<br><br>');
       })
     );
   }
