@@ -3,12 +3,14 @@ import { Directive, HostBinding, HostListener, DoCheck, ContentChild } from '@an
 @Directive({selector: '.navbar-burger'})
 export class BurgerDirective {
 
+  @HostBinding('class.is-active')
   isOpen = false;
 
   @HostListener('click')
   toggleBurger() {
     this.isOpen = ! this.isOpen;
   }
+
 }
 
 
