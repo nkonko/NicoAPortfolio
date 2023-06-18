@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { contactReducer } from './state/reducers/contact.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ContactEffects } from './state/effects/contact.effect';
+import { SocialModule } from '@modules/social/social.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ContactEffects } from './state/effects/contact.effect';
     CommonModule,
     ContactRoutingModule,
     ReactiveFormsModule,
+    SocialModule,
     StoreModule.forFeature('contact', contactReducer),
     EffectsModule.forFeature([ContactEffects])
   ]

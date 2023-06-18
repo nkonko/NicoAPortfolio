@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Skill } from '@core/models/gitConnectProfile/skill';
-import { IconsMap } from '@core/models/icons/iconsMap';
 import { AppState } from '@core/store/models/app.state';
 import { SkillSelector } from '@core/store/selectors/app.selector';
+import { SkillsService } from '@modules/skills/service/skills.service';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, map, switchMap, takeUntil, takeWhile } from 'rxjs';
+import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-skills',
@@ -19,8 +18,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,
-    private http: HttpClient
-  ) { }
+    private skillsService: SkillsService) { }
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
@@ -31,7 +29,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
     this.skillsData$.pipe(
       takeUntil(this.unsubscribe$),
       switchMap((skills) => {
-        return this.http.get<IconsMap[]>('assets/json/iconsMapping.json').pipe(
+        return this.skillsService.getSkillsJson().pipe(
           map(iconData => {
             const newarray = skills?.map(skill => {
               const newSkill = { ...skill };

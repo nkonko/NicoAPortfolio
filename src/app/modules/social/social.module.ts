@@ -12,6 +12,9 @@ import { SocialComponent } from './components/social/social.component';
   imports: [
     CommonModule,
     SocialRoutingModule
+  ],
+  exports: [
+    SocialComponent
   ]
 })
 export class SocialModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, shareReplay, switchMap } from 'rxjs/operators';
 import { ProfileService } from '../../services/profile.service';
 import * as appActions from '../actions/app.action';
 import { of } from 'rxjs';
@@ -23,7 +23,8 @@ export class AppEffects {
               status: errorResponse.status
             }
           }))
-        )
+        ),
+        shareReplay(1)
       )
     )
   )

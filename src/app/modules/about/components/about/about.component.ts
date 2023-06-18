@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, concatMap, filter, map, switchMap, tap } from 'rxjs';
+import { Observable, Subject, concatMap, filter, map, shareReplay, switchMap, tap } from 'rxjs';
 import { AppState } from 'app/core/store/models/app.state';
 import { ProfileState } from 'app/core/store/models/profile.state';
 import { AppSelector } from 'app/core/store/selectors/app.selector';
-import * as appActions from '@core/store/actions/app.action';
+
 
 @Component({
   selector: 'app-about',
@@ -18,7 +18,6 @@ export class AboutComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch(appActions.AppInit());
 
     this.summary$ = this.profileRes$.pipe(
       filter(res => res.profile != null),

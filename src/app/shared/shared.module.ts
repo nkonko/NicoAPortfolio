@@ -13,7 +13,7 @@ import { BurgerDirective, MenuDirective, NavbarDirective } from './layout/navbar
     FooterComponent,
     NavbarDirective,
     BurgerDirective,
-    MenuDirective
+    MenuDirective,
   ],
   imports: [
     CommonModule,

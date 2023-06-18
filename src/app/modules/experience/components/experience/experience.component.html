@@ -1,1 +1,31 @@
-<p>experience works!</p>
+<section class="section">
+  <div class="container">
+    <h2 class="title is-4">Positions</h2>
+    <div class="columns is-multiline">
+      <div class="column is-two-fifths" *ngFor="let position of positions">
+        <div class="card">
+          <div class="card-content">
+            <p class="title is-5">{{position}}</p>
+            <a href="#" class="button is-primary">Ver más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="title is-4">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item is-success" *ngFor="let work of work$ | async">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <p class="heading">{{work.company}}</p>
+          <p class="subtitle">{{work.position}} / {{work.startDate}}-{{work.endDate}}</p>
+          <p>{{work.summary}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

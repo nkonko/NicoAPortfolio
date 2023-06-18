@@ -3,7 +3,7 @@ import { Basics } from '@core/models/gitConnectProfile/base';
 import { AppState } from '@core/store/models/app.state';
 import { BasicsSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, map, shareReplay, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected jobTitle!: string;
   protected location!: string;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>) {  }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -25,11 +25,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.basics$.pipe(takeUntil(this.unsubscribe$)).subscribe(basics => {
+
+    this.basics$.pipe(takeUntil(this.unsubscribe$), map(basics => {
       this.name = basics?.name!;
-      let jtitle = `I'm a ${basics?.label!.replace('(', '<strong>(').replace(')', ')</strong>')}`;
-      this.jobTitle = this.jobTitle === undefined ? '' : jtitle;
+      const jtitle = `I'm a ${basics?.label!.replace('(', '<strong>(').replace(')', ')</strong>')}`;
+      this.jobTitle = jtitle;
       this.location = basics?.region!;
-    });
+    })).subscribe();
   }
 }
