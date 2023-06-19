@@ -1,17 +1,15 @@
-<section class="section ">
+<section class="section">
   <div class="columns mt-5">
     <app-social></app-social>
     <div class="column is-half is-offset-1">
       <div class="container">
-        <div class="notification is-primary">
-
-
+        <div class="notification is-white">
 
           <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
             <div class="field">
               <label class="label">Name</label>
               <div class="control">
-                <input formControlName="name" class="input" type="text" placeholder="e.g Alex Smith">
+                <input formControlName="name" class="input" type="text" placeholder="Alex Smith">
               </div>
             </div>
             <div class="field">
@@ -29,7 +27,7 @@
             <div class="field">
               <label class="label">Phone</label>
               <p class="control has-icons-left has-icons-right">
-                <input formControlName="phone" class="input" type="email" placeholder="Alex.Smith@gmail.com">
+                <input formControlName="phone" class="input" type="email" placeholder="5555-5555">
                 <span class="icon is-small is-left">
                   <i class="fa-solid fa-mobile-screen"></i>
                 </span>
@@ -39,12 +37,10 @@
               </p>
             </div>
 
-
-
             <div class="field">
               <label class="label">Message</label>
               <div class="control">
-                <textarea formControlName="message" class="textarea" placeholder="Textarea"></textarea>
+                <textarea formControlName="message" class="textarea" placeholder="Message..."></textarea>
               </div>
             </div>
 
