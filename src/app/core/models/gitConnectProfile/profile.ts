@@ -1,5 +1,5 @@
 export interface Profile {
-  network:  string;
-  username: string;
-  url:      string;
+  network: string;
+  url: string;
+  icon: string;
 }

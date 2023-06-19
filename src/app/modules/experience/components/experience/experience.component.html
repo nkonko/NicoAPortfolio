@@ -2,11 +2,11 @@
   <div class="container">
     <h2 class="title is-4">Positions</h2>
     <div class="columns is-multiline">
-      <div class="column is-two-fifths" *ngFor="let position of positions">
+      <div class="column is-two-fifths" *ngFor="let work of work$ | async">
         <div class="card">
           <div class="card-content">
-            <p class="title is-5">{{position}}</p>
-            <a href="#" class="button is-primary">Ver más</a>
+            <p class="title is-5">{{work.position}}</p>
+            <a href="#" class="button is-primary">More details</a>
           </div>
         </div>
       </div>
@@ -21,11 +21,14 @@
       <div class="timeline-item is-success" *ngFor="let work of work$ | async">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
-          <p class="heading">{{work.company}}</p>
-          <p class="subtitle">{{work.position}} / {{work.startDate}}-{{work.endDate}}</p>
-          <p>{{work.summary}}</p>
+          <br>
+          <hr>
+          <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
+          <p class="subtitle">{{work.position}} => <b>{{work.startDate | date: 'MM/YYYY'}} </b> to <b>{{work.isCurrentRole ? 'Present' : work.endDate | date: 'MM/YYYY'}} </b></p>
+          <p [innerHTML]="work.summary"></p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
