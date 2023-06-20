@@ -18,17 +18,21 @@
   <div class="container">
     <h2 class="title is-4">Experience</h2>
     <div class="timeline">
+      <header class="timeline-header">
+        <span class="tag is-medium is-primary">Present</span>
+      </header>
       <div class="timeline-item is-success" *ngFor="let work of work$ | async">
-        <div class="timeline-marker"></div>
+        <div class="timeline-marker is-link"></div>
         <div class="timeline-content">
-          <br>
-          <hr>
-          <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
-          <p class="subtitle">{{work.position}} => <b>{{work.startDate | date: 'MM/YYYY'}} </b> to <b>{{work.isCurrentRole ? 'Present' : work.endDate | date: 'MM/YYYY'}} </b></p>
-          <p [innerHTML]="work.summary"></p>
+          <p class="heading"><b>{{work.startDate | date: 'MMMM YYYY'}} </b> TO <b>{{work.isCurrentRole ? 'Present' :
+            work.endDate | date: 'MMMM YYYY'}} </b></p>
+            <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
+            <p [innerHTML]="work.summary"></p>
         </div>
+      </div>
+      <div class="timeline-header">
+        <span class="tag is-medium is-primary">Start</span>
       </div>
     </div>
   </div>
 </section>
-

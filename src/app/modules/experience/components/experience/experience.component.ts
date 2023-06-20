@@ -3,7 +3,7 @@ import { Work } from '@core/models/gitConnectProfile/work';
 import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, filter, map, mergeMap, takeUntil, tap } from 'rxjs';
+import { Observable, Subject,  map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-experience',

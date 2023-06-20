@@ -23,6 +23,7 @@
     "@ngrx/store-devtools": "^15.4.0",
     "appsettings-json-reader": "^2.0.2",
     "bulma": "^0.9.4",
+    "bulma-timeline": "^3.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
