@@ -1,6 +1,7 @@
 import { EducationEnd } from "./educationEnd";
 
 export interface Work {
+  id:            string;
   name:          string;
   location:      string;
   description:   string;

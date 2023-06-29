@@ -1,33 +1,46 @@
-<section class="section">
-  <div class="container">
-    <h2 class="title is-4">Positions</h2>
-    <div class="columns is-multiline">
-      <div class="column is-two-fifths" *ngFor="let work of work$ | async">
-        <div class="card">
-          <div class="card-content">
-            <p class="title is-5">{{work.position}}</p>
-            <a href="#" class="button is-primary">More details</a>
+<section class="hero is-primary is-fullheight is-bold">
+    <div class="container is-fluid mt-5">
+      <h1 class="title is-3">Positions</h1>
+    </div>
+    <div class="container is-fluid mt-5 mb-5">
+      <div class="columns is-multiline">
+        <div class="column is-two-fifths" *ngFor="let work of works">
+          <div class="custom-card">
+            <div class="card-content">
+              <p class="title is-5">{{work.position}}</p>
+              <a (click)="goToSection(work.id)" class="button is-dark">More details</a>
+            </div>
+          </div>
+        </div>
+        <div class="column is-two-fifths">
+          <div class="custom-card">
+            <div class="card-content">
+              <p class="title is-5">View experience from begining</p>
+              <a (click)="goToSection('start')" class="button is-link">View</a>
+              <br>
+              <br>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section" >
   <div class="container">
     <h2 class="title is-4">Experience</h2>
     <div class="timeline">
       <header class="timeline-header">
         <span class="tag is-medium is-primary">Present</span>
       </header>
-      <div class="timeline-item is-success" *ngFor="let work of work$ | async">
+      <div class="timeline-item is-success" *ngFor="let work of works">
         <div class="timeline-marker is-link"></div>
-        <div class="timeline-content">
+        <div id="{{work.id}}" class="timeline-content">
           <p class="heading"><b>{{work.startDate | date: 'MMMM YYYY'}} </b> TO <b>{{work.isCurrentRole ? 'Present' :
-            work.endDate | date: 'MMMM YYYY'}} </b></p>
-            <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
-            <p [innerHTML]="work.summary"></p>
+              work.endDate | date: 'MMMM YYYY'}} </b></p>
+          <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
+          <p class="heading">Position: {{work.position}}</p>
+          <p [innerHTML]="work.summary"></p>
         </div>
       </div>
       <div class="timeline-header">
@@ -35,4 +48,5 @@
       </div>
     </div>
   </div>
+  <div id="start"></div>
 </section>

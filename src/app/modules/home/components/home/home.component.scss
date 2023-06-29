@@ -1,0 +1,89 @@
+.word-carousel {
+
+  div {
+    overflow: hidden;
+    height: 65px;
+    margin-top: -10px;
+    padding-top: 10px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        height: 45px;
+        margin-bottom: 45px;
+        padding: 0;
+        display: block;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.flip5 {
+  animation: flip5 12s cubic-bezier(0.23, 1, 0.32, 1.2) infinite;
+}
+
+
+@keyframes flip5 {
+  0% {
+    margin-top: -450px;
+  }
+
+  5% {
+    margin-top: -360px;
+  }
+
+  20% {
+    margin-top: -360px;
+  }
+
+  25% {
+    margin-top: -270px;
+  }
+
+  40% {
+    margin-top: -270px;
+  }
+
+  45% {
+    margin-top: -180px;
+  }
+
+  60% {
+    margin-top: -180px;
+  }
+
+  65% {
+    margin-top: -90px;
+  }
+
+  80% {
+    margin-top: -90px;
+  }
+
+  85% {
+    margin-top: 0px;
+  }
+
+  99.99% {
+    margin-top: 0px;
+  }
+
+  100% {
+    margin-top: -450px;
+  }
+}
+
+.custom-card {
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255,255,255, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  span {
+    color: white;
+  }
+}

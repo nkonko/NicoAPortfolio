@@ -1,4 +1,3 @@
-import { Meta } from "./meta";
 import { Basics } from "./base";
 import { Education } from "./education";
 import { Language } from "./languaje";

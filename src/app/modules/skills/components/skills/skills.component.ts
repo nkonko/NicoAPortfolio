@@ -13,7 +13,7 @@ import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 })
 export class SkillsComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
-  protected completSkills!: Skill[];
+  protected completeSkills!: Skill[];
   private unsubscribe$ = new Subject<void>();
 
   constructor(
@@ -41,7 +41,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
           }));
       })
     ).subscribe(skillsWIcon => {
-      this.completSkills = skillsWIcon!
+      this.completeSkills = skillsWIcon!
     });
   }
 }

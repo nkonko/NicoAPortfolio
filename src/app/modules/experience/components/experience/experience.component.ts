@@ -3,7 +3,8 @@ import { Work } from '@core/models/gitConnectProfile/work';
 import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
-import { Observable, Subject,  map, takeUntil } from 'rxjs';
+import { Observable, Subject, map, takeUntil } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-experience',
@@ -12,6 +13,7 @@ import { Observable, Subject,  map, takeUntil } from 'rxjs';
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();
+  protected works!: Work[];
   protected work$: Observable<Work[] | undefined> = this.store.select(WorkSelector).pipe(
     takeUntil(this.unsubscribe),
     map(works => {
@@ -28,23 +30,34 @@ export class ExperienceComponent implements OnInit, OnDestroy {
             .replace('Duties:', '<br><br><b>Duties:</b><br>')
             .replace('\n', '<br>');
 
-            newWorks = {...work, summary: newSummary};
+          newWorks = { ...work, summary: newSummary, id: uuidv4() };
 
           return newWorks;
-
         });
       }
       return works;
     })
   );
 
-  constructor(private store: Store<AppState>) { }
+  constructor(
+    private store: Store<AppState>) { }
+
   ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
 
   ngOnInit(): void {
+    this.work$.subscribe(works => {
+      if (works) {
+        this.works = works;
+      }
+    });
+  }
+
+  goToSection(section: string): void {
+    const element = document.getElementById(section);
+    element!.scrollIntoView({ behavior: 'smooth' });
   }
 
 }
