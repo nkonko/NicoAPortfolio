@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "y",
+    "public": "dist/nicoa-portfolio",
     "ignore": [
       "firebase.json",
       "**/.*",
