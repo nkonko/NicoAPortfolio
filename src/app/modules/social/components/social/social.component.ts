@@ -43,4 +43,8 @@ export class SocialComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
+  goToLink(url: string){
+    window.open(url, "_blank");
+}
+
 }
