@@ -32,6 +32,7 @@
             "styles": [
               "node_modules/bulma/css/bulma.min.css",
               "node_modules/bulma-timeline/dist/css/bulma-timeline.min.css",
+              "node_modules/bulma-floating-button/dist/css/bulma-floating-button.min.css",
               "src/styles.scss"
             ],
             "scripts": []
