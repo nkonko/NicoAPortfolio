@@ -1,6 +1,36 @@
-footer{
-  background: #eee;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.footer {
+  padding: 10px;
+  background-color: #f5f5f5;
+
+}
+
+.footer-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-items > div {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-items > .made-by-bulma {
+  flex: 0.5;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-icons a {
+  color: #333;
+  font-size: 20px;
+}
+
+.social-icons a:hover {
+  color: #000;
 }

@@ -22,6 +22,7 @@ import { SocialModule } from '@modules/social/social.module';
     SocialModule,
     StoreModule.forFeature('contact', contactReducer),
     EffectsModule.forFeature([ContactEffects])
-  ]
+  ],
+  exports: [ContactComponent]
 })
 export class ContactModule { }

@@ -3,8 +3,10 @@ import { Basics } from '@core/models/gitConnectProfile/base';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { AppState } from '@core/store/models/app.state';
 import { BasicsSelector, SkillSelector } from '@core/store/selectors/app.selector';
+import { ContactComponent } from '@modules/contact/components/contact/contact.component';
 import { SkillsService } from '@modules/skills/service/skills.service';
 import { Store } from '@ngrx/store';
+import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { Observable, Subject, map, shareReplay, switchMap, takeUntil } from 'rxjs';
 
 @Component({
@@ -22,7 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected location!: string;
 
   constructor(private store: Store<AppState>,
-              private skillsService: SkillsService) { }
+              private skillsService: SkillsService,
+              private modalContentService: ModalContentService) { }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -30,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.modalContentService.push(ContactComponent);
 
     this.basics$.pipe(takeUntil(this.unsubscribe$), map(basics => {
       this.name = basics?.name!;
