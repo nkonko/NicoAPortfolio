@@ -8,3 +8,24 @@
   margin-right: 10px; /* Espacio entre los skills (ajusta según tus necesidades) */
   white-space: normal; /* Restaura el comportamiento normal de salto de línea para el texto dentro de los skills */
 }
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.marquee__content {
+  display: flex;
+  list-style: none;
+  animation: scrolling 10s linear infinite;
+}
+
+.marquee__item {
+  flex-shrink: 0;
+}
+
+@keyframes scrolling {
+  0% { transform: translateX(0) }
+  100% { transform: translateX(-100%) }
+}

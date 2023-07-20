@@ -6,7 +6,7 @@
         Hey there, my name is {{name}}.
       </h1>
 
-      <h1 class="subtitle" [innerHTML]=jobTitle></h1>
+      <h1 class="title" [innerHTML]=jobTitle></h1>
       <h2 class="subtitle">Based in {{location}}.</h2>
       <div class="custom-card">
         <div class="card-content">
@@ -14,24 +14,31 @@
 
             <h4 class="word-carousel">
               <span>
-                  Specialized in web development with over 6 years of professional experience in building webs and
-                  working
-                  with technologies like:
+                Specialized in web development with over 6 years of professional experience in building webs and
+                working
+                with technologies like:
               </span>
-              <div>
-                <br>
-                <ul class="flip5">
-                  <li *ngFor="let skill of completeSkills">
-                    <span class="icon-text" *ngIf="skill.icon">
-                      <span class="icon">
-                        <i class="devicon-{{skill.icon}}-plain colored" *ngIf="!skill.isPlainIcon"
-                          style="font-size: x-large;"></i>
-                        <i class="devicon-{{skill.icon}} colored" *ngIf="skill.isPlainIcon"
-                          style="font-size: x-large;"></i>
+              <br>
+              <br>
+
+              <div class="box">
+                <div class="marquee">
+                  <ul class="marquee__content">
+                    <li class="marquee__item pl-4" *ngFor="let skill of completeSkills">
+                      <span class="icon-text" *ngIf="skill.icon">
+                        <span class="icon">
+                          <i class="devicon-{{skill.icon}}-plain colored" *ngIf="!skill.isPlainIcon"
+                            style="font-size: x-large;"></i>
+                          <i class="devicon-{{skill.icon}} colored" *ngIf="skill.isPlainIcon"
+                            style="font-size: x-large;"></i>
+                        </span>
                       </span>
-                    </span> {{skill.name}}
-                  </li>
-                </ul>
+                      <span>
+                        {{skill.name}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </h4>
           </div>
