@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  protected modalActive: boolean = false;
+
+  toggleActivation() {
+    this.modalActive = !this.modalActive;
+
+  }
 }

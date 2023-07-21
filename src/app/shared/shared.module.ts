@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BurgerDirective, MenuDirective, NavbarDirective } from './layout/navbar/directive/navbar.directive';
 import { ModalComponent } from './modal/component/modal.component';
 import { ModalContentDirective } from './modal/directive/modal-content.directive';
+import { ModalOpenDirective } from './modal/directive/modal-open.directive';
 
 
 
@@ -18,6 +19,7 @@ import { ModalContentDirective } from './modal/directive/modal-content.directive
     MenuDirective,
     ModalComponent,
     ModalContentDirective,
+    ModalOpenDirective,
   ],
   imports: [
     CommonModule,

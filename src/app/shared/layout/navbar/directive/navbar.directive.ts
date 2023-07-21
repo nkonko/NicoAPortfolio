@@ -13,7 +13,6 @@ export class BurgerDirective {
 
 }
 
-
 @Directive({selector: '.navbar-menu'})
 export class MenuDirective {
 

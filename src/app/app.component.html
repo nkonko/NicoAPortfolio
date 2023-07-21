@@ -3,7 +3,7 @@
   <router-outlet></router-outlet>
 </section>
 <app-footer></app-footer>
-<!-- <a href="#" class="button is-floating is-link">
+<a  (click)="toggleActivation()"  class="fab button is-floating is-link">
   <i class="fas fa-envelope"></i>
-  <app-modal></app-modal>
-</a> -->
+</a>
+<app-modal [isActive]="modalActive" (reset)="modalActive = false"></app-modal>

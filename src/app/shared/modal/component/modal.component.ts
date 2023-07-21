@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalContentDirective } from '../directive/modal-content.directive';
 import { ModalContentService } from '../service/modal-content.service';
 
@@ -8,6 +8,9 @@ import { ModalContentService } from '../service/modal-content.service';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+  @Input() isActive!: boolean;
+  @Output() reset = new EventEmitter<boolean>();
+
   @ViewChild(ModalContentDirective, { static: true }) modalContentArea?: ModalContentDirective;
 
   constructor(private modalContentService: ModalContentService) { }
@@ -19,6 +22,11 @@ export class ModalComponent implements OnInit {
     }
 
     this.modalContentService.setDynamicContentArea(this.modalContentArea);
+  }
+
+  close() {
+    this.isActive = !this.isActive;
+    this.reset.emit(false);
   }
 
 }

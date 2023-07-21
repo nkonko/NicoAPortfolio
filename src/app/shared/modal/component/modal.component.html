@@ -1,9 +1,9 @@
-<div class="modal is-active">
+<div class="modal" [class.is-active]="isActive">
   <div class="modal-background"></div>
   <div class="modal-content">
     <div class="box">
       <ng-template modalContent></ng-template>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close"></button>
+  <button class="modal-close is-large" (click)="close()" aria-label="close"></button>
 </div>
