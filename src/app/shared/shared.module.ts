@@ -7,6 +7,7 @@ import { BurgerDirective, MenuDirective, NavbarDirective } from './layout/navbar
 import { ModalComponent } from './modal/component/modal.component';
 import { ModalContentDirective } from './modal/directive/modal-content.directive';
 import { ModalOpenDirective } from './modal/directive/modal-open.directive';
+import { SplashComponent } from './splash/component/splash.component';
 
 
 
@@ -20,6 +21,7 @@ import { ModalOpenDirective } from './modal/directive/modal-open.directive';
     ModalComponent,
     ModalContentDirective,
     ModalOpenDirective,
+    SplashComponent,
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { ModalOpenDirective } from './modal/directive/modal-open.directive';
   exports: [
     NavbarComponent,
     FooterComponent,
-    ModalComponent
+    ModalComponent,
+    SplashComponent
   ]
 })
 export class SharedModule { }

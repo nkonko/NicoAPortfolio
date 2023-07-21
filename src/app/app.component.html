@@ -1,9 +1,15 @@
-<app-navbar class="mb-2"></app-navbar>
-<section class='section is-medium'>
-  <router-outlet></router-outlet>
-</section>
-<app-footer></app-footer>
-<a  (click)="toggleActivation()"  class="fab button is-floating is-link">
-  <i class="fas fa-envelope"></i>
-</a>
-<app-modal [isActive]="modalActive" (reset)="modalActive = false"></app-modal>
+<div *ngIf="loading">
+  <app-splash></app-splash>
+</div>
+
+<div *ngIf="!loading">
+  <app-navbar class="mb-2"></app-navbar>
+  <section class='section is-medium'>
+    <router-outlet></router-outlet>
+  </section>
+  <app-footer></app-footer>
+  <a (click)="toggleActivation()" class="fab button is-floating is-link">
+    <i class="fas fa-envelope"></i>
+  </a>
+  <app-modal [isActive]="modalActive" (reset)="modalActive = false"></app-modal>
+</div>

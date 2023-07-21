@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Basics } from '@core/models/gitConnectProfile/base';
 import { Skill } from '@core/models/gitConnectProfile/skill';
+import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
-import { BasicsSelector, SkillSelector } from '@core/store/selectors/app.selector';
+import { BasicsSelector, EventSelector, SkillSelector } from '@core/store/selectors/app.selector';
 import { ContactComponent } from '@modules/contact/components/contact/contact.component';
 import { SkillsService } from '@modules/skills/service/skills.service';
 import { Store } from '@ngrx/store';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
-import { Observable, Subject, map, shareReplay, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,13 @@ import { Observable, Subject, map, shareReplay, switchMap, takeUntil } from 'rxj
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private unsubscribe$ = new Subject<void>();
-  private basics$: Observable<Basics | undefined> = this.store.select(BasicsSelector);
-  private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
   protected completeSkills!: Skill[];
   protected name!: string;
   protected jobTitle!: string;
   protected location!: string;
+  private unsubscribe$ = new Subject<void>();
+  private basics$: Observable<Basics | undefined> = this.store.select(BasicsSelector);
+  private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
 
   constructor(private store: Store<AppState>,
               private skillsService: SkillsService,
