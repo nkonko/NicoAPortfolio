@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.basics$.pipe(takeUntil(this.unsubscribe$), map(basics => {
       this.name = basics?.name!;
-      const jtitle = `I'm a ${basics?.label!.replace('(', '<b>(').replace(')', ')</b>')}`;
+      const jtitle = `I'm a ${basics?.label!.replace('(', '(').replace(')', ')')}`;
       this.jobTitle = jtitle;
       this.location = basics?.region!;
     })).subscribe();

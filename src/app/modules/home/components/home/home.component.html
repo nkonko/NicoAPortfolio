@@ -1,49 +1,47 @@
-<section class="hero is-primary is-medium is-bold">
+<section class="hero bg is-medium is-bold">
   <div class="hero-body">
+    <h1 class="title is-1">
+      Hey there!. My name is {{name}}.
+    </h1>
 
-    <div class="container is-fluid">
-      <h1 class="title">
-        Hey there, my name is {{name}}.
-      </h1>
+    <h1 class="title is-4" [innerHTML]=jobTitle></h1>
+    <h2 class="subtitle is-5">Based in {{location}}.</h2>
+    <div class="custom-card">
+      <div class="card-content">
+        <div class="content">
 
-      <h1 class="title" [innerHTML]=jobTitle></h1>
-      <h2 class="subtitle">Based in {{location}}.</h2>
-      <div class="custom-card">
-        <div class="card-content">
-          <div class="content">
+          <h4 class="word-carousel">
+            <span>
+              Specialized in web development with over 6 years of professional experience in building webs and
+              working
+              with technologies like:
+            </span>
+            <br>
+            <br>
 
-            <h4 class="word-carousel">
-              <span>
-                Specialized in web development with over 6 years of professional experience in building webs and
-                working
-                with technologies like:
-              </span>
-              <br>
-              <br>
-
-              <div class="box">
-                <div class="marquee">
-                  <ul class="marquee__content">
-                    <li class="marquee__item pl-4" *ngFor="let skill of completeSkills">
-                      <span class="icon-text" *ngIf="skill.icon">
-                        <span class="icon">
-                          <i class="devicon-{{skill.icon}}-plain colored" *ngIf="!skill.isPlainIcon"
-                            style="font-size: x-large;"></i>
-                          <i class="devicon-{{skill.icon}} colored" *ngIf="skill.isPlainIcon"
-                            style="font-size: x-large;"></i>
-                        </span>
+            <div class="box">
+              <div class="marquee">
+                <ul class="marquee__content">
+                  <li class="marquee__item pl-4" *ngFor="let skill of completeSkills">
+                    <span class="icon-text" *ngIf="skill.icon">
+                      <span class="icon">
+                        <i class="devicon-{{skill.icon}}-plain colored" *ngIf="!skill.isPlainIcon"
+                          style="font-size: x-large;"></i>
+                        <i class="devicon-{{skill.icon}} colored" *ngIf="skill.isPlainIcon"
+                          style="font-size: x-large;"></i>
                       </span>
-                      <span>
-                        {{skill.name}}
-                      </span>
-                    </li>
-                  </ul>
-                </div>
+                    </span>
+                    <span>
+                      {{skill.name}}
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </h4>
-          </div>
+            </div>
+          </h4>
         </div>
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </section>

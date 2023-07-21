@@ -3,20 +3,6 @@
         <div class="notification is-primary ">
           <h2 class="title is-4">Contact</h2>
           <p class="is-size-4"><a href="mailto:nicoazzara@hotmail.com">nicoazzara@hotmail.com</a></p>
-
         </div>
       </div>
-      <div class="container mt-5 ">
-        <div class="notification is-primary">
-          <h2 class="title is-4">Social Networks</h2>
-          <div class="buttons">
-          <a (click)="goToLink(social.url)" class="button is-link is-light is-rounded" *ngFor="let social of socials$ | async">
-            <span class="icon">
-              <i class="{{social.icon}}"></i>
-            </span>
-            <span>{{social.network | titlecase}}</span>
-          </a>
-        </div>
-      </div>
-    </div>
   </div>

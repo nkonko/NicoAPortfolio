@@ -6,9 +6,11 @@
         <a href="https://bulma.io"><img src="https://bulma.io/images/made-with-bulma--dark.png" alt="Made with Bulma" width="163" height="31"></a>
       </div>
       <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a (click)="goToLink(social.url)" class="is-link" *ngFor="let social of socials$ | async">
+          <span class="icon is-medium pl-4">
+            <i class="{{social.icon}} fa-lg"></i>
+          </span>
+        </a>
       </div>
     </div>
   </div>
