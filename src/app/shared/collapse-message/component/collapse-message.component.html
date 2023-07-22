@@ -1,0 +1,11 @@
+<article class="message is-primary mt-2">
+  <div class="message-header">
+    <p>{{title}}</p>
+    <i class="fa-solid fa-chevron-down icon-arrow rotate" (click)="toggle()"></i>
+  </div>
+  <div class="message-body" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="message-body-content">
+      {{paragraph}}
+    </div>
+  </div>
+</article>

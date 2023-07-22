@@ -14,7 +14,9 @@ import { AppSelector } from 'app/core/store/selectors/app.selector';
 export class AboutComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();
   private profileRes$: Observable<ProfileState> = this.store.select(AppSelector);
-  protected summary!: string;
+  protected summaries!: string[];
+  protected presentation!: string;
+  protected paragraphs: { title: string, paragraph: string }[] = []
 
   constructor(private store: Store<AppState>) { }
 
@@ -26,21 +28,26 @@ export class AboutComponent implements OnInit, OnDestroy {
         const rawSummary = res.profile!.basics.summary;
 
         let dotArray = rawSummary.split('.\n');
-        let newArray: string[] = [];
 
-        for (let index = 0; index < dotArray.length; index++) {
-          let element = dotArray[index];
+        this.presentation = dotArray[0];
 
-          element = element.replace(/\n/, "<b>\n");
-          element = element.replace(/:\n/, ":</b>\n");
-          newArray.push(`${element}.`);
+        for (let element of dotArray) {
+          // Check if the element contains the title format (e.g., <b>...</b>)
+          if (element.includes(':') && element.startsWith('\n')) {
+            let algo = element.split(/:\n/);
+            this.paragraphs.push({ title: algo.at(0)!.replace('\n', ''), paragraph: algo.at(1)!});
+          }
         }
 
-        return newArray.join('<br><br>');
+
+
+
       })
-    ).subscribe(sum => {
-      this.summary = sum;
-    });
+    ).subscribe();
+    // sum => {
+    //   this.summaries = sum;
+    // });
+
   }
 
   ngOnDestroy(): void {

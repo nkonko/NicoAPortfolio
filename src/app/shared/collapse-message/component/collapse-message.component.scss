@@ -1,0 +1,21 @@
+
+.message-body {
+  max-height: 1000px;
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+}
+
+.message-body.collapsed {
+  display: none;
+}
+
+.icon-arrow.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.icon-arrow {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+

@@ -8,6 +8,8 @@ import { ModalComponent } from './modal/component/modal.component';
 import { ModalContentDirective } from './modal/directive/modal-content.directive';
 import { ModalOpenDirective } from './modal/directive/modal-open.directive';
 import { SplashComponent } from './splash/component/splash.component';
+import { CollapseMessageComponent } from './collapse-message/component/collapse-message.component';
+import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.directive';
 
 
 
@@ -22,6 +24,8 @@ import { SplashComponent } from './splash/component/splash.component';
     ModalContentDirective,
     ModalOpenDirective,
     SplashComponent,
+    CollapseMessageComponent,
+    RotateArrowDirective,
   ],
   imports: [
     CommonModule,
@@ -31,7 +35,8 @@ import { SplashComponent } from './splash/component/splash.component';
     NavbarComponent,
     FooterComponent,
     ModalComponent,
-    SplashComponent
+    SplashComponent,
+    CollapseMessageComponent
   ]
 })
 export class SharedModule { }

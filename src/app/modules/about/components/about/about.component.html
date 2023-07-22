@@ -1,9 +1,17 @@
 <section class="section">
   <div class="container">
-  <h1 class="title">Meet me</h1>
+    <h1 class="title mt-5 is-1">Meet me</h1>
     <div class="columns">
-      <div class="column is-half" >
-        <p [innerHTML]="summary"></p>
+      <div class="column is-three-quarters">
+
+        <article class="message is-dark is-medium">
+          <div class="message-body">
+            {{presentation}}
+          </div>
+        </article>
+        <ng-container *ngFor="let item of paragraphs">
+          <app-collapse-message [paragraph]="item.paragraph" [title]="item.title"></app-collapse-message>
+        </ng-container>
       </div>
     </div>
   </div>
