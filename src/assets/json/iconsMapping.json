@@ -5,6 +5,8 @@
   {"name":"JavaScript", "iconMap":"javascript", "isPlainIcon": false},
   {"name":".NET 7", "iconMap":"dotnetcore", "isPlainIcon": false},
   {"name":"Azure Devops", "iconMap":"azure", "isPlainIcon": false},
+  {"name":"Mongo Db", "iconMap":"mongodb", "isPlainIcon": false},
+  {"name":"Bulma", "iconMap":"bulma", "isPlainIcon": false},
   {"name":"Selenium", "iconMap":"selenium-original", "isPlainIcon": true},
   {"name":"HTML5", "iconMap":"html5-plain-wordmark", "isPlainIcon": true},
   {"name":"Microsoft SQL Server", "iconMap":"microsoftsqlserver-plain-wordmark", "isPlainIcon": true},
