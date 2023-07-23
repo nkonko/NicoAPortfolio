@@ -4,14 +4,14 @@ section {
 
 
 .skills-container {
-  white-space: wrap; /* Evita los saltos de línea */
-  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si el contenido se desborda */
+  white-space: wrap;
+  overflow-x: auto;
 }
 
 .skill {
-  display: inline-block; /* Muestra los skills uno al lado del otro */
-  margin-right: 10px; /* Espacio entre los skills (ajusta según tus necesidades) */
-  white-space: normal; /* Restaura el comportamiento normal de salto de línea para el texto dentro de los skills */
+  display: inline-block;
+  margin-right: 10px;
+  white-space: normal;
 }
 
 

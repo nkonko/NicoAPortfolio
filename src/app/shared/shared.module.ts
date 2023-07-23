@@ -10,6 +10,7 @@ import { ModalOpenDirective } from './modal/directive/modal-open.directive';
 import { SplashComponent } from './splash/component/splash.component';
 import { CollapseMessageComponent } from './collapse-message/component/collapse-message.component';
 import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.directive';
+import { SkillBoxComponent } from './skill-box/component/skill-box.component';
 
 
 
@@ -26,6 +27,7 @@ import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.
     SplashComponent,
     CollapseMessageComponent,
     RotateArrowDirective,
+    SkillBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.
     FooterComponent,
     ModalComponent,
     SplashComponent,
-    CollapseMessageComponent
+    CollapseMessageComponent,
+    SkillBoxComponent
   ]
 })
 export class SharedModule { }

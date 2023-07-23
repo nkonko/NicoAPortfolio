@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SkillsRoutingModule } from './skills-routing.module';
 import { SkillsComponent } from './components/skills/skills.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SkillsComponent } from './components/skills/skills.component';
   ],
   imports: [
     CommonModule,
-    SkillsRoutingModule
+    SkillsRoutingModule,
+    SharedModule
   ]
 })
 export class SkillsModule { }
