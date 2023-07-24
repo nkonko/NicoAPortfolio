@@ -6,4 +6,5 @@ export interface Skill {
   yearsOfExperience: number | null;
   icon: string;
   isPlainIcon: boolean;
+  keywords: string[];
 }

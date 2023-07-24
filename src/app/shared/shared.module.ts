@@ -11,6 +11,7 @@ import { SplashComponent } from './splash/component/splash.component';
 import { CollapseMessageComponent } from './collapse-message/component/collapse-message.component';
 import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.directive';
 import { SkillBoxComponent } from './skill-box/component/skill-box.component';
+import { TabsComponent } from './tabs/component/tabs.component';
 
 
 
@@ -28,6 +29,7 @@ import { SkillBoxComponent } from './skill-box/component/skill-box.component';
     CollapseMessageComponent,
     RotateArrowDirective,
     SkillBoxComponent,
+    TabsComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { SkillBoxComponent } from './skill-box/component/skill-box.component';
     ModalComponent,
     SplashComponent,
     CollapseMessageComponent,
-    SkillBoxComponent
+    SkillBoxComponent,
+    TabsComponent
   ]
 })
 export class SharedModule { }

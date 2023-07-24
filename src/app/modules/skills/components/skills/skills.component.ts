@@ -13,8 +13,9 @@ import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 })
 export class SkillsComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
-  protected completeSkills!: Skill[];
   private unsubscribe$ = new Subject<void>();
+  protected completeSkills!: Skill[];
+  protected tabsNames!: string[];
 
   constructor(
     private store: Store<AppState>,
@@ -29,6 +30,10 @@ export class SkillsComponent implements OnInit, OnDestroy {
     this.skillsData$.pipe(
       takeUntil(this.unsubscribe$),
       switchMap((skills) => {
+
+        const keywords = [...new Set(skills!.map(s => s.keywords[0]))];
+        this.tabsNames = keywords;
+
         return this.skillsService.getSkillsJson().pipe(
           map(iconData => {
             const newarray = skills?.map(skill => {
@@ -41,7 +46,8 @@ export class SkillsComponent implements OnInit, OnDestroy {
           }));
       })
     ).subscribe(skillsWIcon => {
-      this.completeSkills = skillsWIcon!
+      this.completeSkills = skillsWIcon!;
+
     });
   }
 }
