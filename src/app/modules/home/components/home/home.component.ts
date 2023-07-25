@@ -5,7 +5,7 @@ import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
 import { BasicsSelector, EventSelector, SkillSelector } from '@core/store/selectors/app.selector';
 import { ContactComponent } from '@modules/contact/components/contact/contact.component';
-import { SkillsService } from '@modules/skills/service/skills.service';
+import { IconsService } from '@shared/services/icons.service';
 import { Store } from '@ngrx/store';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
 
   constructor(private store: Store<AppState>,
-              private skillsService: SkillsService,
+              private skillsService: IconsService,
               private modalContentService: ModalContentService) { }
 
   ngOnDestroy(): void {
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.skillsData$.pipe(
       takeUntil(this.unsubscribe$),
       switchMap((skills) => {
-        return this.skillsService.getSkillsJson().pipe(
+        return this.skillsService.getSkillsIconsJson().pipe(
           map(iconData => {
             const newarray = skills?.map(skill => {
               const newSkill = { ...skill };

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Tab } from '../model/tab';
 
 @Component({
   selector: 'app-tabs',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent {
-  @Input() tabs!: string[] ;
+  @Input() tabs!: Tab[] ;
 }

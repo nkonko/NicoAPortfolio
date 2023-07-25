@@ -1,6 +1,6 @@
-<section class="hero is-medium  is-bold">
+<section class="hero is-medium has-background-success-light is-bold">
   <div class="hero-header">
-    <app-tabs [tabs]="tabsNames"></app-tabs>
+    <app-tabs [tabs]="tabs"></app-tabs>
 
   </div>
   <div class="hero-body">
@@ -9,7 +9,8 @@
         <div class="column is-half is-offset-one-quarter" *ngIf="completeSkills">
           <div class="box p-5">
             <div class="skills-container">
-              <div *ngFor="let skill of completeSkills" class="skill">
+              <app-skill-box></app-skill-box>
+              <!-- <div *ngFor="let skill of completeSkills" class="skill">
                 <span class="icon-text" *ngIf="skill.icon">
                   <span class="icon">
                     <i class="devicon-{{skill.icon}}-plain colored" *ngIf="!skill.isPlainIcon"
@@ -18,11 +19,10 @@
                   </span>
                 </span>
                 <span> {{skill.name}}</span>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
-        <app-skill-box></app-skill-box>
       </div>
 
     </div>

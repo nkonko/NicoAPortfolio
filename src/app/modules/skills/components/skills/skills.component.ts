@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { AppState } from '@core/store/models/app.state';
 import { SkillSelector } from '@core/store/selectors/app.selector';
-import { SkillsService } from '@modules/skills/service/skills.service';
+import { IconsService } from '@shared/services/icons.service';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
+import { Tab } from '@shared/tabs/model/tab';
 
 @Component({
   selector: 'app-skills',
@@ -15,11 +16,12 @@ export class SkillsComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
   private unsubscribe$ = new Subject<void>();
   protected completeSkills!: Skill[];
-  protected tabsNames!: string[];
+  protected tabs!: Tab[];
 
   constructor(
     private store: Store<AppState>,
-    private skillsService: SkillsService) { }
+    private iconsService: IconsService) { }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
@@ -31,10 +33,16 @@ export class SkillsComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
       switchMap((skills) => {
 
-        const keywords = [...new Set(skills!.map(s => s.keywords[0]))];
-        this.tabsNames = keywords;
+        const preTabs = [...new Set(skills!.map(s => s.keywords[0]))];
 
-        return this.skillsService.getSkillsJson().pipe(
+        this.iconsService.getTabsIconsJson().subscribe(iconData => {
+          const tabMap = preTabs.map(tab => {
+            return { name: tab, icon: iconData.find(icon => icon.name === tab)?.iconMap! };
+          });
+          this.tabs = tabMap;
+        });
+
+        return this.iconsService.getSkillsIconsJson().pipe(
           map(iconData => {
             const newarray = skills?.map(skill => {
               const newSkill = { ...skill };
@@ -47,7 +55,10 @@ export class SkillsComponent implements OnInit, OnDestroy {
       })
     ).subscribe(skillsWIcon => {
       this.completeSkills = skillsWIcon!;
-
     });
+
+
+
+
   }
 }
