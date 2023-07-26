@@ -1,9 +1,13 @@
 <div class="box">
-  <h2 class="title is-3">{{skill.name}} <i class="{{skill.icon}}" style="font-size: xx-large;"></i></h2>
-
-  <progress *ngIf="skill.level === ''"class="progress is-primary" value="5" max="100">5%</progress>
+  <div class="box-header mb-4 is-flex is-justify-content-space-between" >
+    <h2 class="title is-4">{{skill.name}}
+    </h2>
+    <i class="{{skill.icon}}" style="font-size: xx-large;"></i>
+  </div>
+  <progress *ngIf="skill.level === ''" class="progress is-primary" value="5" max="100">5%</progress>
   <progress *ngIf="skill.level === 'Beginner'" class="progress is-primary" value="25" max="100">25%</progress>
   <progress *ngIf="skill.level === 'Intermediate'" class="progress is-primary" value="50" max="100">50%</progress>
   <progress *ngIf="skill.level === 'Advanced'" class="progress is-primary" value="75" max="100">75%</progress>
   <progress *ngIf="skill.level === 'Expert'" class="progress is-primary" value="90" max="100">90%</progress>
+  <p>Experience: {{skill.yearsOfExperience}} years.</p>
 </div>
