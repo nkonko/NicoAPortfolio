@@ -62,7 +62,6 @@ section {
   display: flex;
   list-style: none;
   animation: scrolling 60s linear infinite;
-
 }
 
 .marquee__item {
@@ -73,9 +72,6 @@ section {
   0% { transform: translateX(0) }
   100% { transform: translateX(-100%) }
 }
-
-
-
 
 .bg {
   background-size: 300% 300%;
