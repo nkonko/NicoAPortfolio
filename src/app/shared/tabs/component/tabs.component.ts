@@ -9,12 +9,14 @@ import { Tab } from '../model/tab';
 export class TabsComponent implements OnInit {
   @Input() tabs!: Tab[];
   @Output() selectedTab = new EventEmitter<string>();
+  protected activeTab: string = 'Languaje';
 
   ngOnInit(): void {
-    this.selectedTab.emit('Languaje');
+    this.selectedTab.emit(this.activeTab);
   }
 
   onTabClick(name: string) {
     this.selectedTab.emit(name);
+    this.activeTab = name;
   }
 }
