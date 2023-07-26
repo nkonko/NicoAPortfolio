@@ -5,6 +5,5 @@ export interface Skill {
   level: Level;
   yearsOfExperience: number | null;
   icon: string;
-  isPlainIcon: boolean;
   keywords: string[];
 }

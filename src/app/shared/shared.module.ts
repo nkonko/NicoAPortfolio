@@ -12,6 +12,7 @@ import { CollapseMessageComponent } from './collapse-message/component/collapse-
 import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.directive';
 import { SkillBoxComponent } from './skill-box/component/skill-box.component';
 import { TabsComponent } from './tabs/component/tabs.component';
+import { SkillBoxesComponent } from './skill-boxes/component/skill-boxes.component';
 
 
 
@@ -30,6 +31,7 @@ import { TabsComponent } from './tabs/component/tabs.component';
     RotateArrowDirective,
     SkillBoxComponent,
     TabsComponent,
+    SkillBoxesComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { TabsComponent } from './tabs/component/tabs.component';
     SplashComponent,
     CollapseMessageComponent,
     SkillBoxComponent,
-    TabsComponent
+    TabsComponent,
+    SkillBoxesComponent
   ]
 })
 export class SharedModule { }

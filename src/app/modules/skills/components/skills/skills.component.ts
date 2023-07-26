@@ -3,9 +3,10 @@ import { Skill } from '@core/models/gitConnectProfile/skill';
 import { AppState } from '@core/store/models/app.state';
 import { SkillSelector } from '@core/store/selectors/app.selector';
 import { IconsService } from '@shared/services/icons.service';
-import { Store } from '@ngrx/store';
-import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 import { Tab } from '@shared/tabs/model/tab';
+import * as skillActions from '../../state/actions/skills.action';
+import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-skills',
@@ -16,6 +17,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
   private unsubscribe$ = new Subject<void>();
   protected completeSkills!: Skill[];
+  protected skills!: Skill[];
   protected tabs!: Tab[];
 
   constructor(
@@ -28,6 +30,8 @@ export class SkillsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+
 
     this.skillsData$.pipe(
       takeUntil(this.unsubscribe$),
@@ -47,7 +51,6 @@ export class SkillsComponent implements OnInit, OnDestroy {
             const newarray = skills?.map(skill => {
               const newSkill = { ...skill };
               newSkill.icon = iconData.find(icon => icon.name === skill.name)?.iconMap!;
-              newSkill.isPlainIcon = iconData.find(icon => icon.name === skill.name)?.isPlainIcon!;
               return newSkill;
             });
             return newarray;
@@ -60,5 +63,9 @@ export class SkillsComponent implements OnInit, OnDestroy {
 
 
 
+  }
+
+  tabChange(name: string) {
+    this.store.dispatch(skillActions.ChangeTab({ tab: name }));
   }
 }

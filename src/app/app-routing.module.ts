@@ -25,10 +25,6 @@ const routes: Routes = [
   path: 'skills',
   loadChildren: () => import('./modules/skills/skills.module').then(m => m.SkillsModule)
  },
- {
-  path: 'social',
-  loadChildren: () => import('./modules/social/social.module').then(m => m.SocialModule)
- },
  { path: '**', redirectTo: 'not-found'}
 ]
 @NgModule({

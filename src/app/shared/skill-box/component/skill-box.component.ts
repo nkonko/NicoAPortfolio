@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Skill } from '@core/models/gitConnectProfile/skill';
 
 @Component({
   selector: 'app-skill-box',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./skill-box.component.scss']
 })
 export class SkillBoxComponent {
-
+  @Input() skill!: Skill;
 }

@@ -51,7 +51,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             const newarray = skills?.map(skill => {
               const newSkill = { ...skill };
               newSkill.icon = iconData.find(icon => icon.name === skill.name)?.iconMap!;
-              newSkill.isPlainIcon = iconData.find(icon => icon.name === skill.name)?.isPlainIcon!;
               return newSkill;
             });
             return newarray;

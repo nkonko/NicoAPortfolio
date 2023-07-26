@@ -15,7 +15,7 @@ export const selectSkills = (state: AppState) => state.app.profile;
 
 export const SkillSelector = createSelector(
   selectSkills,
-  state => state?.skills);
+  state => state!.skills);
 
 export const selectSummary = (state: AppState) => state.app.profile?.basics;
 

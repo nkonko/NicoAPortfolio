@@ -1,7 +1,7 @@
 <div class="tabs is-centered">
   <ul>
     <li *ngFor="let tab of tabs">
-      <a>
+      <a (click)="onTabClick(tab.name)">
         <span class="icon is-small">
           <i class="{{tab.icon}}" aria-hidden="true"></i>
         </span>
