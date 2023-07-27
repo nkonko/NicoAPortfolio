@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { ModalContentDirective } from '../directive/modal-content.directive';
 import { ModalContentService } from '../service/modal-content.service';
 
@@ -7,13 +7,17 @@ import { ModalContentService } from '../service/modal-content.service';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   @Input() isActive!: boolean;
   @Output() reset = new EventEmitter<boolean>();
 
   @ViewChild(ModalContentDirective, { static: true }) modalContentArea?: ModalContentDirective;
 
   constructor(private modalContentService: ModalContentService) { }
+
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
 

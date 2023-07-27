@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
 import { EventSelector } from '@core/store/selectors/app.selector';
+import { ContactComponent } from '@modules/contact/components/contact/contact.component';
 import { Store } from '@ngrx/store';
+import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -16,7 +18,7 @@ export class AppComponent implements OnInit {
   private unsubscribe$ = new Subject<void>();
   protected modalActive: boolean = false;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private modalContentService: ModalContentService) { }
   ngOnInit(): void {
     this.stateEvent$.pipe(takeUntil(this.unsubscribe$)).subscribe(event => {
       if (event !== StateEvents.Loading) {
@@ -26,7 +28,12 @@ export class AppComponent implements OnInit {
   }
 
   toggleActivation() {
+    this.modalContentService.push(ContactComponent);
     this.modalActive = !this.modalActive;
+
+    if (!this.modalActive) {
+      this.modalContentService.pop();
+    }
   }
 
 }

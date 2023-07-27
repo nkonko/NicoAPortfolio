@@ -3,8 +3,7 @@ import { Basics } from '@core/models/gitConnectProfile/base';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
-import { BasicsSelector, EventSelector, SkillSelector } from '@core/store/selectors/app.selector';
-import { ContactComponent } from '@modules/contact/components/contact/contact.component';
+import { BasicsSelector, SkillSelector } from '@core/store/selectors/app.selector';
 import { IconsService } from '@shared/services/icons.service';
 import { Store } from '@ngrx/store';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
@@ -25,8 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
 
   constructor(private store: Store<AppState>,
-              private skillsService: IconsService,
-              private modalContentService: ModalContentService) { }
+              private skillsService: IconsService) { }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
@@ -34,7 +32,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.modalContentService.push(ContactComponent);
 
     this.basics$.pipe(takeUntil(this.unsubscribe$), map(basics => {
       this.name = basics?.name!;
