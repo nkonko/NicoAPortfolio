@@ -1,8 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ContactState } from '../../state/models/contact.state';
 import * as contactActions from '../../state/actions/contact.action';
+import { ContactFormState } from '../../state/models/contactForm.state';
+import { Observable } from 'rxjs';
+import { ContactSelector } from '@modules/contact/state/selectors/contact.selector';
+import { StateEvents } from '@core/models/state.events';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -14,11 +18,14 @@ export class ContactComponent implements OnInit, OnDestroy {
   protected animatePhone: boolean = false;
   protected animateEnvelope: boolean = false;
   private emailRegex: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+  private contact$: Observable<ContactFormState | undefined> = this.contactStore.select(ContactSelector);
 
   constructor(
     private fb: FormBuilder,
-    private contactStore: Store<ContactState>) {
+    private contactStore: Store<ContactFormState>,
+    private toastr: ToastrService) {
   }
+
   ngOnDestroy(): void {
     this.contactForm.reset();
   }
@@ -30,6 +37,20 @@ export class ContactComponent implements OnInit, OnDestroy {
       phone: ['', [Validators.minLength(3), Validators.maxLength(20)]],
       message: ['', [Validators.minLength(8)]]
     });
+
+    this.contact$.subscribe(form => {
+
+      if (form?.event === StateEvents.Updated) {
+
+        this.toastr.success("", "Message sent", {
+          closeButton: true,
+          progressBar: true,
+          timeOut: 2500,
+          positionClass: "toast-bottom-center",
+        });
+      }
+    });
+
   }
 
   onSubmit() {

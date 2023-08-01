@@ -11,7 +11,7 @@ export class ContactEffects {
 
   constructor(private actions$: Actions, private contactService: ContactService) { }
 
-  $ = createEffect(() => this.actions$.pipe(
+  contact$ = createEffect(() => this.actions$.pipe(
     ofType(contactActions.SubmitContactDetails),
     switchMap((action) => this.contactService.submit(action.contact)
       .pipe(

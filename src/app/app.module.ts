@@ -11,6 +11,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { ROOT_REDUCERS } from './core/store/models/app.state';
 import { AppEffects } from './core/store/effects/app.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ContactEffects } from '@modules/contact/state/effects/contact.effect';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 export function initApp(appService: BootstrapService): () => void {
   return () => appService.initialize();
@@ -22,11 +26,13 @@ export function initApp(appService: BootstrapService): () => void {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([AppEffects, ContactEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [

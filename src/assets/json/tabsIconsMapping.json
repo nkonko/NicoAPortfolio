@@ -1,6 +1,6 @@
 [
   {"name":"Arquitecture", "iconMap":"fa-solid fa-trowel-bricks"},
-  {"name":"Languaje", "iconMap":"devicon-c-line"},
+  {"name":"Language", "iconMap":"devicon-c-line"},
   {"name":"Framework", "iconMap":"fa-solid fa-toolbox"},
   {"name":"Metodology", "iconMap":"fa-solid fa-users-gear"},
   {"name":"Database", "iconMap":"fa-solid fa-database"},
