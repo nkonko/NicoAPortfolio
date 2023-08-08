@@ -38,6 +38,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
               .replace('Description:', '<b>Description:</b>')
               .replace('Backend-Tecnologies:', '<br><br><b>Backend-Tecnologies:</b><br>')
               .replace('Frontend-Tecnologies:', '<br><br><b>Frontend-Tecnologies:</b><br>')
+              .replace('Devops:', '<br><br><b>Devops:</b><br>')
               .replace('Databases:', '<br><br><b>Databases:</b><br>')
               .replace('Extra:', '<br><br><b>Extra:</b><br>')
               .replace('Duties:', '<br><br><b>Duties:</b><br>')

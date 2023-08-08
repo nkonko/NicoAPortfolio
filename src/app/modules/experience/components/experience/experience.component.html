@@ -1,13 +1,8 @@
 <div class="mt-5">
   <div class="columns">
-
-    <div class="column is-8">
-      <div class="box" [innerHTML]="selectedWork.summary"></div>
-    </div>
-
     <div class="column is-4">
       <div class="timeline">
-        <header class="timeline-header">
+        <header class="timeline-header ml-5">
           <span class="tag is-medium is-primary">Present</span>
         </header>
         <div class="timeline-item"
@@ -26,10 +21,14 @@
             <span class="heading is-flex">Position: <p class="title is-6 ml-2">{{work.position}}</p></span>
           </div>
         </div>
-        <div class="timeline-header">
+        <div class="timeline-header ml-5">
           <span class="tag is-medium is-primary">Begining</span>
         </div>
       </div>
+    </div>
+
+    <div class="column is-8">
+      <div class="box" [innerHTML]="selectedWork.summary"></div>
     </div>
 
   </div>
