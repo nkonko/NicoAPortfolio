@@ -1,6 +1,7 @@
 @import './styles/custom-variables';
 @import '../node_modules/bulma/bulma.sass';
 @import 'ngx-toastr/toastr';
+@import '../node_modules/@creativebulma/bulma-tooltip/src/sass/index.sass';
 
 *{
   margin: 0;

@@ -34,6 +34,7 @@
               "node_modules/bulma-timeline/dist/css/bulma-timeline.min.css",
               "node_modules/bulma-floating-button/dist/css/bulma-floating-button.min.css",
               "node_modules/ngx-toastr/toastr.css",
+              "node_modules/@creativebulma/bulma-tooltip/dist/bulma-tooltip.min.css",
               "src/styles.scss"
             ],
             "scripts": []

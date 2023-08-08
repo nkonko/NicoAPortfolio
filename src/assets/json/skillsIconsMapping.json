@@ -11,6 +11,7 @@
   {"name":"HTML5", "iconMap":"devicon-html5-plain-wordmark colored"},
   {"name":"Microsoft SQL Server", "iconMap":"devicon-microsoftsqlserver-plain-wordmark colored"},
   {"name":"Sass", "iconMap":"devicon-sass-original colored"},
+  {"name":"Css", "iconMap":"devicon-css3-plain-wordmark colored"},
   {"name":"Git", "iconMap":"devicon-github-original colored"},
   {"name":"MySQL", "iconMap":"devicon-mysql-plain-wordmark colored"},
   {"name":"JIRA", "iconMap":"devicon-jira-plain-wordmark colored"},

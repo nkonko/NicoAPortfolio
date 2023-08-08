@@ -1,52 +1,36 @@
-<section class="hero is-primary is-fullheight is-bold">
-    <div class="container is-fluid mt-5">
-      <h1 class="title is-3">Positions</h1>
-    </div>
-    <div class="container is-fluid mt-5 mb-5">
-      <div class="columns is-multiline is-centered">
-        <div class="column is-two-fifths" *ngFor="let work of works">
-          <div class="custom-card">
-            <div class="card-content">
-              <p class="title is-5">{{work.position}}</p>
-              <a (click)="goToSection(work.id)" class="button is-link is-outlined">More details</a>
-            </div>
-          </div>
-        </div>
-        <div class="column is-two-fifths">
-          <div class="custom-card">
-            <div class="card-content">
-              <p class="title is-5">View experience from begining</p>
-              <a (click)="goToSection('start')" class="button is-link">View</a>
-              <br>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</section>
+<div class="mt-5">
+  <div class="columns">
 
-<section class="section" >
-  <div class="container">
-    <h2 class="title is-4">Experience</h2>
-    <div class="timeline">
-      <header class="timeline-header">
-        <span class="tag is-medium is-primary">Present</span>
-      </header>
-      <div class="timeline-item is-success" *ngFor="let work of works">
-        <div class="timeline-marker is-link"></div>
-        <div id="{{work.id}}" class="timeline-content">
-          <p class="heading"><b>{{work.startDate | date: 'MMMM YYYY'}} </b> TO <b>{{work.isCurrentRole ? 'Present' :
-              work.endDate | date: 'MMMM YYYY'}} </b></p>
-          <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
-          <p class="heading">Position: {{work.position}}</p>
-          <p [innerHTML]="work.summary"></p>
+    <div class="column is-8">
+      <div class="box" [innerHTML]="selectedWork.summary"></div>
+    </div>
+
+    <div class="column is-4">
+      <div class="timeline">
+        <header class="timeline-header">
+          <span class="tag is-medium is-primary">Present</span>
+        </header>
+        <div class="timeline-item"
+        (mouseover)="hoverTimelineMarker(true, work.id)"
+        (mouseout)="hoverTimelineMarker(false, work.id)"
+        (click)="selectWork(work.id)"
+        *ngFor="let work of works">
+          <div class="timeline-marker"
+          [ngClass]="{'is-primary': selectedWork.id !== work.id,
+                    'is-link': selectedWork.id === work.id}"
+          ></div>
+          <div id="{{work.id}}" class="timeline-content">
+            <p class="heading" [class.selected]="selectedWork.id === work.id"><b>{{work.startDate | date: 'MMMM YYYY'}} </b> TO <b>{{work.isCurrentRole ? 'Present' :
+                work.endDate | date: 'MMMM YYYY'}} </b></p>
+            <p class="heading">Company: <a href="{{work.website}}">{{work.company}}</a></p>
+            <span class="heading is-flex">Position: <p class="title is-6 ml-2">{{work.position}}</p></span>
+          </div>
+        </div>
+        <div class="timeline-header">
+          <span class="tag is-medium is-primary">Begining</span>
         </div>
       </div>
-      <div class="timeline-header">
-        <span class="tag is-medium is-primary">Begining</span>
-      </div>
     </div>
+
   </div>
-  <div id="start"></div>
-</section>
+</div>

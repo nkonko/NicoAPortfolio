@@ -30,9 +30,6 @@ export class SkillsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-
-
     this.skillsData$.pipe(
       takeUntil(this.unsubscribe$),
       switchMap((skills) => {
@@ -60,9 +57,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
       this.completeSkills = skillsWIcon!;
     });
 
-
-
-
+    this.tabChange('Language');
   }
 
   tabChange(name: string) {

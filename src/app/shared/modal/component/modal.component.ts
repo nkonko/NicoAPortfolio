@@ -10,7 +10,6 @@ import { ModalContentService } from '../service/modal-content.service';
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() isActive!: boolean;
   @Output() reset = new EventEmitter<boolean>();
-
   @ViewChild(ModalContentDirective, { static: true }) modalContentArea?: ModalContentDirective;
 
   constructor(private modalContentService: ModalContentService) { }

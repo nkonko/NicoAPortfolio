@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { BurgerDirective, MenuDirective, NavbarDirective } from './layout/navbar/directive/navbar.directive';
 import { ModalComponent } from './modal/component/modal.component';
 import { ModalContentDirective } from './modal/directive/modal-content.directive';
-import { ModalOpenDirective } from './modal/directive/modal-open.directive';
 import { SplashComponent } from './splash/component/splash.component';
 import { CollapseMessageComponent } from './collapse-message/component/collapse-message.component';
 import { RotateArrowDirective } from './collapse-message/directive/rotate-arrow.directive';
@@ -25,7 +24,6 @@ import { SkillBoxesComponent } from './skill-boxes/component/skill-boxes.compone
     MenuDirective,
     ModalComponent,
     ModalContentDirective,
-    ModalOpenDirective,
     SplashComponent,
     CollapseMessageComponent,
     RotateArrowDirective,

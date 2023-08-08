@@ -6,17 +6,13 @@ import { Tab } from '../model/tab';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss']
 })
-export class TabsComponent implements OnInit {
+export class TabsComponent {
   @Input() tabs!: Tab[];
   @Output() selectedTab = new EventEmitter<string>();
-  protected activeTab: string = 'Languaje';
-
-  ngOnInit(): void {
-    this.selectedTab.emit(this.activeTab);
-  }
+  @Input() activeTab!: string;
 
   onTabClick(name: string) {
-    this.selectedTab.emit(name);
     this.activeTab = name;
+    this.selectedTab.emit(name);
   }
 }
