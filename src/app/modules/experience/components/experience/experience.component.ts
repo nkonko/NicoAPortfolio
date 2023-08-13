@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Work } from '@core/models/gitConnectProfile/work';
 import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
@@ -61,8 +61,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   }
 
-  goToSection(section: string): void {
-    const element = document.getElementById(section);
+  goToSummary(): void {
+    const element = document.getElementById('summary');
     element!.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -73,6 +73,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   selectWork(id: string) {
     this.selectedWork = this.works.filter(w => w.id === id)[0];
+    this.goToSummary();
   }
 
 }
