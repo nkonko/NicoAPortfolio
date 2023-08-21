@@ -57,8 +57,6 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         this.selectedWork = this.works[0]
       }
     });
-
-
   }
 
   goToSummary(): void {
