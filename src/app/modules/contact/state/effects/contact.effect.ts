@@ -13,13 +13,13 @@ export class ContactEffects {
 
   contact$ = createEffect(() => this.actions$.pipe(
     ofType(contactActions.SubmitContactDetails),
-    switchMap((action) => this.contactService.submit(action.contact)
+    switchMap((action) => this.contactService.sendEmail(action.contact)
       .pipe(
         map(() => contactActions.SubmitContactDetailsSuccess()),
         catchError((errorResponse: HttpErrorResponse) =>
           of(contactActions.SubmitContactDetailsFailure({
             error: {
-              error: errorResponse.error,
+              error: errorResponse,
               status: errorResponse.status
             }
           }))

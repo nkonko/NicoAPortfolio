@@ -14,10 +14,10 @@ export const ContactReducer = createReducer(initialState,
   on(contactAction.SubmitContactDetails, (state, action) => ({
     ...state,
     form: action.contact,
-    event: StateEvents.Updating
+    event: StateEvents.Creating
   })),
   on(contactAction.SubmitContactDetailsSuccess, (state, action) => ({
-    ...state, ...action, event: StateEvents.Updated
+    ...state, ...action, event: StateEvents.Created
   })),
   on(contactAction.SubmitContactDetailsFailure, (state, action) => ({
     ...state,

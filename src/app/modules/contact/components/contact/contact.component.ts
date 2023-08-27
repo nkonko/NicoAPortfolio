@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.contact$.subscribe(form => {
 
-      if (form?.event === StateEvents.Updated) {
+      if (form?.event === StateEvents.Created) {
 
         this.toastr.success("", "Message sent", {
           closeButton: true,
@@ -48,6 +48,15 @@ export class ContactComponent implements OnInit, OnDestroy {
           timeOut: 2500,
           positionClass: "toast-bottom-center",
         });
+      }
+
+      if(form?.event === StateEvents.Failed) {
+        this.toastr.error("There was an Error", "Error", {
+          closeButton: true,
+          progressBar: true,
+          timeOut: 2500,
+          positionClass: "toast-bottom-center",
+        })
       }
     });
 
