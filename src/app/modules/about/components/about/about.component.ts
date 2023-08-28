@@ -12,7 +12,7 @@ import { AppSelector } from 'app/core/store/selectors/app.selector';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit, OnDestroy {
-  private unsubscribe = new Subject<void>();
+  private unsubscribe$ = new Subject<void>();
   private profileRes$: Observable<ProfileState> = this.store.select(AppSelector);
   protected presentation!: string;
   protected paragraphs: { title: string, paragraph: string; }[] = [];
@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.profileRes$.pipe(
-      takeUntil(this.unsubscribe),
+      takeUntil(this.unsubscribe$),
       filter(res => res.profile != null),
       map(res => {
         const rawSummary = res.profile!.basics.summary;
@@ -41,7 +41,7 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
