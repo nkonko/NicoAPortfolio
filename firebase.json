@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "nicoazzara",
     "public": "dist/nicoa-portfolio",
     "ignore": [
       "firebase.json",
