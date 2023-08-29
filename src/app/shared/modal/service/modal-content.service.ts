@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import type { Type as Component } from '@angular/core';
 import { ModalContentDirective } from '../directive/modal-content.directive';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalContentService {
+  private toggleSubject = new BehaviorSubject<boolean>(false);
+  toggle$ = this.toggleSubject.asObservable();
   #contentArea?: ModalContentDirective;
   #stack = [] as Component<unknown>[];
 
@@ -40,5 +43,11 @@ export class ModalContentService {
   setDynamicContentArea(host: ModalContentDirective) {
     this.#contentArea = host;
   }
+
+  toggleVisibility() {
+    this.toggleSubject.next(false);
+  }
+
+
 
 }

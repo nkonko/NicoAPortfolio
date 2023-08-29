@@ -7,5 +7,6 @@ export enum StateEvents {
   Updated = 'Updated',
   Deleting = 'Deleting',
   Deleted = 'Deleted',
-  Failed = 'Failed'
+  Failed = 'Failed',
+  Iddle = 'Iddle'
 }

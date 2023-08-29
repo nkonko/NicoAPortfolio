@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { ContactSelector } from '@modules/contact/state/selectors/contact.selector';
 import { StateEvents } from '@core/models/state.events';
 import { ToastrService } from 'ngx-toastr';
+import { ModalContentService } from '@shared/modal/service/modal-content.service';
 
 @Component({
   selector: 'app-contact',
@@ -23,7 +24,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private contactStore: Store<ContactFormState>,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private modalContentService: ModalContentService) {
   }
 
   ngOnDestroy(): void {
@@ -48,15 +50,20 @@ export class ContactComponent implements OnInit, OnDestroy {
           timeOut: 2500,
           positionClass: "toast-bottom-center",
         });
+        this.contactForm.reset();
+        this.modalContentService.toggleVisibility();
+        this.contactStore.dispatch(contactActions.ResetEvents());
       }
 
-      if(form?.event === StateEvents.Failed) {
+      if (form?.event === StateEvents.Failed) {
         this.toastr.error("There was an Error", "Error", {
           closeButton: true,
           progressBar: true,
           timeOut: 2500,
           positionClass: "toast-bottom-center",
-        })
+        });
+        this.modalContentService.toggleVisibility();
+        this.contactStore.dispatch(contactActions.ResetEvents());
       }
     });
 

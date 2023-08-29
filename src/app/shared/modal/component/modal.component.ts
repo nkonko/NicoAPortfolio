@@ -8,6 +8,7 @@ import { ModalContentService } from '../service/modal-content.service';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnDestroy {
+  isOpen$ = this.modalContentService.toggle$;
   @Input() isActive!: boolean;
   @Output() reset = new EventEmitter<boolean>();
   @ViewChild(ModalContentDirective, { static: true }) modalContentArea?: ModalContentDirective;
@@ -25,6 +26,11 @@ export class ModalComponent implements OnInit, OnDestroy {
     }
 
     this.modalContentService.setDynamicContentArea(this.modalContentArea);
+
+    this.isOpen$.subscribe(val => {
+      this.isActive = val;
+      this.reset.emit(false);
+    })
   }
 
   close() {

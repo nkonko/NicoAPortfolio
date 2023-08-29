@@ -11,3 +11,5 @@ export const SubmitContactDetailsSuccess = createAction(
 
 export const SubmitContactDetailsFailure = createAction(
   '[Contact Component] Submit contact details failed', props<{error: ApiError}>());
+
+  export const ResetEvents = createAction('[Contact Component] Reset events')
