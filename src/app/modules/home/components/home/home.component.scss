@@ -1,6 +1,8 @@
+@import '../../../../../../node_modules/bulma/bulma.sass';
+
 .hero-body {
   h1, h2 {
-    color: white;
+    color: $white;
   }
 
 }
@@ -13,7 +15,7 @@ section {
 .word-carousel {
 
   span {
-    color: whitesmoke;
+    color: $white-ter;
   }
 
   div {
@@ -39,7 +41,7 @@ section {
 }
 
 .word-carousel > span:nth-child(1) {
-  color: white;
+  color: $white;
 }
 
 .custom-card {
@@ -49,7 +51,7 @@ section {
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   span {
-    color: rgb(12, 12, 12);
+    color: $black;
   }
 }
 
