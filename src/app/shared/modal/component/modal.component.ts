@@ -16,7 +16,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   constructor(private modalContentService: ModalContentService) { }
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
   }
 
   ngOnInit(): void {

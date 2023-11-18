@@ -15,6 +15,7 @@ import { ContactEffects } from '@modules/contact/state/effects/contact.effect';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ContactModule } from '@modules/contact/contact.module';
 
 export function initApp(appService: BootstrapService): () => void {
   return () => appService.initialize();
@@ -28,6 +29,7 @@ export function initApp(appService: BootstrapService): () => void {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ContactModule,
     SharedModule,
     HttpClientModule,
     ToastrModule.forRoot(),

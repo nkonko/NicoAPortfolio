@@ -7,9 +7,11 @@
   <section class='section is-medium'>
     <router-outlet></router-outlet>
   </section>
-  <app-footer></app-footer>
-  <a (click)="toggleActivation()" class="fab button is-floating is-link shadow">
-    <i class="fas fa-envelope"></i>
-  </a>
-  <app-modal [isActive]="modalActive" (reset)="modalActive = false"></app-modal>
+  <ng-container *ngIf="hideComponents">
+    <app-footer></app-footer>
+    <a (click)="toggleActivation()" class="fab button is-floating is-link shadow">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <app-modal [isActive]="modalActive" (reset)="modalActive = false"></app-modal>
+  </ng-container>
 </div>

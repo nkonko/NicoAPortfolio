@@ -18,10 +18,6 @@ const routes: Routes = [
   loadChildren: () => import('./modules/experience/experience.module').then(m => m.ExperienceModule)
  },
  {
-  path: 'contact',
-  loadChildren: () => import('./modules/contact/contact.module').then(m => m.ContactModule)
- },
- {
   path: 'skills',
   loadChildren: () => import('./modules/skills/skills.module').then(m => m.SkillsModule)
  },
