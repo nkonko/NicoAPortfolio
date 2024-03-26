@@ -4,10 +4,20 @@
     </h2>
     <i class="{{skill.icon}}" style="font-size: xx-large;"></i>
   </div>
-  <progress *ngIf="skill.level === ''" class="progress is-primary" value="5" max="100">5%</progress>
-  <progress *ngIf="skill.level === 'Beginner'" class="progress is-primary" value="25" max="100">25%</progress>
-  <progress *ngIf="skill.level === 'Intermediate'" class="progress is-primary" value="50" max="100">50%</progress>
-  <progress *ngIf="skill.level === 'Advanced'" class="progress is-primary" value="75" max="100">75%</progress>
-  <progress *ngIf="skill.level === 'Expert'" class="progress is-primary" value="90" max="100">90%</progress>
+  @if (skill.level === '') {
+    <progress class="progress is-primary" value="5" max="100">5%</progress>
+  }
+  @if (skill.level === 'Beginner') {
+    <progress class="progress is-primary" value="25" max="100">25%</progress>
+  }
+  @if (skill.level === 'Intermediate') {
+    <progress class="progress is-primary" value="50" max="100">50%</progress>
+  }
+  @if (skill.level === 'Advanced') {
+    <progress class="progress is-primary" value="75" max="100">75%</progress>
+  }
+  @if (skill.level === 'Expert') {
+    <progress class="progress is-primary" value="90" max="100">90%</progress>
+  }
   <p>Experience: {{skill.yearsOfExperience}} years.</p>
 </div>

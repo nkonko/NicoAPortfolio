@@ -5,84 +5,104 @@
       <input formControlName="name" class="input is-medium"
         [class.is-danger]="!this.contactForm.get('name')?.pristine && this.contactForm.get('name')?.invalid && !(this.contactForm.get('name')?.value === '')"
         type="text" placeholder="Alex Smith">
+      </div>
+      @if (!this.contactForm.get('name')?.pristine && this.contactForm.get('name')?.invalid && this.contactForm.get('name')?.errors!['required'] && !(this.contactForm.get('name')?.value === '')) {
+        <p class="help is-danger"
+          >
+        Name is required</p>
+      }
+      @if (!this.contactForm.get('name')?.pristine && this.contactForm.get('name')?.invalid && this.contactForm.get('name')?.errors!['minlength']) {
+        <p class="help is-danger"
+          >
+        Name must be at least 3 characters</p>
+      }
     </div>
-    <p class="help is-danger"
-      *ngIf="!this.contactForm.get('name')?.pristine && this.contactForm.get('name')?.invalid && this.contactForm.get('name')?.errors!['required'] && !(this.contactForm.get('name')?.value === '')">
-      Name is required</p>
-    <p class="help is-danger"
-      *ngIf="!this.contactForm.get('name')?.pristine && this.contactForm.get('name')?.invalid && this.contactForm.get('name')?.errors!['minlength']">
-      Name must be at least 3 characters</p>
-  </div>
-  <div class="field">
-    <label class="label">Email</label>
-    <p class="control has-icons-left has-icons-right">
-      <input formControlName="email" class="input is-medium"
-        [class.is-danger]="!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid && !(this.contactForm.get('email')?.value === '')"
-        type="email" placeholder="Alex.Smith@gmail.com" (focus)="animateEnvelope = true"
-        (blur)="animateEnvelope = false">
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope" [class.fa-bounce]="animateEnvelope"></i>
-      </span>
-      <span class="icon is-small is-right"
-        *ngIf="!this.contactForm.get('email')?.pristine && !this.contactForm.get('email')?.invalid">
-        <i class="fas fa-check has-text-success"></i>
-      </span>
-      <span class="icon is-small is-right"
-        *ngIf="!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid ">
-        <i class="fas fa-exclamation-triangle has-text-danger"></i>
-      </span>
-    </p>
-    <p class="help is-danger"
-      *ngIf="!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid && this.contactForm.get('email')?.errors!['required'] && !(this.contactForm.get('email')?.value === '')">
-      Email is required</p>
-    <p class="help is-danger"
-      *ngIf="!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid && !(this.contactForm.get('email')?.value === '')">
-      This email is invalid</p>
-  </div>
-  <div class="field">
-    <label class="label">Phone</label>
-    <p class="control has-icons-left has-icons-right">
-      <input formControlName="phone" class="input is-medium"
-        [class.is-danger]="!this.contactForm.get('phone')?.pristine && this.contactForm.get('phone')?.invalid"
-        type="tel" placeholder="5555-5555" (focus)="animatePhone = true" (blur)="animatePhone = false">
-      <span class="icon is-small is-left">
-        <i class="fa-solid fa-mobile-screen" [class.fa-shake]="animatePhone"></i>
-      </span>
+    <div class="field">
+      <label class="label">Email</label>
+      <p class="control has-icons-left has-icons-right">
+        <input formControlName="email" class="input is-medium"
+          [class.is-danger]="!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid && !(this.contactForm.get('email')?.value === '')"
+          type="email" placeholder="Alex.Smith@gmail.com" (focus)="animateEnvelope = true"
+          (blur)="animateEnvelope = false">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope" [class.fa-bounce]="animateEnvelope"></i>
+          </span>
+          @if (!this.contactForm.get('email')?.pristine && !this.contactForm.get('email')?.invalid) {
+            <span class="icon is-small is-right"
+              >
+              <i class="fas fa-check has-text-success"></i>
+            </span>
+          }
+          @if (!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid ) {
+            <span class="icon is-small is-right"
+              >
+              <i class="fas fa-exclamation-triangle has-text-danger"></i>
+            </span>
+          }
+        </p>
+        @if (!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid && this.contactForm.get('email')?.errors!['required'] && !(this.contactForm.get('email')?.value === '')) {
+          <p class="help is-danger"
+            >
+          Email is required</p>
+        }
+        @if (!this.contactForm.get('email')?.pristine && this.contactForm.get('email')?.invalid && !(this.contactForm.get('email')?.value === '')) {
+          <p class="help is-danger"
+            >
+          This email is invalid</p>
+        }
+      </div>
+      <div class="field">
+        <label class="label">Phone</label>
+        <p class="control has-icons-left has-icons-right">
+          <input formControlName="phone" class="input is-medium"
+            [class.is-danger]="!this.contactForm.get('phone')?.pristine && this.contactForm.get('phone')?.invalid"
+            type="tel" placeholder="5555-5555" (focus)="animatePhone = true" (blur)="animatePhone = false">
+            <span class="icon is-small is-left">
+              <i class="fa-solid fa-mobile-screen" [class.fa-shake]="animatePhone"></i>
+            </span>
 
-      <span class="icon is-small is-right"
-        *ngIf="!this.contactForm.get('phone')?.pristine && !this.contactForm.get('phone')?.invalid && !(this.contactForm.get('phone')?.value === '')">
-        <i class="fas fa-check has-text-success"></i>
-      </span>
-      <span class="icon is-small is-right"
-        *ngIf="!this.contactForm.get('phone')?.pristine && this.contactForm.get('phone')?.invalid">
-        <i class="fas fa-exclamation-triangle has-text-danger"></i>
-      </span>
-    </p>
-    <p class="help is-danger"
-      *ngIf="!this.contactForm.get('phone')?.pristine && this.contactForm.get('phone')?.invalid && this.contactForm.get('phone')?.errors!['minlength']">
-      Phone must be at least 3 characters</p>
-  </div>
+            @if (!this.contactForm.get('phone')?.pristine && !this.contactForm.get('phone')?.invalid && !(this.contactForm.get('phone')?.value === '')) {
+              <span class="icon is-small is-right"
+                >
+                <i class="fas fa-check has-text-success"></i>
+              </span>
+            }
+            @if (!this.contactForm.get('phone')?.pristine && this.contactForm.get('phone')?.invalid) {
+              <span class="icon is-small is-right"
+                >
+                <i class="fas fa-exclamation-triangle has-text-danger"></i>
+              </span>
+            }
+          </p>
+          @if (!this.contactForm.get('phone')?.pristine && this.contactForm.get('phone')?.invalid && this.contactForm.get('phone')?.errors!['minlength']) {
+            <p class="help is-danger"
+              >
+            Phone must be at least 3 characters</p>
+          }
+        </div>
 
-  <div class="field">
-    <label class="label">Message</label>
-    <div class="control">
-      <textarea formControlName="message" class="textarea"
-        [class.is-danger]="!this.contactForm.get('message')?.pristine && this.contactForm.get('message')?.invalid"
-        placeholder="Message..."></textarea>
-    </div>
-    <p class="help is-danger"
-      *ngIf="!this.contactForm.get('message')?.pristine && this.contactForm.get('message')?.invalid && this.contactForm.get('message')?.errors!['minlength']">
-      Message must be at least 8 characters</p>
-  </div>
+        <div class="field">
+          <label class="label">Message</label>
+          <div class="control">
+            <textarea formControlName="message" class="textarea"
+              [class.is-danger]="!this.contactForm.get('message')?.pristine && this.contactForm.get('message')?.invalid"
+            placeholder="Message..."></textarea>
+          </div>
+          @if (!this.contactForm.get('message')?.pristine && this.contactForm.get('message')?.invalid && this.contactForm.get('message')?.errors!['minlength']) {
+            <p class="help is-danger"
+              >
+            Message must be at least 8 characters</p>
+          }
+        </div>
 
 
-  <div class="field is-grouped is-grouped-centered">
-    <p class="control">
-      <button type="submit" class="button is-link is-outlined is-medium"
-        [disabled]="contactForm.pristine || contactForm.invalid">
-        SEND
-      </button>
-    </p>
-  </div>
+        <div class="field is-grouped is-grouped-centered">
+          <p class="control">
+            <button type="submit" class="button is-link is-outlined is-medium"
+              [disabled]="contactForm.pristine || contactForm.invalid">
+              SEND
+            </button>
+          </p>
+        </div>
 
-</form>
+      </form>

@@ -5,32 +5,34 @@
         <header class="timeline-header ml-5">
           <span class="tag is-medium is-primary">Present</span>
         </header>
-        <div class="timeline-item"
-        (mouseover)="hoverTimelineMarker(true, work.id)"
-        (mouseout)="hoverTimelineMarker(false, work.id)"
-        (click)="selectWork(work.id)"
-        *ngFor="let work of works">
-          <div class="timeline-marker"
+        @for (work of works; track work) {
+          <div class="timeline-item"
+            (mouseover)="hoverTimelineMarker(true, work.id)"
+            (mouseout)="hoverTimelineMarker(false, work.id)"
+            (click)="selectWork(work.id)"
+            >
+            <div class="timeline-marker"
           [ngClass]="{'is-primary': selectedWork.id !== work.id,
                     'is-link': selectedWork.id === work.id}"
-          ></div>
-          <div id="{{work.id}}" class="timeline-content">
-            <p class="heading" [class.selected]="selectedWork.id === work.id"><b>{{work.startDate | date: 'MMMM YYYY'}} </b> TO <b>{{work.isCurrentRole ? 'Present' :
-                work.endDate | date: 'MMMM YYYY'}} </b></p>
+            ></div>
+            <div id="{{work.id}}" class="timeline-content">
+              <p class="heading" [class.selected]="selectedWork.id === work.id"><b>{{work.startDate | date: 'MMMM YYYY'}} </b> TO <b>{{work.isCurrentRole ? 'Present' :
+            work.endDate | date: 'MMMM YYYY'}} </b></p>
             <p class="heading">Company: <a href="{{work.website}}"><strong class="shadow has-tooltip-arrow has-tooltip-bottom" data-tooltip="Open LinkedIn">
-              {{work.company}}</strong></a></p>
+            {{work.company}}</strong></a></p>
             <span class="heading is-flex">Position: <p class="title is-6 ml-2">{{work.position}}</p></span>
           </div>
         </div>
-        <div class="timeline-header ml-5">
-          <span class="tag is-medium is-primary">Begining</span>
-        </div>
+      }
+      <div class="timeline-header ml-5">
+        <span class="tag is-medium is-primary">Begining</span>
       </div>
     </div>
-
-    <div class="column is-8" id="summary">
-      <div class="box" [innerHTML]="selectedWork.summary"></div>
-    </div>
-
   </div>
+
+  <div class="column is-8" id="summary">
+    <div class="box" [innerHTML]="selectedWork.summary"></div>
+  </div>
+
+</div>
 </div>

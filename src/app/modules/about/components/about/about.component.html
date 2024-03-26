@@ -9,9 +9,9 @@
             {{presentation}}
           </div>
         </article>
-        <ng-container *ngFor="let item of paragraphs">
+        @for (item of paragraphs; track item) {
           <app-collapse-message [paragraph]="item.paragraph" [title]="item.title"></app-collapse-message>
-        </ng-container>
+        }
       </div>
     </div>
   </div>
