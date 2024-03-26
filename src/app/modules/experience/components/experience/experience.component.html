@@ -5,7 +5,7 @@
         <header class="timeline-header ml-5">
           <span class="tag is-medium is-primary">Present</span>
         </header>
-        @for (work of works; track work) {
+        @for (work of works; track work.id) {
           <div class="timeline-item"
             (mouseover)="hoverTimelineMarker(true, work.id)"
             (mouseout)="hoverTimelineMarker(false, work.id)"
