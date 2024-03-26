@@ -35,7 +35,7 @@ export function initApp(appService: BootstrapService): () => void {
     ToastrModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS),
     EffectsModule.forRoot([AppEffects, ContactEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() , connectInZone: true})
   ],
   providers: [
     {

@@ -19,9 +19,9 @@
     "@angular/platform-browser-dynamic": "^17.3.1",
     "@angular/router": "^17.3.1",
     "@emailjs/browser": "^3.11.0",
-    "@ngrx/effects": "^16.3.0",
-    "@ngrx/store": "^16.3.0",
-    "@ngrx/store-devtools": "^16.3.0",
+    "@ngrx/effects": "^17.1.1",
+    "@ngrx/store": "^17.1.1",
+    "@ngrx/store-devtools": "^17.1.1",
     "appsettings-json-reader": "^2.0.2",
     "bulma": "^0.9.4",
     "bulma-floating-button": "^1.0.3",
@@ -45,6 +45,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.4.3"
+    "typescript": "~5.3.3"
   }
 }
