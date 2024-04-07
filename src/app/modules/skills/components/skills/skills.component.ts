@@ -7,11 +7,15 @@ import { Tab } from '@shared/tabs/model/tab';
 import * as skillActions from '../../state/actions/skills.action';
 import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { SkillBoxesComponent } from '../../../../shared/skill-boxes/component/skill-boxes.component';
+import { TabsComponent } from '../../../../shared/tabs/component/tabs.component';
 
 @Component({
-  selector: 'app-skills',
-  templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.scss']
+    selector: 'app-skills',
+    templateUrl: './skills.component.html',
+    styleUrls: ['./skills.component.scss'],
+    standalone: true,
+    imports: [TabsComponent, SkillBoxesComponent]
 })
 export class SkillsComponent implements OnInit, OnDestroy {
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);

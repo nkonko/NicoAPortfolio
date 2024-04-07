@@ -7,14 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [
-    ContactComponent
-  ],
-  imports: [
-    CommonModule,
-    ContactRoutingModule,
-    ReactiveFormsModule,
-  ],
-  exports: [ContactComponent]
+    imports: [
+        CommonModule,
+        ContactRoutingModule,
+        ReactiveFormsModule,
+        ContactComponent,
+    ],
+    exports: [ContactComponent]
 })
 export class ContactModule { }

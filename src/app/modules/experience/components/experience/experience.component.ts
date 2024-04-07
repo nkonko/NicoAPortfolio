@@ -5,11 +5,14 @@ import { WorkSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, map, takeUntil } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { NgClass, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-experience',
-  templateUrl: './experience.component.html',
-  styleUrls: ['./experience.component.scss']
+    selector: 'app-experience',
+    templateUrl: './experience.component.html',
+    styleUrls: ['./experience.component.scss'],
+    standalone: true,
+    imports: [NgClass, DatePipe]
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();

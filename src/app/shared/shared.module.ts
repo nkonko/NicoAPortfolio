@@ -16,24 +16,17 @@ import { SkillBoxesComponent } from './skill-boxes/component/skill-boxes.compone
 
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    FooterComponent,
-    NavbarDirective,
-    BurgerDirective,
-    MenuDirective,
-    ModalComponent,
-    ModalContentDirective,
-    SplashComponent,
-    CollapseMessageComponent,
-    RotateArrowDirective,
-    SkillBoxComponent,
-    TabsComponent,
-    SkillBoxesComponent,
-  ],
   imports: [
     CommonModule,
     RouterModule,
+    NavbarComponent,
+    FooterComponent,
+    ModalComponent,
+    SplashComponent,
+    CollapseMessageComponent,
+    SkillBoxComponent,
+    TabsComponent,
+    SkillBoxesComponent
   ],
   exports: [
     NavbarComponent,

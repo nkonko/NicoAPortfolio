@@ -6,10 +6,10 @@ import { ExperienceComponent } from './components/experience/experience.componen
 
 
 @NgModule({
-  declarations: [ExperienceComponent],
-  imports: [
-    CommonModule,
-    ExperienceRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        ExperienceRoutingModule,
+        ExperienceComponent
+    ]
 })
 export class ExperienceModule { }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as contactActions from '../../state/actions/contact.action';
 import { ContactFormState } from '../../state/models/contactForm.state';
@@ -10,9 +10,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule]
 })
 export class ContactComponent implements OnInit, OnDestroy {
   protected contactForm!: FormGroup;

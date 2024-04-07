@@ -1,6 +1,9 @@
 import { Directive, HostBinding, HostListener, DoCheck, ContentChild } from '@angular/core';
 
-@Directive({selector: '.navbar-burger'})
+@Directive({
+    selector: '.navbar-burger',
+    standalone: true
+})
 export class BurgerDirective {
 
   @HostBinding('class.is-active')
@@ -13,7 +16,10 @@ export class BurgerDirective {
 
 }
 
-@Directive({selector: '.navbar-menu'})
+@Directive({
+    selector: '.navbar-menu',
+    standalone: true
+})
 export class MenuDirective {
 
   @HostBinding('class.is-active')
@@ -21,7 +27,10 @@ export class MenuDirective {
 
 }
 
-@Directive({selector: '.navbar'})
+@Directive({
+    selector: '.navbar',
+    standalone: true
+})
 export class NavbarDirective implements DoCheck {
 
   @ContentChild(BurgerDirective)

@@ -3,9 +3,11 @@ import { ModalContentDirective } from '../directive/modal-content.directive';
 import { ModalContentService } from '../service/modal-content.service';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+    selector: 'app-modal',
+    templateUrl: './modal.component.html',
+    styleUrls: ['./modal.component.scss'],
+    standalone: true,
+    imports: [ModalContentDirective]
 })
 export class ModalComponent implements OnInit, OnDestroy {
   isOpen$ = this.modalContentService.toggle$;

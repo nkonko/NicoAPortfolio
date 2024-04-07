@@ -1,7 +1,8 @@
 import { Directive, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '.rotate'
+    selector: '.rotate',
+    standalone: true
 })
 export class RotateArrowDirective {
   @HostListener('click', ['$event.target'])

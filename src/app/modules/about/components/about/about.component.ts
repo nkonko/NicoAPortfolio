@@ -4,12 +4,15 @@ import { Observable, Subject, filter, map, takeUntil } from 'rxjs';
 import { AppState } from 'app/core/store/models/app.state';
 import { ProfileState } from 'app/core/store/models/profile.state';
 import { AppSelector } from 'app/core/store/selectors/app.selector';
+import { CollapseMessageComponent } from '../../../../shared/collapse-message/component/collapse-message.component';
 
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss'],
+    standalone: true,
+    imports: [CollapseMessageComponent]
 })
 export class AboutComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();

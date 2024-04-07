@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
+
 import { BootstrapService } from './core/services/bootstrap.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -21,30 +21,4 @@ export function initApp(appService: BootstrapService): () => void {
   return () => appService.initialize();
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    ContactModule,
-    SharedModule,
-    HttpClientModule,
-    ToastrModule.forRoot(),
-    StoreModule.forRoot(ROOT_REDUCERS),
-    EffectsModule.forRoot([AppEffects, ContactEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() , connectInZone: true})
-  ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initApp,
-      deps: [BootstrapService],
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+

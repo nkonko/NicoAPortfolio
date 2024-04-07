@@ -10,9 +10,10 @@ import { ModalContentService } from '@shared/modal/service/modal-content.service
 import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true
 })
 export class HomeComponent implements OnInit, OnDestroy {
   protected completeSkills!: Skill[];

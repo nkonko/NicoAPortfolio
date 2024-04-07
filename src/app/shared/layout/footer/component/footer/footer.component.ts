@@ -4,11 +4,14 @@ import { AppState } from '@core/store/models/app.state';
 import { SocialsSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, map, takeUntil } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.scss'],
+    standalone: true,
+    imports: [AsyncPipe]
 })
 export class FooterComponent {
   private unsubscribe = new Subject<void>();
