@@ -4,6 +4,17 @@
 
 .modal-close {
   background-color: #00d1b2;
-  margin-top: 8vh;
-  margin-right: 1vw;
+  position: absolute;
+  top: -17px;
+  left: 335px;
+}
+
+.box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10px;
 }
