@@ -1,7 +1,8 @@
+@import '../../../../../../styles/custom-variables';
+
 .footer {
   padding: 10px;
-  background-color: #ddd7d7;
-
+  background-color: $footer-background-color;
 }
 
 .footer-items {
@@ -27,10 +28,22 @@
 }
 
 .social-icons a {
-  color: #333;
+  color: $footer-text-color;
   font-size: 20px;
 }
 
 .social-icons a:hover {
-  color: #000;
+  color: $footer-text-hover-color;
+}
+
+body.dark {
+  .footer {
+    background-color: darken($dark, 5%); // Slightly lighter than main dark background
+  }
+  .social-icons a {
+    color: $light; // Light text for dark background
+  }
+  .social-icons a:hover {
+    color: darken($light, 15%); // Slightly darker light text for hover
+  }
 }

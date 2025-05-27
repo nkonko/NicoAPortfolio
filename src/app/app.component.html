@@ -6,7 +6,7 @@
 
 @if (!loading) {
   <div>
-    <app-navbar class="mb-2"></app-navbar>
+    <app-navbar class="mb-2" [toggleTheme]="toggleTheme.bind(this)"></app-navbar>
     <section class='section is-medium'>
       <router-outlet></router-outlet>
     </section>

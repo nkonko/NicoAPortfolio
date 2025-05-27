@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { ThemeService } from '@core/services/theme.service';
 import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
 import { EventSelector } from '@core/store/selectors/app.selector';
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
   protected modalActive: boolean = false;
   protected hideComponents: boolean = true;
 
-  constructor(private store: Store<AppState>, private modalContentService: ModalContentService, private router: Router) { }
+  constructor(private store: Store<AppState>, private modalContentService: ModalContentService, private router: Router, private themeService: ThemeService) { }
   ngOnInit(): void {
     this.stateEvent$.pipe(takeUntil(this.unsubscribe$)).subscribe(event => {
       if (event !== StateEvents.Loading) {
@@ -52,4 +53,7 @@ export class AppComponent implements OnInit {
     }
   }
 
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
 }

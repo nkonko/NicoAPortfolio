@@ -24,6 +24,107 @@ body .title {
 body.dark {
   background-color: $dark;
   color: $light;
+
+  // --- Bulma Variable Overrides for Dark Mode ---
+  $primary-invert: $light; // Text color on primary background
+
+  // Global text & background
+  $text: $light;
+  $text-invert: $dark; // Color of text on $text background (e.g. for primary buttons)
+  $text-light: lighten($light, 10%);
+  $text-strong: $light;
+
+  $background: $dark; // Bulma's global background variable
+
+  // Borders
+  $border: lighten($dark, 15%);
+  $border-hover: lighten($dark, 25%);
+  $border-light: lighten($dark, 10%);
+
+  // Box
+  $box-background-color: lighten($dark, 5%);
+  $box-color: $light;
+  $box-shadow: 0 0.5em 1em -0.125em rgba($light, 0.05), 0 0px 0 1px rgba($light, 0.02);
+
+
+  // Card specific
+  $card-background-color: lighten($dark, 7%);
+  $card-color: $light;
+  $card-header-color: $light;
+  $card-header-background-color: lighten($dark, 10%);
+  $card-footer-border-top: 1px solid lighten($dark, 15%);
+  $card-shadow: 0 0.5em 1em -0.125em rgba($light, 0.05), 0 0px 0 1px rgba($light, 0.02);
+
+
+  // Modal specific
+  $modal-background-background-color: rgba(10, 10, 10, 0.75); // Darker overlay
+  $modal-card-head-background-color: lighten($dark, 10%);
+  $modal-card-head-border-bottom: 1px solid lighten($dark, 15%);
+  $modal-card-title-color: $light;
+  $modal-card-body-background-color: lighten($dark, 5%);
+  $modal-card-foot-background-color: lighten($dark, 10%);
+  $modal-card-foot-border-top: 1px solid lighten($dark, 15%);
+
+  // Message specific (basic, could be expanded for is-primary etc.)
+  $message-background-color: lighten($dark, 7%);
+  $message-header-background-color: lighten($dark, 12%);
+  $message-header-color: $light;
+  $message-body-color: $light;
+  $message-body-border-color: lighten($dark, 15%);
+  // For $message-body-pre-background-color etc. if needed
+
+  // Form Controls
+  $input-background-color: lighten($dark, 5%);
+  $input-color: $light;
+  $input-border-color: lighten($dark, 15%);
+  $input-hover-border-color: lighten($dark, 25%);
+  $input-focus-border-color: $link; // Bulma's $link, which should be themed
+  $input-placeholder-color: rgba($light, 0.5);
+  $input-disabled-background-color: lighten($dark, 2%);
+  $input-disabled-border-color: lighten($dark, 10%);
+  $input-disabled-color: rgba($light, 0.7);
+
+  $textarea-background-color: lighten($dark, 5%);
+  $textarea-color: $light;
+  $textarea-border-color: lighten($dark, 15%);
+  // ... other form variables as needed
+
+  // Button specific (complementing existing button styles)
+  $button-color: $light; // Text color for default button
+  $button-background-color: lighten($dark, 10%); // Background for default button
+  $button-border-color: lighten($dark, 15%);
+  $button-hover-color: $light;
+  $button-hover-border-color: lighten($dark, 25%);
+  $button-focus-color: $light;
+  $button-focus-border-color: $link; // Bulma's $link
+  $button-active-color: $light;
+  $button-active-border-color: $link; // Bulma's $link
+
+  // Ensure $link is also updated for dark mode if not already
+  $link: $primary; // Or a specific link color for dark mode
+  $link-hover: lighten($primary, 10%);
+  $link-visited: darken($primary, 5%);
+
+  // Tabs
+  $tabs-border-bottom-color: lighten($dark, 15%);
+  $tabs-link-color: rgba($light, 0.7);
+  $tabs-link-hover-border-bottom-color: $primary;
+  $tabs-link-hover-color: $primary;
+  $tabs-link-active-border-bottom-color: $primary;
+  $tabs-link-active-color: $primary;
+
+  $tabs-boxed-link-hover-background-color: lighten($dark, 10%);
+  $tabs-boxed-link-active-background-color: lighten($dark, 5%);
+  $tabs-boxed-link-active-border-color: lighten($dark, 15%);
+
+  $tabs-toggle-link-border-color: lighten($dark, 15%);
+  $tabs-toggle-link-hover-background-color: lighten($dark, 10%);
+  $tabs-toggle-link-active-background-color: $primary;
+  $tabs-toggle-link-active-border-color: $primary;
+  $tabs-toggle-link-active-color: $primary-invert;
+
+
+  // --- End of Bulma Variable Overrides ---
 }
 
 body.dark .subtitle,
@@ -31,23 +132,32 @@ body.dark .title {
   color: $light;
 }
 
-
-button{
+// General button styling (outside body.dark for base styles)
+button, .button { // Added .button for Bulma buttons
   cursor: pointer;
   border: none;
-  color: $light;
+  // Custom button styles will be partially overridden by Bulma's,
+  // but color/background here can act as fallback if Bulma classes not used.
+  // The Bulma variable overrides above are more important for Bulma buttons.
+  color: $dark; // Default text for custom non-Bulma buttons in light mode
+  background: $light; // Default background for custom non-Bulma buttons in light mode
   padding: .8rem;
-  background: $dark;
   border-radius: 6px;
+  border: 1px solid $dark; // Default border for custom buttons
 }
 
-body.dark button {
-  background: $light;
-  color: $dark;
+body.dark button, body.dark .button {
+  // These styles will apply to custom buttons and potentially override some Bulma styles if specific enough
+  background: lighten($dark, 10%); // Dark theme background for custom buttons
+  color: $light; // Dark theme text for custom buttons
+  border: 1px solid lighten($dark, 20%); // Dark theme border for custom buttons
+
+  // For Bulma buttons, the variable overrides will take precedence for most properties
+  // e.g. body.dark .button.is-primary will use themed $primary
 }
 
 section {
-height: 92vh;
+  min-height: 92vh; // Corrected from height to min-height for better flexibility
 }
 
 .section.is-medium {

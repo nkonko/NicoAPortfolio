@@ -1,3 +1,10 @@
 .shadow {
   text-shadow: 2px 1px 3px rgba(0,0,0,0.52);
 }
+
+.button.is-light {
+  // Basic styling for the theme toggle button
+  // This will make it a bit more distinct, but can be improved later
+  // For example, by using an icon.
+  font-weight: bold;
+}

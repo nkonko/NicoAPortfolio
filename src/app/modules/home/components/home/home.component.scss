@@ -46,12 +46,19 @@ section {
 
 .custom-card {
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255,255,255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3); // Light theme border
+  background: rgba(255,255,255, 0.5); // Light theme background
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  span {
-    color: $black;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); // Light theme shadow
+  // span color will inherit from global styles (body color)
+}
+
+body.dark {
+  .custom-card {
+    border: 1px solid rgba(0, 0, 0, 0.3); // Dark theme border
+    background: rgba(0, 0, 0, 0.2); // Dark theme background
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.05); // Dark theme shadow (very subtle)
+    // span color will inherit (e.g. $light via body.dark color)
   }
 }
 

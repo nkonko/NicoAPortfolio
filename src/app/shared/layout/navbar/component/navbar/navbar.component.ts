@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavbarDirective, BurgerDirective, MenuDirective } from '../../directive/navbar.directive';
 
@@ -11,6 +11,11 @@ import { NavbarDirective, BurgerDirective, MenuDirective } from '../../directive
 })
 export class NavbarComponent {
 
+  @Input() toggleTheme: () => void = () => {};
 
-
+  onToggleTheme() {
+    if (this.toggleTheme) {
+      this.toggleTheme();
+    }
+  }
 }
