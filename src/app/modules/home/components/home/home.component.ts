@@ -8,12 +8,14 @@ import { IconsService } from '@shared/services/icons.service';
 import { Store } from '@ngrx/store';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
+import { GithubProjectsComponent } from './github-projects/github-projects.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    standalone: true
+    standalone: true,
+    imports: [GithubProjectsComponent] // Add GithubProjectsComponent here
 })
 export class HomeComponent implements OnInit, OnDestroy {
   protected completeSkills!: Skill[];

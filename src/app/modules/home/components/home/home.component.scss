@@ -102,6 +102,12 @@ body.dark {
   }
 }
 
+app-github-projects {
+  display: block; // Ensures it takes up block space for margins
+  margin-top: 3rem; // Space above the GitHub projects section
+  margin-bottom: 2rem; // Space below the GitHub projects section
+}
+
 @keyframes AnimateBG {
   0% {
     background-position: 0% 50%;

@@ -1,0 +1,137 @@
+@import '../../../../../styles/custom-variables'; // For $light, $dark, etc.
+// Note: Bulma variables are available globally if styles.scss (main) is processed first,
+// or they can be imported from Bulma if needed directly here.
+
+.github-projects-slider {
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 700px; // Adjust as needed
+  background-color: lighten($light, 5%); // Slightly off-white for light mode
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .title.is-4 { // "My GitHub Projects"
+    color: $dark;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-slide.box { // .box gives padding and a base background
+    background-color: $white; // Explicitly white for light mode cards
+    border: 1px solid #dbdbdb; // Default Bulma border color for box
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+    text-align: center; // Center content within the slide
+
+    .project-name {
+      color: $dark; // Ensure title color is dark in light mode
+      margin-bottom: 0.75rem;
+    }
+
+    .project-description {
+      color: lighten($dark, 20%); // Slightly lighter than main text
+      margin-bottom: 1rem;
+      min-height: 60px; // Give some consistent height
+    }
+
+    .project-stats {
+      margin-bottom: 1rem;
+      color: lighten($dark, 30%);
+      font-size: 0.9em;
+
+      span {
+        margin-right: 15px;
+        i {
+          margin-right: 5px;
+        }
+      }
+      .language i { // Specific color for language dot
+        color: $primary; // Using Bulma's primary color, can be changed
+      }
+    }
+
+    .project-link.button.is-primary.is-outlined {
+      // Bulma handles most of this, but ensure text color is good
+      // In light mode, is-primary is-outlined is usually primary color text
+      margin-top: 0.5rem;
+      i.fab.fa-github {
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  .slider-navigation.buttons.is-centered {
+    .button.is-light {
+      // Bulma's is-light button has a light grey background and dark text
+      // This is generally fine for light mode.
+      // We might want to ensure it has enough contrast if the slider bg is very light.
+      background-color: #f5f5f5; // Bulma's $white-ter
+      color: #363636; // Bulma's $grey-darker
+      &:hover {
+        background-color: #eeeeee; // Darken slightly on hover
+      }
+    }
+  }
+}
+
+// Dark Mode Styles
+body.dark {
+  .github-projects-slider {
+    background-color: lighten($dark, 7%); // Darker background for the slider container
+    border-color: lighten($dark, 15%);
+
+    .title.is-4 { // "My GitHub Projects"
+      color: $light; // Light text for title in dark mode
+    }
+
+    .project-slide.box {
+      background-color: lighten($dark, 5%); // Darker card background
+      border-color: lighten($dark, 15%); // Darker border
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+
+      .project-name {
+        color: $light; // Light text for project name
+      }
+
+      .project-description {
+        color: darken($light, 20%); // Slightly darker light text
+      }
+
+      .project-stats {
+        color: darken($light, 30%);
+        .language i {
+           color: $primary-light; // Use light version of primary if available, or lighten($primary, 10%)
+        }
+      }
+
+      .project-link.button.is-primary.is-outlined {
+        // In dark mode, Bulma's $primary color should still be used for the outline and text.
+        // Text color is $primary, border is $primary.
+        // If $primary itself is too dark for a dark background, this might need adjustment
+        // or $primary needs a dark mode alternative.
+        // Assuming $primary is a color that works on dark backgrounds (e.g., a bright teal).
+        // If not, we would override color and border-color here.
+        // For example:
+        // color: $primary-light;
+        // border-color: $primary-light;
+        // background-color: transparent; // Keep it outlined
+      }
+    }
+
+    .slider-navigation.buttons.is-centered {
+      .button.is-light {
+        // In dark mode, Bulma's "is-light" might not be ideal.
+        // It uses $scheme-main-ter which is usually a light grey.
+        // We need to make it look good on a dark background.
+        background-color: lighten($dark, 15%);
+        color: $light;
+        border-color: lighten($dark, 25%);
+
+        &:hover {
+          background-color: lighten($dark, 20%);
+          border-color: lighten($dark, 30%);
+        }
+      }
+    }
+  }
+}

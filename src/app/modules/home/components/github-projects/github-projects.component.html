@@ -1,0 +1,35 @@
+<div class="github-projects-slider" *ngIf="projects && projects.length > 0">
+  <h2 class="title is-4 has-text-centered">My GitHub Projects</h2>
+
+  <div class="project-slide box" *ngIf="projects[currentIndex] as project">
+    <h3 class="title is-5 project-name">{{ project.name }}</h3>
+    <p class="project-description">{{ project.description }}</p>
+    <div class="project-stats">
+      <span class="stars">
+        <i class="fas fa-star"></i> {{ project.stargazers_count }} Stars
+      </span>
+      <span class="forks">
+        <i class="fas fa-code-branch"></i> {{ project.forks_count }} Forks
+      </span>
+      <span class="language" *ngIf="project.language">
+        <i class="fas fa-circle"></i> {{ project.language }}
+      </span>
+    </div>
+    <a [href]="project.html_url" class="button is-primary is-outlined project-link" target="_blank" rel="noopener noreferrer">
+      View on GitHub <i class="fab fa-github"></i>
+    </a>
+  </div>
+
+  <div class="slider-navigation buttons is-centered">
+    <button class="button is-light" (click)="previousProject()">
+      <i class="fas fa-chevron-left"></i> Previous
+    </button>
+    <button class="button is-light" (click)="nextProject()">
+      Next <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="!projects || projects.length === 0" class="has-text-centered">
+  <p>Loading GitHub projects...</p>
+</div>
