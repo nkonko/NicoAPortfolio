@@ -3,33 +3,43 @@
     <h1 class="title">GitHub Repos</h1>
 
     <!-- Loading state -->
-    <div *ngIf="loading$ | async" class="has-text-centered">
-      <span class="icon is-large"><i class="fas fa-spinner fa-pulse"></i></span>
-    </div>
+    @if (loading$ | async) {
+      <div class="has-text-centered">
+        <span class="icon is-large"><i class="fas fa-spinner fa-pulse"></i></span>
+      </div>
+    }
 
     <!-- Content (not loading) -->
-    <ng-container *ngIf="!(loading$ | async) && (repos$ | async) as repos">
-      <div *ngIf="repos.length === 0" class="has-text-centered">
-        <p>No repositories configured.</p>
-      </div>
-
-      <div *ngIf="repos.length > 0" class="columns is-multiline">
-        <div *ngFor="let repo of repos" class="column is-12-mobile is-6-tablet is-4-desktop">
-          <div class="box repo-card">
-            <div class="is-flex is-justify-content-space-between is-align-items-flex-start mb-3">
-              <h2 class="title is-5 mb-0">
-                <a [href]="repo.githubUrl || repo.repositoryUrl" target="_blank" rel="noopener noreferrer">
-                  {{ repo.name }}
-                  <span class="icon is-small"><i class="fas fa-external-link-alt"></i></span>
-                </a>
-              </h2>
-            </div>
-            <p *ngIf="repo.primaryLanguage" class="subtitle is-6 mb-0">
-              <span class="tag is-primary is-light">{{ repo.primaryLanguage }}</span>
-            </p>
-          </div>
+    @if (!(loading$ | async) && (repos$ | async); as repos) {
+      @if (repos.length === 0) {
+        <div class="has-text-centered">
+          <p>No repositories configured.</p>
         </div>
-      </div>
-    </ng-container>
+      }
+
+      @if (repos.length > 0) {
+        <div class="columns is-multiline">
+          @for (repo of repos; track repo.name) {
+            <div class="column is-12-mobile is-6-tablet is-4-desktop">
+              <div class="box repo-card">
+                <div class="is-flex is-justify-content-space-between is-align-items-flex-start mb-3">
+                  <h2 class="title is-5 mb-0">
+                    <a [href]="repo.githubUrl || repo.repositoryUrl" target="_blank" rel="noopener noreferrer">
+                      {{ repo.name }}
+                      <span class="icon is-small"><i class="fas fa-external-link-alt"></i></span>
+                    </a>
+                  </h2>
+                </div>
+                @if (repo.primaryLanguage) {
+                  <p class="subtitle is-6 mb-0">
+                    <span class="tag is-primary is-light">{{ repo.primaryLanguage }}</span>
+                  </p>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
   </div>
 </section>

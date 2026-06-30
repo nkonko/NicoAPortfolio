@@ -1,0 +1,146 @@
+@use 'design-tokens' as dt;
+
+// =============================================================================
+// Contenedor principal
+// =============================================================================
+.tabs-container {
+  display: flex;
+  position: relative;
+  // En mobile y tablet: margen a los costados para que no quede pegado al borde
+  padding: 0 1rem;
+}
+
+.tabs {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+
+  hr {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// =============================================================================
+// Mobile & Tablet (< 1024px): tabs apilados (wrap), sin scroll, sin flechas
+// =============================================================================
+// La media query no hace falta porque mobile-first: estos son los estilos base
+// y se aplican hasta que los pise el breakpoint de desktop.
+
+.tabs-scroll-wrapper {
+  // Sin overflow hidden — los tabs se apilan, no hay scroll que cortar
+  overflow: visible;
+
+  ul {
+    display: flex !important;
+    flex-wrap: wrap !important;       // ← apila los tabs en filas
+    justify-content: center;
+    overflow: visible !important;     // ← nada de scroll
+    white-space: normal !important;   // ← permite que el texto fluya
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+// Sin botones de scroll — no hacen falta con wrap
+.scroll-button {
+  display: none !important;
+}
+
+// =============================================================================
+// Items del tab (mobile y up)
+// =============================================================================
+li {
+  flex-grow: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
+
+  a {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.9rem !important;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    line-height: 1.2;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+
+    .icon {
+      width: 0.95em;
+      height: 0.95em;
+      min-width: 0.95em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 0.95em;
+      }
+    }
+
+    span:last-child {
+      display: inline;
+    }
+
+    &:hover {
+      border-bottom-color: hsl(217, 71%, 53%);
+    }
+  }
+
+  &.is-active {
+    a {
+      border-bottom-color: hsl(217, 71%, 53%);
+      font-weight: 500;
+    }
+  }
+}
+
+// =============================================================================
+// Tablet: agrandar tabs
+// =============================================================================
+@media screen and (min-width: 769px) {
+  li {
+    a {
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+      gap: 0.5rem;
+
+      .icon {
+        width: 1em;
+        height: 1em;
+        min-width: 1em;
+
+        i {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+// Desktop (>= 1024px): una sola fila, sin scroll (todo entra)
+// =============================================================================
+@media screen and (min-width: 1024px) {
+  .tabs-container {
+    padding: 0;  // Sin padding extra en desktop
+  }
+
+  .tabs-scroll-wrapper {
+    overflow: visible;
+
+    ul {
+      flex-wrap: nowrap !important;   // ← todos en una fila
+      overflow: visible !important;
+      white-space: nowrap !important;
+      justify-content: center;
+    }
+  }
+
+  li {
+    a {
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem !important;
+    }
+  }
+}

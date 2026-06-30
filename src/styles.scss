@@ -1,8 +1,13 @@
 @use 'design-tokens' as dt;
+@use './styles/custom-variables' as cv;
 
-@import './styles/custom-variables';
-@import 'bulma/bulma.sass';
-@import 'ngx-toastr/toastr';
+@use 'bulma/bulma.sass' as * with (
+  $section-padding-desktop: cv.$section-padding-desktop,
+  $section-padding-medium: cv.$section-padding-medium,
+  $hero-body-padding-medium: cv.$hero-body-padding-medium,
+  $modal-background-background-color: cv.$modal-background-background-color
+);
+@use 'ngx-toastr/toastr';
 @import '@creativebulma/bulma-tooltip/src/sass/index.sass';
 
 * {

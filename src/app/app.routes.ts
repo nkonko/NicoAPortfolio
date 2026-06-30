@@ -8,15 +8,18 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./modules/home/home.routes').then(m => m.HOME_ROUTES)
+    loadComponent: () =>
+      import('./modules/home/components/home/home.component').then(m => m.HomeComponent)
   },
   {
     path: 'about',
-    loadChildren: () => import('./modules/about/about.routes').then(m => m.ABOUT_ROUTES)
+    loadComponent: () =>
+      import('./modules/about/components/about/about.component').then(m => m.AboutComponent)
   },
   {
     path: 'experience',
-    loadChildren: () => import('./modules/experience/experience.routes').then(m => m.EXPERIENCE_ROUTES)
+    loadComponent: () =>
+      import('./modules/experience/components/experience/experience.component').then(m => m.ExperienceComponent)
   },
   {
     path: 'skills',
@@ -24,7 +27,8 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'repos',
-    loadChildren: () => import('./modules/repos/repos.routes').then(m => m.REPOS_ROUTES)
+    loadComponent: () =>
+      import('./modules/repos/components/repos/repos.component').then(m => m.ReposComponent)
   },
   {
     path: '**',

@@ -1,15 +1,38 @@
-<div class="tabs is-centered">
-  <ul>
-    @for (tab of tabs; track tab) {
-      <li [class.is-active]="tab.name === activeTab">
-        <a (click)="onTabClick(tab.name)">
-          <span class="icon is-small">
-            <i class="{{tab.icon}}" aria-hidden="true"></i>
-          </span>
-          <span>{{tab.name}}</span>
-        </a>
-      </li>
+<div class="tabs-container">
+  <div class="tabs is-centered">
+    @if (showLeftArrow) {
+      <button 
+        class="scroll-button scroll-left" 
+        (click)="scrollTabs('left')"
+        aria-label="Scroll tabs left">
+        <i class="fas fa-chevron-left"></i>
+      </button>
     }
-  </ul>
-  <hr>
+
+    <div class="tabs-scroll-wrapper" [class.has-scroll-buttons]="showScrollButtons">
+      <ul #tabsList (scroll)="onScroll()">
+        @for (tab of tabs; track tab) {
+          <li [class.is-active]="tab.name === activeTab">
+            <a (click)="onTabClick(tab.name)">
+              <span class="icon is-small">
+                <i class="{{tab.icon}}" aria-hidden="true"></i>
+              </span>
+              <span>{{tab.name}}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+    @if (showRightArrow) {
+      <button 
+        class="scroll-button scroll-right" 
+        (click)="scrollTabs('right')"
+        aria-label="Scroll tabs right">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    }
+    
+    <hr>
   </div>
+</div>
