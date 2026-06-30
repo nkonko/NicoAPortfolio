@@ -45,8 +45,8 @@ export class ExperienceComponent {
     });
   }
 
-  selectWork(id: string): void {
-    const work = this.worksList().find(w => w.id === id);
+  selectWork(index: number): void {
+    const work = this.worksList()[index];
     if (work) {
       this.selectedWork.set(work);
       this.goToSummary();

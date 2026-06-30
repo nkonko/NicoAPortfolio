@@ -5,9 +5,9 @@
         <header class="timeline-header ml-5">
           <span class="tag is-medium is-primary">Present</span>
         </header>
-        @for (work of worksList(); track work.id) {
+        @for (work of worksList(); track $index) {
           <div class="timeline-item"
-            (click)="selectWork(work.id)">
+            (click)="selectWork($index)">
             <div class="timeline-marker"
               [ngClass]="{
                 'is-primary': selectedWork()?.id !== work.id,

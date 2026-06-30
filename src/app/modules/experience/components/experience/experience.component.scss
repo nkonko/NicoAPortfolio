@@ -13,6 +13,22 @@
   }
 }
 
+:host-context([data-theme='dark']) {
+  .timeline .timeline-content .heading {
+    color: var(--color-text-primary, #f1f5f9);
+
+    &.selected {
+      color: var(--color-text-inverse, #0f172a);
+    }
+  }
+}
+
+.timeline-content {
+  strong {
+    color: inherit;
+  }
+}
+
 .timeline-item {
   &:hover {
     background-color: var(--color-gray-200, rgba(200, 195, 195, 0.518));
@@ -21,6 +37,10 @@
 
 .summary-content {
   white-space: pre-line;
+
+  strong {
+    color: inherit;
+  }
 }
 
 .selected {
