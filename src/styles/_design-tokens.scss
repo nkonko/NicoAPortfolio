@@ -1,0 +1,366 @@
+// =============================================================================
+// Design Tokens
+// =============================================================================
+// Centralized design system: colors, typography, spacing, shadows, borders,
+// breakpoints. Emits CSS custom properties for runtime theming.
+// -----------------------------------------------------------------------------
+
+// --- Breakpoints (mobile-first by Bulma convention) ---
+$bp-tablet: 769px;
+$bp-desktop: 1024px;
+$bp-widescreen: 1216px;
+$bp-fullhd: 1408px;
+
+// --- Color Palette (light theme) ---
+$colors: (
+  // Primary
+  'primary': #3b82f6,
+  'primary-hover': #2563eb,
+  'primary-light': #93c5fd,
+  // Secondary
+  'secondary': #8b5cf6,
+  'secondary-hover': #7c3aed,
+  // Accent
+  'accent': #06b6d4,
+  'accent-hover': #0891b2,
+  // Neutral grays (9 steps)
+  'gray-50': #f9fafb,
+  'gray-100': #f3f4f6,
+  'gray-200': #e5e7eb,
+  'gray-300': #d1d5db,
+  'gray-400': #9ca3af,
+  'gray-500': #6b7280,
+  'gray-600': #4b5563,
+  'gray-700': #374151,
+  'gray-800': #1f2937,
+  'gray-900': #111827,
+  // Surface / Background
+  'bg-page': #f8fafc,
+  'bg-card': #ffffff,
+  'bg-elevated': #ffffff,
+  // Text
+  'text-primary': #1e293b,
+  'text-secondary': #475569,
+  'text-inverse': #f8fafc,
+  'text-muted': #94a3b8,
+  // Semantic
+  'success': #22c55e,
+  'warning': #f59e0b,
+  'error': #ef4444,
+  // Legacy / Special
+  'white': #ffffff,
+  'black': #000000,
+  'light': #f5f5f5,
+  'dark': #363636,
+  'white-ter': #f5f5f5,
+  'link': #3b82f6,
+);
+
+// --- Dark Theme Overrides ---
+$colors-dark: (
+  'primary': #60a5fa,
+  'primary-hover': #93c5fd,
+  'primary-light': #1e3a5f,
+  'secondary': #a78bfa,
+  'secondary-hover': #c4b5fd,
+  'accent': #22d3ee,
+  'accent-hover': #67e8f9,
+  'gray-50': #0f172a,
+  'gray-100': #1e293b,
+  'gray-200': #334155,
+  'gray-300': #475569,
+  'gray-400': #64748b,
+  'gray-500': #94a3b8,
+  'gray-600': #cbd5e1,
+  'gray-700': #e2e8f0,
+  'gray-800': #f1f5f9,
+  'gray-900': #f8fafc,
+  'bg-page': #0f172a,
+  'bg-card': #1e293b,
+  'bg-elevated': #334155,
+  'text-primary': #f1f5f9,
+  'text-secondary': #cbd5e1,
+  'text-inverse': #0f172a,
+  'text-muted': #64748b,
+  'success': #4ade80,
+  'warning': #fbbf24,
+  'error': #f87171,
+  'white': #1e293b,
+  'black': #f8fafc,
+  'light': #1e293b,
+  'dark': #f5f5f5,
+  'white-ter': #334155,
+  'link': #60a5fa,
+);
+
+// --- Typography ---
+$font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+$font-family-mono: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+
+$font-sizes: (
+  'xs': 0.75rem,
+  'sm': 0.875rem,
+  'base': 1rem,
+  'lg': 1.125rem,
+  'xl': 1.25rem,
+  '2xl': 1.5rem,
+  '3xl': 1.875rem,
+  '4xl': 2.25rem,
+  '5xl': 3rem,
+);
+
+$font-weights: (
+  'light': 300,
+  'regular': 400,
+  'semibold': 600,
+  'bold': 700,
+);
+
+$line-heights: (
+  'tight': 1.15,
+  'normal': 1.5,
+  'relaxed': 1.75,
+);
+
+$letter-spacings: (
+  'tight': -0.025em,
+  'normal': 0,
+  'wide': 0.05em,
+);
+
+// --- Spacing (4px base) ---
+$spacings: (
+  '3xs': 4px,
+  '2xs': 8px,
+  'xs': 12px,
+  'sm': 16px,
+  'md': 24px,
+  'lg': 32px,
+  'xl': 48px,
+  '2xl': 64px,
+  '3xl': 96px,
+);
+
+// --- Shadows ---
+$shadows: (
+  'sm': (
+    0 1px 2px 0 rgba(0, 0, 0, 0.05),
+  ),
+  'md': (
+    3px 2px 6px -1px rgba(0, 0, 0, 0.75),
+  ),
+  'lg': (
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1),
+  ),
+);
+
+// --- Border Radius ---
+$borders: (
+  'sm': 4px,
+  'md': 8px,
+  'lg': 16px,
+  'full': 9999px,
+);
+
+// =============================================================================
+// Token Access Functions
+// =============================================================================
+
+/// Get any token from the full tokens map
+/// @param {String} $key - The token key (e.g., 'color-primary', 'spacing-md', 'shadow-sm')
+/// @return {*} The token value
+@function token($key) {
+  $result: null;
+
+  // Try color keys
+  @if map-has-key($colors, $key) {
+    $result: map-get($colors, $key);
+  }
+
+  // Try typography
+  @if $result == null {
+    @if map-has-key($font-sizes, $key) {
+      $result: map-get($font-sizes, $key);
+    }
+  }
+
+  // Try spacing
+  @if $result == null {
+    @if map-has-key($spacings, $key) {
+      $result: map-get($spacings, $key);
+    }
+  }
+
+  @if $result == null {
+    @warn 'Token `#{$key}` not found in any token map.';
+  }
+
+  @return $result;
+}
+
+/// Get a color token
+/// @param {String} $key - The color key
+/// @return {Color} The color value
+@function color($key) {
+  @if not map-has-key($colors, $key) {
+    @warn 'Color token `#{$key}` not found in $colors map.';
+    @return null;
+  }
+  @return map-get($colors, $key);
+}
+
+/// Get a spacing token
+/// @param {String} $key - The spacing key
+/// @return {Number} The spacing value in px
+@function spacing($key) {
+  @if not map-has-key($spacings, $key) {
+    @warn 'Spacing token `#{$key}` not found in $spacings map.';
+    @return null;
+  }
+  @return map-get($spacings, $key);
+}
+
+/// Get a shadow token
+/// @param {String} $key - The shadow key (sm, md, lg)
+/// @return {List} The box-shadow value(s)
+@function shadow($key) {
+  @if not map-has-key($shadows, $key) {
+    @warn 'Shadow token `#{$key}` not found in $shadows map.';
+    @return none;
+  }
+  @return map-get($shadows, $key);
+}
+
+// =============================================================================
+// Responsive Mixins
+// =============================================================================
+
+/// Mobile-first: applies styles from $bp upward
+/// @param {String} $bp - Breakpoint key (tablet, desktop, widescreen, fullhd)
+@mixin respond-to($bp) {
+  $value: null;
+
+  @if $bp == 'tablet' {
+    $value: $bp-tablet;
+  } @else if $bp == 'desktop' {
+    $value: $bp-desktop;
+  } @else if $bp == 'widescreen' {
+    $value: $bp-widescreen;
+  } @else if $bp == 'fullhd' {
+    $value: $bp-fullhd;
+  } @else {
+    @warn 'Breakpoint `#{$bp}` not recognized. Valid: tablet, desktop, widescreen, fullhd.';
+  }
+
+  @if $value {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+/// Max-width: applies styles up to $bp
+/// @param {String} $bp - Breakpoint key
+@mixin respond-to-max($bp) {
+  $value: null;
+
+  @if $bp == 'tablet' {
+    $value: $bp-tablet;
+  } @else if $bp == 'desktop' {
+    $value: $bp-desktop;
+  } @else if $bp == 'widescreen' {
+    $value: $bp-widescreen;
+  } @else if $bp == 'fullhd' {
+    $value: $bp-fullhd;
+  } @else {
+    @warn 'Breakpoint `#{$bp}` not recognized. Valid: tablet, desktop, widescreen, fullhd.';
+  }
+
+  @if $value {
+    @media (max-width: ($value - 1px)) {
+      @content;
+    }
+  }
+}
+
+// =============================================================================
+// CSS Custom Properties Emission
+// =============================================================================
+
+// --- Light theme (:root) ---
+:root {
+  // Colors
+  @each $key, $val in $colors {
+    --color-#{$key}: #{$val};
+  }
+
+  // Typography
+  --font-family-primary: #{$font-family-primary};
+  --font-family-serif: #{$font-family-serif};
+  --font-family-mono: #{$font-family-mono};
+
+  @each $key, $val in $font-sizes {
+    --font-size-#{$key}: #{$val};
+  }
+
+  @each $key, $val in $font-weights {
+    --font-weight-#{$key}: #{$val};
+  }
+
+  @each $key, $val in $line-heights {
+    --line-height-#{$key}: #{$val};
+  }
+
+  @each $key, $val in $letter-spacings {
+    --letter-spacing-#{$key}: #{$val};
+  }
+
+  // Spacing
+  @each $key, $val in $spacings {
+    --spacing-#{$key}: #{$val};
+  }
+
+  // Shadows
+  @each $key, $val in $shadows {
+    --shadow-#{$key}: #{$val};
+  }
+
+  // Borders
+  @each $key, $val in $borders {
+    --border-radius-#{$key}: #{$val};
+  }
+}
+
+// --- Dark theme ---
+[data-theme='dark'] {
+  @each $key, $val in $colors-dark {
+    --color-#{$key}: #{$val};
+  }
+}
+
+// =============================================================================
+// Bulma Override Variables (exported for @import compatibility)
+// =============================================================================
+
+$section-padding-desktop: 0.5rem 3rem;
+$section-padding-medium: 2rem 3rem;
+$hero-body-padding-medium: 8.5rem 4.5rem;
+$modal-background-background-color: rgba(0, 0, 0, 0.571);
+
+// =============================================================================
+// Shared Animations
+// =============================================================================
+
+@keyframes AnimateBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
