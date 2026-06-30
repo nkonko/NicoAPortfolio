@@ -40,3 +40,9 @@ export const WorkSelector = createSelector(
 export const SocialsSelector = createSelector(
   selectSocials,
   state => state?.profiles);
+
+export const selectProjects = (state: AppState) => state.app.profile?.projects;
+
+export const ProjectsSelector = createSelector(
+  selectProjects,
+  state => state);

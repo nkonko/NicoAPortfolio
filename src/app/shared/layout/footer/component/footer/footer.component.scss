@@ -3,6 +3,11 @@
 .footer {
   padding: 10px;
   background-color: var(--color-gray-200, #ddd7d7);
+  color: var(--color-text-primary, #1e293b);
+}
+
+.footer .content {
+  color: inherit;
 }
 
 .footer-items {
@@ -28,10 +33,31 @@
 }
 
 .social-icons a {
-  color: var(--color-gray-600, #333);
+  color: var(--color-text-secondary, #475569);
   font-size: 20px;
 }
 
 .social-icons a:hover {
-  color: var(--color-black, #000);
+  color: var(--color-text-primary, #1e293b);
+}
+
+:host-context([data-theme='dark']) .footer {
+  background-color: var(--color-gray-100, #1e293b);
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .footer .content {
+  color: inherit;
+}
+
+:host-context([data-theme='dark']) .social-icons a {
+  color: var(--color-text-secondary, #cbd5e1);
+}
+
+:host-context([data-theme='dark']) .social-icons a:hover {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .copyright {
+  color: var(--color-text-secondary, #cbd5e1);
 }

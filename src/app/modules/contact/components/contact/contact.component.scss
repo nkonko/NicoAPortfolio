@@ -1,5 +1,98 @@
 @use 'design-tokens' as dt;
 
-section {
-  min-height: 80.5vh;
+:host {
+  display: block;
+  width: min(92vw, 560px);
+}
+
+form {
+  color: var(--color-text-primary, #1e293b);
+}
+
+.label {
+  color: var(--color-text-primary, #1e293b);
+  font-weight: 600;
+}
+
+.input,
+.textarea {
+  background-color: var(--color-bg-elevated, #ffffff);
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  color: var(--color-text-primary, #1e293b);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-muted, #94a3b8);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--color-primary, #3b82f6);
+  box-shadow: 0 0 0 0.125em rgba(59, 130, 246, 0.22);
+}
+
+.icon i {
+  color: var(--color-text-secondary, #475569);
+}
+
+.button.is-link.is-outlined {
+  border-color: var(--color-primary, #3b82f6);
+  color: var(--color-primary, #3b82f6);
+}
+
+.button.is-link.is-outlined:hover:not([disabled]) {
+  background-color: var(--color-primary, #3b82f6);
+  border-color: var(--color-primary, #3b82f6);
+  color: var(--color-text-inverse, #f8fafc);
+}
+
+.button.is-link.is-outlined[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+:host-context([data-theme='dark']) form {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .label {
+  color: var(--color-text-secondary, #cbd5e1);
+}
+
+:host-context([data-theme='dark']) .input,
+:host-context([data-theme='dark']) .textarea {
+  background-color: var(--color-bg-elevated, #334155);
+  border-color: var(--color-gray-300, #475569);
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .input::placeholder,
+:host-context([data-theme='dark']) .textarea::placeholder {
+  color: var(--color-text-muted, #94a3b8);
+}
+
+:host-context([data-theme='dark']) .input:focus,
+:host-context([data-theme='dark']) .textarea:focus {
+  border-color: var(--color-primary, #60a5fa);
+  box-shadow: 0 0 0 0.125em rgba(96, 165, 250, 0.28);
+}
+
+:host-context([data-theme='dark']) .icon i {
+  color: var(--color-text-secondary, #cbd5e1);
+}
+
+:host-context([data-theme='dark']) .button.is-link.is-outlined {
+  border-color: var(--color-primary, #60a5fa);
+  color: var(--color-primary, #60a5fa);
+}
+
+:host-context([data-theme='dark']) .button.is-link.is-outlined:hover:not([disabled]) {
+  background-color: var(--color-primary, #60a5fa);
+  border-color: var(--color-primary, #60a5fa);
+  color: var(--color-text-inverse, #0f172a);
+}
+
+:host-context([data-theme='dark']) .help.is-danger {
+  color: #fca5a5;
 }

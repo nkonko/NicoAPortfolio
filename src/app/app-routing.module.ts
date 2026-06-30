@@ -17,11 +17,15 @@ const routes: Routes = [
   path: 'experience',
   loadChildren: () => import('./modules/experience/experience.module').then(m => m.ExperienceModule)
  },
- {
-  path: 'skills',
-  loadChildren: () => import('./modules/skills/skills.module').then(m => m.SkillsModule)
- },
- { path: '**', redirectTo: 'not-found'}
+  {
+   path: 'skills',
+   loadChildren: () => import('./modules/skills/skills.module').then(m => m.SkillsModule)
+  },
+  {
+    path: 'repos',
+    loadChildren: () => import('./modules/repos/repos.module').then(m => m.ReposModule)
+  },
+  { path: '**', redirectTo: 'not-found'}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

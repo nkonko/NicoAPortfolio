@@ -1,0 +1,12 @@
+{
+  "repos": [
+    { "name": "NicoAPortfolio", "enabled": true },
+    { "name": "LucisGestion", "enabled": true },
+    { "name": "ItaTurn", "enabled": true },
+    { "name": "IdentityClient", "enabled": true },
+    { "name": "todo-Ngrx", "enabled": true },
+    { "name": "DashboardWebApi", "enabled": true },
+    { "name": "IdentityAPI", "enabled": true },
+    { "name": "RickAndMortyChallenge", "enabled": true }
+  ]
+}

@@ -1,0 +1,45 @@
+@use 'design-tokens' as dt;
+
+.repo-card {
+  height: 100%;
+  background-color: var(--color-bg-card, #fff);
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .title.is-5 {
+    a {
+      color: var(--color-link, #3b82f6);
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      .icon.is-small {
+        margin-left: 0.25rem;
+      }
+    }
+  }
+
+  .subtitle.is-6 {
+    margin-bottom: 0;
+  }
+}
+
+.section .title {
+  color: var(--color-text-primary, #1e293b);
+}
+
+:host-context([data-theme='dark']) .section .title {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .repo-card {
+  background-color: var(--color-gray-200, #334155);
+  border-color: var(--color-gray-400, #64748b);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.4);
+}

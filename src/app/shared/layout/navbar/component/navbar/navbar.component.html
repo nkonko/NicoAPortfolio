@@ -38,6 +38,12 @@
           Experience
         </strong>
       </a>
+      <a class="navbar-item" routerLink="repos" [routerLinkActive]="'selected'"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <strong class="shadow">
+          Repositories
+        </strong>
+      </a>
     </div>
     <div class="navbar-end">
       <a class="navbar-item theme-toggle" (click)="toggleTheme()" title="Toggle theme">
