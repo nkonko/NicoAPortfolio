@@ -1,10 +1,9 @@
-@import '../../../../../../node_modules/bulma/bulma.sass';
+@use 'design-tokens' as dt;
 
 .hero-body {
   h1, h2 {
-    color: $white;
+    color: var(--color-white, #fff);
   }
-
 }
 
 section {
@@ -13,9 +12,8 @@ section {
 }
 
 .word-carousel {
-
   span {
-    color: $white-ter;
+    color: var(--color-white-ter, #f5f5f5);
   }
 
   div {
@@ -41,17 +39,18 @@ section {
 }
 
 .word-carousel > span:nth-child(1) {
-  color: $white;
+  color: var(--color-white, #fff);
 }
 
 .custom-card {
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255,255,255, 0.5);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius-lg, 16px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
   span {
-    color: $black;
+    color: var(--color-black, #000);
   }
 }
 
@@ -72,37 +71,12 @@ section {
 }
 
 @keyframes scrolling {
-  0% { transform: translateX(0) }
-  100% { transform: translateX(-100%) }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 .bg {
   background-size: 300% 300%;
-  background-image: linear-gradient(-45deg, DodgerBlue 0%, red 30%, DarkViolet  55%, DodgerBlue 100%);
-  -webkit-animation: AnimateBG 20s ease infinite;
-          animation: AnimateBG 20s ease infinite;
-}
-
-@-webkit-keyframes AnimateBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes AnimateBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background-image: linear-gradient(-45deg, DodgerBlue 0%, red 30%, DarkViolet 55%, DodgerBlue 100%);
+  animation: AnimateBG 20s ease infinite;
 }

@@ -1,7 +1,8 @@
+@use 'design-tokens' as dt;
+
 section {
   min-height: 80.5vh;
 }
-
 
 .skills-container {
   white-space: wrap;
@@ -10,8 +11,18 @@ section {
 
 .skill {
   display: inline-block;
-  margin-right: 10px;
+  margin-right: dt.spacing('2xs');
   white-space: normal;
 }
 
+@include dt.respond-to('tablet') {
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: dt.spacing('2xs');
+  }
 
+  .skill {
+    margin-right: 0;
+  }
+}

@@ -1,3 +1,5 @@
+@use 'design-tokens' as dt;
+
 .custom-card {
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -6,13 +8,12 @@
 
   .card-content {
     p {
-      color: #fff;
+      color: var(--color-white, #fff);
     }
   }
 }
 
 .timeline-item {
-
   &:hover {
     background-color: rgba(200, 195, 195, 0.518);
   }
@@ -21,6 +22,6 @@
 .selected {
   padding-left: 2.5rem;
   margin-left: -2.1rem;
-  background-color: aquamarine;
-  border-radius: 19px;
+  background-color: var(--color-accent, aquamarine);
+  border-radius: var(--border-radius-lg, 19px);
 }
