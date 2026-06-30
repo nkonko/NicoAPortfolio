@@ -4,6 +4,15 @@ section {
   min-height: 80.5vh;
 }
 
+.skills-hero {
+  background-color: hsl(141, 71%, 96%);
+  transition: background-color 0.4s ease;
+}
+
+:host-context([data-theme='dark']) .skills-hero {
+  background-color: var(--color-bg-page, #0f172a);
+}
+
 .skills-container {
   white-space: wrap;
   overflow-x: auto;

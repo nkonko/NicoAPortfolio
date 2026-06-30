@@ -3,3 +3,14 @@
 .shadow {
   text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.52);
 }
+
+.theme-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  color: var(--color-text-inverse, #f8fafc);
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}

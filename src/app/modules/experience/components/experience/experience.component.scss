@@ -3,19 +3,19 @@
 .custom-card {
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--color-bg-card, rgba(255, 255, 255, 0.5));
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 
   .card-content {
     p {
-      color: var(--color-white, #fff);
+      color: var(--color-text-primary, #fff);
     }
   }
 }
 
 .timeline-item {
   &:hover {
-    background-color: rgba(200, 195, 195, 0.518);
+    background-color: var(--color-gray-200, rgba(200, 195, 195, 0.518));
   }
 }
 

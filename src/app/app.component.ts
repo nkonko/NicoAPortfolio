@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
 import { EventSelector } from '@core/store/selectors/app.selector';
@@ -10,7 +10,7 @@ import { NavbarComponent } from '@shared/layout/navbar/component/navbar/navbar.c
 import { ModalComponent } from '@shared/modal/component/modal.component';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { SplashComponent } from '@shared/splash/component/splash.component';
-import { Observable, Subject, filter, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -26,21 +26,13 @@ export class AppComponent implements OnInit {
   protected modalActive: boolean = false;
   protected hideComponents: boolean = true;
 
-  constructor(private store: Store<AppState>, private modalContentService: ModalContentService, private router: Router) { }
+  constructor(private store: Store<AppState>, private modalContentService: ModalContentService) { }
   ngOnInit(): void {
     this.stateEvent$.pipe(takeUntil(this.unsubscribe$)).subscribe(event => {
       if (event !== StateEvents.Loading) {
         this.loading = false;
       }
     });
-
-    this.router.events
-    .pipe(
-      filter(event => event instanceof NavigationEnd)
-      )
-      .subscribe((event: any) => {
-        this.hideComponents = (event.url === '/experience' || event.url === '/skills') ? false : true;
-      });
   }
 
   toggleActivation() {

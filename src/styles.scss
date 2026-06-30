@@ -12,7 +12,7 @@
 
 body {
   background-color: var(--color-light, #f5f5f5);
-  height: 100vh;
+  min-height: 100vh;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -22,13 +22,75 @@ body .title {
 }
 
 [data-theme='dark'] {
-  background-color: var(--color-dark, #363636);
-  color: var(--color-light, #f5f5f5);
+  background-color: var(--color-bg-page, #0f172a);
+  color: var(--color-text-primary, #f1f5f9);
 }
 
 [data-theme='dark'] .subtitle,
 [data-theme='dark'] .title {
-  color: var(--color-light, #f5f5f5);
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+[data-theme='dark'] .heading {
+  color: var(--color-text-secondary, #cbd5e1);
+}
+
+[data-theme='dark'] .box {
+  background-color: var(--color-bg-card, #1e293b);
+  color: var(--color-text-primary, #f1f5f9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .box .title,
+[data-theme='dark'] .box .subtitle {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+[data-theme='dark'] .box p,
+[data-theme='dark'] .box li,
+[data-theme='dark'] .box span {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+[data-theme='dark'] .tag.is-primary {
+  background-color: var(--color-primary, #60a5fa);
+  color: var(--color-text-inverse, #0f172a);
+}
+
+[data-theme='dark'] .progress::-webkit-progress-value {
+  background-color: var(--color-primary, #60a5fa);
+}
+
+[data-theme='dark'] .progress::-webkit-progress-bar {
+  background-color: var(--color-gray-200, #334155);
+}
+
+[data-theme='dark'] .timeline .timeline-item .timeline-marker {
+  background-color: var(--color-primary, #60a5fa);
+  border-color: var(--color-bg-page, #0f172a);
+}
+
+[data-theme='dark'] .timeline .timeline-content .heading {
+  color: var(--color-text-secondary, #cbd5e1);
+}
+
+[data-theme='dark'] .tabs a {
+  color: var(--color-text-primary, #f1f5f9);
+  border-bottom-color: var(--color-gray-300, #475569);
+}
+
+[data-theme='dark'] .tabs li.is-active a {
+  color: var(--color-primary, #60a5fa);
+  border-bottom-color: var(--color-primary, #60a5fa);
+}
+
+[data-theme='dark'] .tabs a:hover {
+  color: var(--color-primary-light, #93c5fd);
+  border-bottom-color: var(--color-primary-light, #93c5fd);
+}
+
+[data-theme='dark'] .tabs hr {
+  background-color: var(--color-gray-200, #334155);
 }
 
 button {
@@ -45,8 +107,9 @@ button {
   color: var(--color-dark, #363636);
 }
 
-section {
-  height: 92vh;
+router-outlet {
+  display: block;
+  height: 100%;
 }
 
 .section.is-medium {

@@ -39,5 +39,10 @@
         </strong>
       </a>
     </div>
+    <div class="navbar-end">
+      <a class="navbar-item theme-toggle" (click)="toggleTheme()" title="Toggle theme">
+        <i class="fas" [ngClass]="theme === 'light' ? 'fa-moon' : 'fa-sun'"></i>
+      </a>
+    </div>
   </div>
 </nav>
