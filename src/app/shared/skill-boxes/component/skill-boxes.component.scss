@@ -1,16 +1,18 @@
+@use 'design-tokens' as dt;
 
-.animated {
-  animation: showBox 2s ease 0s 1 normal forwards;
+@media (prefers-reduced-motion: no-preference) {
+  .animated {
+    animation: showBox 2s ease 0s 1 normal forwards;
+  }
 }
 
 @keyframes showBox {
-	0% {
-		opacity: 0;
-		transform: translateY(-50px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,3 +1,4 @@
+@use 'design-tokens' as dt;
 
 .message-body {
   max-height: 1000px;
@@ -22,4 +23,3 @@
 article {
   cursor: pointer;
 }
-

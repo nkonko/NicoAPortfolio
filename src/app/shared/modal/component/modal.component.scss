@@ -1,9 +1,11 @@
+@use 'design-tokens' as dt;
+
 .modal-content {
   margin-right: 8vh;
 }
 
 .modal-close {
-  background-color: #00d1b2;
+  background-color: var(--color-primary, #00d1b2);
   position: absolute;
   top: -17px;
   left: 335px;
