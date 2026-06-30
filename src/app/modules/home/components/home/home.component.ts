@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Basics } from '@core/models/gitConnectProfile/base';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { StateEvents } from '@core/models/state.events';
@@ -13,6 +13,7 @@ import { Observable, Subject, map, switchMap, takeUntil } from 'rxjs';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: true
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   protected name!: string;
   protected jobTitle!: string;
   protected location!: string;
+  protected yearsOfExperience = new Date().getFullYear() - 2018;
   private unsubscribe$ = new Subject<void>();
   private basics$: Observable<Basics | undefined> = this.store.select(BasicsSelector);
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);

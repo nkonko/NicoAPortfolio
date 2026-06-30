@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { SkillState } from '@modules/skills/state/models/skills.state';
 import { SkillByTabSelector } from '@modules/skills/state/selectors/skills.selectors';
@@ -10,7 +10,7 @@ import { SkillBoxComponent } from '../../skill-box/component/skill-box.component
     selector: 'app-skill-boxes',
     templateUrl: './skill-boxes.component.html',
     styleUrls: ['./skill-boxes.component.scss'],
-    standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [SkillBoxComponent]
 })
 export class SkillBoxesComponent implements OnInit, OnDestroy {

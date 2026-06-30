@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Profile } from '@core/models/gitConnectProfile/profile';
 import { AppState } from '@core/store/models/app.state';
 import { SocialsSelector } from '@core/store/selectors/app.selector';
@@ -10,7 +10,7 @@ import { AsyncPipe } from '@angular/common';
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
-    standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [AsyncPipe]
 })
 export class FooterComponent {

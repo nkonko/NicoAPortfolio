@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
@@ -16,7 +16,7 @@ import { Observable, Subject, filter, takeUntil } from 'rxjs';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [RouterOutlet, SplashComponent, NavbarComponent, FooterComponent, ModalComponent]
 })
 export class AppComponent implements OnInit {

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AppSettings } from 'appsettings-json-reader';
+import appSettingsJson from '../../../../appsettings.json';
 import { FullProfile } from '../models/gitConnectProfile/fullProfile';
 import { PortfolioSettings } from '../models/appSettings/portfolioSettings';
 
@@ -10,7 +10,7 @@ import { PortfolioSettings } from '../models/appSettings/portfolioSettings';
   providedIn: 'root'
 })
 export class ProfileService {
-  appSettings: PortfolioSettings = AppSettings.readAppSettings();
+  appSettings: PortfolioSettings = appSettingsJson as PortfolioSettings;
 
   constructor(private http: HttpClient) { }
 

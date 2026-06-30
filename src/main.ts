@@ -9,26 +9,24 @@ import { EffectsModule } from '@ngrx/effects';
 import { ROOT_REDUCERS } from './app/core/store/models/app.state';
 import { StoreModule } from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
-import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
+import { withInterceptorsFromDi, provideHttpClient, withXhr } from '@angular/common/http';
 import { ContactModule } from '@modules/contact/contact.module';
 import { AppRoutingModule } from './app/app-routing.module';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BootstrapService } from './app/core/services/bootstrap.service';
-import { APP_INITIALIZER, isDevMode, importProvidersFrom } from '@angular/core';
+import { isDevMode, importProvidersFrom, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 
 
 bootstrapApplication(AppComponent, {
     providers: [
-        importProvidersFrom(BrowserModule, AppRoutingModule, ContactModule, ToastrModule.forRoot(), StoreModule.forRoot(ROOT_REDUCERS), EffectsModule.forRoot([AppEffects, ContactEffects]), StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true })),
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initApp,
-            deps: [BootstrapService],
-            multi: true,
-        },
+        provideZoneChangeDetection(),importProvidersFrom(BrowserModule, AppRoutingModule, ContactModule, ToastrModule.forRoot(), StoreModule.forRoot(ROOT_REDUCERS), EffectsModule.forRoot([AppEffects, ContactEffects]), StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true })),
+        provideAppInitializer(() => {
+        const initializerFn = (initApp)(inject(BootstrapService));
+        return initializerFn();
+      }),
         provideAnimations(),
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
     ]
 })
   .catch(err => console.error(err));

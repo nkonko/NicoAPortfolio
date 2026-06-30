@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ModalContentDirective } from '../directive/modal-content.directive';
 import { ModalContentService } from '../service/modal-content.service';
 
@@ -6,7 +6,7 @@ import { ModalContentService } from '../service/modal-content.service';
     selector: 'app-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
-    standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ModalContentDirective]
 })
 export class ModalComponent implements OnInit, OnDestroy {

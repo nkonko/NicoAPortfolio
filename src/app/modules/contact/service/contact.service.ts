@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppSettings } from 'appsettings-json-reader';
+import appSettingsJson from '../../../../../appsettings.json';
 import { PortfolioSettings } from '@core/models/appSettings/portfolioSettings';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { Contact } from '../state/models/contact';
@@ -9,7 +9,7 @@ import { Observable, from } from 'rxjs';
   providedIn: 'root'
 })
 export class ContactService {
-  appSettings: PortfolioSettings = AppSettings.readAppSettings();
+  appSettings: PortfolioSettings = appSettingsJson as PortfolioSettings;
   private serviceId = this.appSettings.emailJs.serviceId;
   private templateId = this.appSettings.emailJs.templateId;
   private publicKey = this.appSettings.emailJs.publicKey;

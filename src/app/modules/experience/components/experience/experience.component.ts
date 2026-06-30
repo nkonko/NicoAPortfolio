@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Work } from '@core/models/gitConnectProfile/work';
 import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
@@ -11,7 +11,7 @@ import { NgClass, DatePipe } from '@angular/common';
     selector: 'app-experience',
     templateUrl: './experience.component.html',
     styleUrls: ['./experience.component.scss'],
-    standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [NgClass, DatePipe]
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
@@ -36,7 +36,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
         if (works) {
           return works.map(work => {
             let newWorks: Work;
-            const rawSummary = work!.summary;
+            const rawSummary = work!.summary ?? '';
             const newSummary = rawSummary
               .replace('Description:', '<b>Description:</b>')
               .replace('Backend-Tecnologies:', '<br><br><b>Backend-Tecnologies:</b><br>')
