@@ -1,3 +1,5 @@
+@use 'design-tokens' as dt;
+
 .section {
   padding-top: 0.2rem;
   padding-left: 0rem;
@@ -5,7 +7,5 @@
 }
 
 .shadow {
-  box-shadow: 3px 2px 6px -1px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 3px 2px 6px -1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 2px 6px -1px rgba(0,0,0,0.75);
+  box-shadow: dt.shadow('md');
 }
