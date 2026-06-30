@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
-import { StateEvents } from '@core/models/state.events';
 import { AppState } from '@core/store/models/app.state';
-import { EventSelector } from '@core/store/selectors/app.selector';
+import * as appActions from '@core/store/actions/app.action';
+import { AppSelector } from '@core/store/selectors/app.selector';
 import { ContactComponent } from '@modules/contact/components/contact/contact.component';
 import { Store } from '@ngrx/store';
 import { FooterComponent } from '@shared/layout/footer/component/footer/footer.component';
@@ -10,32 +11,39 @@ import { NavbarComponent } from '@shared/layout/navbar/component/navbar/navbar.c
 import { ModalComponent } from '@shared/modal/component/modal.component';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { SplashComponent } from '@shared/splash/component/splash.component';
-import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet, SplashComponent, NavbarComponent, FooterComponent, ModalComponent]
 })
-export class AppComponent implements OnInit {
-  private stateEvent$: Observable<StateEvents | undefined> = this.store.select(EventSelector);
-  private unsubscribe$ = new Subject<void>();
-  protected loading: boolean = true;
+export class AppComponent {
+  private appState = toSignal(this.store.select(AppSelector));
+
+  protected loading = computed(() => {
+    const state = this.appState();
+    return state?.profile === undefined && state?.loadError === undefined;
+  });
+
+  protected hasError = computed(() => this.appState()?.loadError !== undefined);
+
+  protected loadError = computed(() => this.appState()?.loadError);
+
   protected modalActive: boolean = false;
   protected hideComponents: boolean = true;
 
-  constructor(private store: Store<AppState>, private modalContentService: ModalContentService) { }
-  ngOnInit(): void {
-    this.stateEvent$.pipe(takeUntil(this.unsubscribe$)).subscribe(event => {
-      if (event !== StateEvents.Loading) {
-        this.loading = false;
-      }
-    });
+  constructor(
+    private store: Store<AppState>,
+    private modalContentService: ModalContentService,
+  ) {}
+
+  retry(): void {
+    this.store.dispatch(appActions.AppInit());
   }
 
-  toggleActivation() {
+  toggleActivation(): void {
     this.modalContentService.push(ContactComponent);
     this.modalActive = !this.modalActive;
 
@@ -43,5 +51,4 @@ export class AppComponent implements OnInit {
       this.modalContentService.pop();
     }
   }
-
 }

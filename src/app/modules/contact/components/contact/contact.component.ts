@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, effect } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as contactActions from '../../state/actions/contact.action';
 import { ContactFormState } from '../../state/models/contactForm.state';
-import { Observable } from 'rxjs';
 import { ContactSelector } from '@modules/contact/state/selectors/contact.selector';
 import { StateEvents } from '@core/models/state.events';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { ModalContentService } from '@shared/modal/service/modal-content.service
     selector: 'app-contact',
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ReactiveFormsModule]
 })
 export class ContactComponent implements OnInit, OnDestroy {
@@ -21,17 +21,49 @@ export class ContactComponent implements OnInit, OnDestroy {
   protected animatePhone: boolean = false;
   protected animateEnvelope: boolean = false;
   private emailRegex: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-  private contact$: Observable<ContactFormState | undefined> = this.contactStore.select(ContactSelector);
 
-  constructor(
-    private fb: FormBuilder,
-    private contactStore: Store<ContactFormState>,
-    private toastr: ToastrService,
-    private modalContentService: ModalContentService) {
+  private fb = inject(FormBuilder);
+  private contactStore = inject(Store<ContactFormState>);
+  private toastr = inject(ToastrService);
+  private modalContentService = inject(ModalContentService);
+  private contactState = toSignal(this.contactStore.select(ContactSelector));
+
+  constructor() {
+    effect(() => {
+      const form = this.contactState();
+      if (!form?.event) return;
+
+      if (form.event === StateEvents.Created) {
+        this.toastr.success('', 'Message sent', {
+          closeButton: true,
+          progressBar: true,
+          timeOut: 2500,
+          positionClass: 'toast-bottom-center',
+        });
+        this.contactForm?.reset();
+        this.modalContentService.toggleVisibility();
+        this.contactStore.dispatch(contactActions.ResetEvents());
+      }
+
+      if (form.event === StateEvents.Failed) {
+        const status = form.error?.status;
+        const message = status
+          ? `Server error (${status}). Please try again later.`
+          : 'Connection error. Check your internet and try again.';
+        this.toastr.error(message, 'Error sending message', {
+          closeButton: true,
+          progressBar: true,
+          timeOut: 3500,
+          positionClass: 'toast-bottom-center',
+        });
+        this.modalContentService.toggleVisibility();
+        this.contactStore.dispatch(contactActions.ResetEvents());
+      }
+    });
   }
 
   ngOnDestroy(): void {
-    this.contactForm.reset();
+    this.contactForm?.reset();
   }
 
   ngOnInit(): void {
@@ -41,37 +73,9 @@ export class ContactComponent implements OnInit, OnDestroy {
       phone: ['', [Validators.minLength(3), Validators.maxLength(20)]],
       message: ['', [Validators.minLength(8)]]
     });
-
-    this.contact$.subscribe(form => {
-
-      if (form?.event === StateEvents.Created) {
-
-        this.toastr.success("", "Message sent", {
-          closeButton: true,
-          progressBar: true,
-          timeOut: 2500,
-          positionClass: "toast-bottom-center",
-        });
-        this.contactForm.reset();
-        this.modalContentService.toggleVisibility();
-        this.contactStore.dispatch(contactActions.ResetEvents());
-      }
-
-      if (form?.event === StateEvents.Failed) {
-        this.toastr.error("There was an Error", "Error", {
-          closeButton: true,
-          progressBar: true,
-          timeOut: 2500,
-          positionClass: "toast-bottom-center",
-        });
-        this.modalContentService.toggleVisibility();
-        this.contactStore.dispatch(contactActions.ResetEvents());
-      }
-    });
-
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.contactStore.dispatch(contactActions.SubmitContactDetails({
       contact: {
         name: this.contactForm.get('name')?.value,

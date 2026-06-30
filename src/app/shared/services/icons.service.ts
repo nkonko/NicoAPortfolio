@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { IconsMap } from '@core/models/icons/iconsMap';
 import { Observable } from 'rxjs';
 
@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IconsService {
-
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   getSkillsIconsJson(): Observable<IconsMap[]> {
     return this.http.get<IconsMap[]>('assets/json/skillsIconsMapping.json');

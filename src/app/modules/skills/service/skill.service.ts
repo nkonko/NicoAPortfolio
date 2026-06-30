@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { AppState } from '@core/store/models/app.state';
 import { SkillSelector } from '@core/store/selectors/app.selector';
@@ -11,8 +11,9 @@ import { assignSkillKeywords } from '../utils/skill-categorizer';
   providedIn: 'root'
 })
 export class SkillService {
+  private store = inject(Store<AppState>);
+  private iconsService = inject(IconsService);
   private skillsData$: Observable<Skill[] | undefined> = this.store.select(SkillSelector);
-  constructor(private store: Store<AppState>, private iconsService: IconsService) { }
 
   getSkillsByKeyWord(tabName: string): Observable<Skill[]> {
     return this.skillsData$.pipe(

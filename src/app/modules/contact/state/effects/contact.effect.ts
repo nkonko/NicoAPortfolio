@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { ContactService } from '../../service/contact.service';
@@ -8,8 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class ContactEffects {
-
-  constructor(private actions$: Actions, private contactService: ContactService) { }
+  private actions$ = inject(Actions);
+  private contactService = inject(ContactService);
 
   contact$ = createEffect(() => this.actions$.pipe(
     ofType(contactActions.SubmitContactDetails),

@@ -24,7 +24,7 @@ export const ContactReducer = createReducer(initialState,
     error: action.error, event: StateEvents.Failed
   })),
   on(contactAction.ResetEvents, (state,action)=> ({
-    ...state, event : StateEvents.Iddle
+    ...state, event : StateEvents.Idle
   }))
 
 );

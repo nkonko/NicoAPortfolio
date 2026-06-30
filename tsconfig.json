@@ -33,6 +33,9 @@
       ],
       "@assets/*": [
         "assets/*"
+      ],
+      "@env/*": [
+        "environments/*"
       ]
     }
   },

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="columns is-flex-desktop-only is-flex-wrap-wrap">
-    @for (skill of skills; track skill) {
+    @for (skill of skills(); track skill.name) {
       <app-skill-box class="column is-one-quarter animated" [skill]="skill"></app-skill-box>
     }
   </div>

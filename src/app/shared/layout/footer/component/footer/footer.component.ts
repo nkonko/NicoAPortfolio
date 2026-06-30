@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Profile } from '@core/models/gitConnectProfile/profile';
 import { AppState } from '@core/store/models/app.state';
 import { SocialsSelector } from '@core/store/selectors/app.selector';
@@ -14,6 +14,7 @@ import { AsyncPipe } from '@angular/common';
     imports: [AsyncPipe]
 })
 export class FooterComponent {
+  private store = inject(Store<AppState>);
   private unsubscribe = new Subject<void>();
   protected profiles: Profile[] = [];
 
@@ -36,8 +37,6 @@ export class FooterComponent {
       }
       return socials;
     }));
-
-  constructor(private store: Store<AppState>) { }
 
   ngOnDestroy(): void {
     this.unsubscribe.next();

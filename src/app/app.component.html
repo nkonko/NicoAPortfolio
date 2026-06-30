@@ -1,13 +1,30 @@
-@if (loading) {
+@if (loading()) {
   <div>
     <app-splash></app-splash>
   </div>
-}
-
-@if (!loading) {
+} @else if (hasError()) {
+  <section class="hero is-medium">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <span class="icon is-large has-text-danger">
+          <i class="fas fa-exclamation-triangle fa-3x"></i>
+        </span>
+        <h1 class="title mt-4">Oops! Something went wrong</h1>
+        <p class="subtitle">Couldn&apos;t load profile data. Check your connection and try again.</p>
+        @if (loadError()?.status) {
+          <p class="has-text-grey mb-4">Error {{ loadError()?.status }}</p>
+        }
+        <button class="button is-link is-medium" (click)="retry()">
+          <span class="icon"><i class="fas fa-redo"></i></span>
+          <span>Retry</span>
+        </button>
+      </div>
+    </div>
+  </section>
+} @else {
   <div>
     <app-navbar class="mb-2"></app-navbar>
-    <section class='section is-medium'>
+    <section class="section is-medium">
       <router-outlet></router-outlet>
     </section>
     @if (hideComponents) {

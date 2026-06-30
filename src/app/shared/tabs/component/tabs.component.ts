@@ -1,47 +1,37 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, signal, computed, effect } from '@angular/core';
 import { Tab } from '../model/tab';
 
 @Component({
     selector: 'app-tabs',
     templateUrl: './tabs.component.html',
     styleUrls: ['./tabs.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: []
 })
-export class TabsComponent implements AfterViewInit, OnChanges {
-  @Input() tabs!: Tab[];
-  @Output() selectedTab = new EventEmitter<string>();
-  @Input() activeTab!: string;
+export class TabsComponent implements AfterViewInit {
+  tabs = input.required<Tab[]>();
+  activeTab = input.required<string>();
+  selectedTab = output<string>();
+
   @ViewChild('tabsList') tabsList?: ElementRef<HTMLUListElement>;
-  
-  showLeftArrow = false;
-  showRightArrow = false;
-  get showScrollButtons(): boolean {
-    return this.showLeftArrow || this.showRightArrow;
-  }
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  protected localActiveTab = signal('');
+  protected showLeftArrow = signal(false);
+  protected showRightArrow = signal(false);
+  protected showScrollButtons = computed(() => this.showLeftArrow() || this.showRightArrow());
 
-  ngOnChanges(changes: SimpleChanges) {
-    // Los tabs se cargan async — cuando llegan, hay que re-checkear el scroll
-    if (changes['tabs'] && changes['tabs'].currentValue?.length > 0) {
-      setTimeout(() => {
-        this.checkScroll();
-        this.cdr.detectChanges();
-      });
-    }
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.checkScroll();
-      this.cdr.detectChanges();
+  constructor() {
+    effect(() => {
+      this.localActiveTab.set(this.activeTab());
     });
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => this.checkScroll());
+  }
+
   onTabClick(name: string) {
-    this.activeTab = name;
+    this.localActiveTab.set(name);
     this.selectedTab.emit(name);
   }
 
@@ -49,37 +39,24 @@ export class TabsComponent implements AfterViewInit, OnChanges {
     const ul = this.tabsList?.nativeElement;
     if (!ul) return;
 
-    // Scrollea casi un viewport completo (menos 60px de solapamiento)
-    // Así cada click revela tabs nuevas sin perder contexto
     const scrollAmount = ul.clientWidth - 60;
-    const targetScroll = direction === 'left' 
-      ? ul.scrollLeft - scrollAmount 
-      : ul.scrollLeft + scrollAmount;
-
     ul.scrollTo({
-      left: targetScroll,
+      left: direction === 'left' ? ul.scrollLeft - scrollAmount : ul.scrollLeft + scrollAmount,
       behavior: 'smooth'
     });
 
-    // Esperar que termine la animación antes de reevaluar flechas
-    setTimeout(() => {
-      this.checkScroll();
-      this.cdr.detectChanges();
-    }, 400);
+    setTimeout(() => this.checkScroll(), 400);
   }
 
   private checkScroll() {
     const ul = this.tabsList?.nativeElement;
     if (!ul) return;
 
-    const { scrollLeft, scrollWidth, clientWidth } = ul;
-    
-    this.showLeftArrow = scrollLeft > 0;
-    this.showRightArrow = scrollLeft + clientWidth < scrollWidth - 10;
+    this.showLeftArrow.set(ul.scrollLeft > 0);
+    this.showRightArrow.set(ul.scrollLeft + ul.clientWidth < ul.scrollWidth - 10);
   }
 
   onScroll() {
     this.checkScroll();
-    this.cdr.detectChanges();
   }
 }

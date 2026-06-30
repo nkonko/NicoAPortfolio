@@ -7,9 +7,6 @@ export const AppSelector = createSelector(
   selectApp,
   state => state);
 
-  export const EventSelector = createSelector(
-    selectApp,
-    state => state.event);
 
 export const selectSkills = (state: AppState) => state.app.profile;
 

@@ -1,80 +1,87 @@
-import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, signal, effect, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Work } from '@core/models/gitConnectProfile/work';
 import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, map, takeUntil } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 import { NgClass, DatePipe } from '@angular/common';
+
+interface SummarySection {
+  title: string;
+  content: string;
+}
+
+const SUMMARY_LABELS = [
+  'Description', 'Backend-Tecnologies', 'Frontend-Tecnologies',
+  'Devops', 'Databases', 'Extra', 'Duties',
+] as const;
 
 @Component({
     selector: 'app-experience',
     templateUrl: './experience.component.html',
     styleUrls: ['./experience.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass, DatePipe]
 })
-export class ExperienceComponent implements OnInit, OnDestroy {
-  private unsubscribe = new Subject<void>();
-  protected hoverState: { [key: string]: boolean; } = {};
-  protected selectedWork!: Work;
-  protected works!: Work[];
-  protected work$: Observable<Work[] | undefined> = this.store.select(WorkSelector);
+export class ExperienceComponent {
+  private store = inject(Store<AppState>);
+  private works = toSignal(this.store.select(WorkSelector));
 
-  constructor(
-    private store: Store<AppState>) { }
+  protected worksList = computed(() => this.works() ?? []);
 
-  ngOnDestroy(): void {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
+  protected selectedWork = signal<Work | null>(null);
 
-  ngOnInit(): void {
-    this.work$.pipe(
-      takeUntil(this.unsubscribe),
-      map(works => {
-        if (works) {
-          return works.map(work => {
-            let newWorks: Work;
-            const rawSummary = work!.summary ?? '';
-            const newSummary = rawSummary
-              .replace('Description:', '<b>Description:</b>')
-              .replace('Backend-Tecnologies:', '<br><br><b>Backend-Tecnologies:</b><br>')
-              .replace('Frontend-Tecnologies:', '<br><br><b>Frontend-Tecnologies:</b><br>')
-              .replace('Devops:', '<br><br><b>Devops:</b><br>')
-              .replace('Databases:', '<br><br><b>Databases:</b><br>')
-              .replace('Extra:', '<br><br><b>Extra:</b><br>')
-              .replace('Duties:', '<br><br><b>Duties:</b><br>')
-              .replace('\n', '<br>');
+  protected selectedWorkSections = computed<SummarySection[]>(() => {
+    const raw = this.selectedWork()?.summary ?? '';
+    return this.parseSummary(raw);
+  });
 
-            newWorks = { ...work, summary: newSummary, id: uuidv4() };
-
-            return newWorks;
-          });
-        }
-        return works;
-      })
-    ).subscribe(works => {
-      if (works) {
-        this.works = works;
-        this.selectedWork = this.works[0]
+  constructor() {
+    effect(() => {
+      const list = this.worksList();
+      if (list.length > 0 && !this.selectedWork()) {
+        this.selectedWork.set(list[0]);
       }
     });
   }
 
-  goToSummary(): void {
+  selectWork(id: string): void {
+    const work = this.worksList().find(w => w.id === id);
+    if (work) {
+      this.selectedWork.set(work);
+      this.goToSummary();
+    }
+  }
+
+  private goToSummary(): void {
     const element = document.getElementById('summary');
-    element!.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 
+  private parseSummary(raw: string): SummarySection[] {
+    const sections: SummarySection[] = [];
+    const lines = raw.split('\n');
+    let current: SummarySection | null = null;
 
-  hoverTimelineMarker(isHovered: boolean, id: string): void {
-    this.hoverState[id] = isHovered;
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+
+      const labelMatch = trimmed.match(
+        new RegExp(`^(${SUMMARY_LABELS.join('|')}):\\s*(.*)`, 'i')
+      );
+
+      if (labelMatch) {
+        current = { title: labelMatch[1], content: labelMatch[2] };
+        sections.push(current);
+      } else if (current) {
+        current.content += (current.content ? '\n' : '') + trimmed;
+      } else {
+        current = { title: '', content: trimmed };
+        sections.push(current);
+      }
+    }
+
+    return sections;
   }
-
-  selectWork(id: string) {
-    this.selectedWork = this.works.filter(w => w.id === id)[0];
-    this.goToSummary();
-  }
-
 }

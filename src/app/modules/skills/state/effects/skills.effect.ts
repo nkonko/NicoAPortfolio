@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 import * as skillActions from '../actions/skills.action';
@@ -6,8 +6,8 @@ import { SkillService } from '@modules/skills/service/skill.service';
 
 @Injectable()
 export class SkillEffects {
-
-  constructor(private actions$: Actions, private skillService: SkillService) { }
+  private actions$ = inject(Actions);
+  private skillService = inject(SkillService);
 
   skillsByTab$ = createEffect(() => this.actions$.pipe(
     ofType(skillActions.ChangeTab),

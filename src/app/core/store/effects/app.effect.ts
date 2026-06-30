@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, shareReplay, switchMap } from 'rxjs/operators';
 import { ProfileService } from '../../services/profile.service';
@@ -8,8 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class AppEffects {
-
-  constructor(private actions$: Actions, private profileService: ProfileService) { }
+  private actions$ = inject(Actions);
+  private profileService = inject(ProfileService);
 
   profile$ = createEffect(() => this.actions$.pipe(
     ofType(appActions.AppInit),

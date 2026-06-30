@@ -1,6 +1,6 @@
 <div class="tabs-container">
   <div class="tabs is-centered">
-    @if (showLeftArrow) {
+    @if (showLeftArrow()) {
       <button 
         class="scroll-button scroll-left" 
         (click)="scrollTabs('left')"
@@ -9,10 +9,10 @@
       </button>
     }
 
-    <div class="tabs-scroll-wrapper" [class.has-scroll-buttons]="showScrollButtons">
+    <div class="tabs-scroll-wrapper" [class.has-scroll-buttons]="showScrollButtons()">
       <ul #tabsList (scroll)="onScroll()">
-        @for (tab of tabs; track tab) {
-          <li [class.is-active]="tab.name === activeTab">
+        @for (tab of tabs(); track tab.name) {
+          <li [class.is-active]="tab.name === localActiveTab()">
             <a (click)="onTabClick(tab.name)">
               <span class="icon is-small">
                 <i class="{{tab.icon}}" aria-hidden="true"></i>
@@ -24,7 +24,7 @@
       </ul>
     </div>
 
-    @if (showRightArrow) {
+    @if (showRightArrow()) {
       <button 
         class="scroll-button scroll-right" 
         (click)="scrollTabs('right')"

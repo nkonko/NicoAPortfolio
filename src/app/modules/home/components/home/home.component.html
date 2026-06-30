@@ -1,11 +1,11 @@
 <section class="hero bg is-medium is-bold">
   <div class="hero-body">
-    <h1 class="title is-1">
-      Hey there!. My name is {{name}}.
-    </h1>
+      <h1 class="title is-1">
+        Hey there!. My name is {{ name() }}.
+      </h1>
 
-    <h1 class="title is-4" [innerHTML]=jobTitle></h1>
-    <h2 class="subtitle is-5">Based in {{location}}.</h2>
+      <h1 class="title is-4">{{ jobTitle() }}</h1>
+      <h2 class="subtitle is-5">Based in {{ location() }}.</h2>
     <div class="custom-card">
       <div class="card-content">
         <div class="content">
@@ -22,7 +22,7 @@
                 <div class="box">
                   <div class="marquee">
                     <ul class="marquee__content">
-                      @for (skill of completeSkills; track skill) {
+                      @for (skill of completeSkills(); track skill.name) {
                         <li class="marquee__item pl-4">
                           @if (skill.icon) {
                             <span class="icon-text">

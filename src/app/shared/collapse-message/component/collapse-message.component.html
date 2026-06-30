@@ -1,11 +1,11 @@
 <article class="message is-primary mt-2" (click)="toggle()">
   <div class="message-header">
-    <p>{{title}}</p>
+    <p>{{title()}}</p>
     <i style="text-decoration:none" class="button is-ghost fa-solid fa-chevron-up icon-arrow rotate" [ngClass]="{'rotate': isCollapsed}" ></i>
   </div>
   <div class="message-body" [ngClass]="{'collapsed': isCollapsed}">
     <div class="message-body-content">
-      {{paragraph}}
+      {{paragraph()}}
     </div>
   </div>
 </article>

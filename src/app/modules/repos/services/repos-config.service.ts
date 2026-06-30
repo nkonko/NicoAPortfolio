@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,12 +8,14 @@ import { ReposConfig } from '../models/repos-config.model';
   providedIn: 'root'
 })
 export class ReposConfigService {
-
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   getReposConfig(): Observable<ReposConfig | null> {
     return this.http.get<ReposConfig>('assets/json/reposConfig.json').pipe(
-      catchError(() => of(null))
+      catchError((err) => {
+        console.error('[ReposConfigService] Failed to load repos config:', err);
+        return of(null);
+      })
     );
   }
 
