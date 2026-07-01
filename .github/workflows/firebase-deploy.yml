@@ -45,11 +45,32 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy to Firebase
-        continue-on-error: true
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_81C7A }}
-          channelId: live
-          projectId: portfolio-81c7a
+      - name: Deploy to Firebase (idempotent)
+        shell: bash
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_81C7A }}
+          FIREBASE_SITE: nicoazzara
+        run: |
+          set +e
+
+          SA_FILE="$RUNNER_TEMP/firebase-service-account.json"
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT_JSON" > "$SA_FILE"
+          export GOOGLE_APPLICATION_CREDENTIALS="$SA_FILE"
+
+          DEPLOY_OUTPUT=$(npx firebase-tools@latest deploy --only hosting --site "$FIREBASE_SITE" --project portfolio-81c7a --json 2>&1)
+          DEPLOY_EXIT=$?
+
+          echo "$DEPLOY_OUTPUT"
+
+          if [ "$DEPLOY_EXIT" -eq 0 ]; then
+            echo "Live URL: https://$FIREBASE_SITE.web.app"
+            exit 0
+          fi
+
+          if echo "$DEPLOY_OUTPUT" | grep -q "is the current active version"; then
+            echo "Hosting live channel already points to this version. Treating as successful idempotent deploy."
+            echo "Live URL: https://$FIREBASE_SITE.web.app"
+            exit 0
+          fi
+
+          exit "$DEPLOY_EXIT"
