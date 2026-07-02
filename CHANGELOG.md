@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/nkonko/NicoAPortfolio/compare/v1.1.0...v1.1.1) (2026-07-02)
+
+
+### Bug Fixes
+
+* **footer:** remove duplicate URL concatenation in LinkedIn fallback ([ce9e112](https://github.com/nkonko/NicoAPortfolio/commit/ce9e11273cf04bbbe53865eb4658945650e816f4))
+
 # [1.1.0](https://github.com/nkonko/NicoAPortfolio/compare/v1.0.0...v1.1.0) (2026-07-02)
 
 
