@@ -3,7 +3,7 @@
     <div class="column is-4">
       <div class="timeline">
         <header class="timeline-header ml-5">
-          <span class="tag is-medium is-primary">Present</span>
+          <span class="tag is-medium is-primary">{{ "experience.present" | transloco }}</span>
         </header>
         @for (work of worksList(); track $index) {
           <div class="timeline-item"
@@ -15,24 +15,24 @@
               }"></div>
             <div class="timeline-content">
               <p class="heading" [class.selected]="selectedWork()?.id === work.id">
-                <b>{{ work.startDate | date: 'MMMM yyyy' }}</b> TO
-                <b>{{ work.isCurrentRole ? 'Present' : (work.endDate | date: 'MMMM yyyy') }}</b>
+                <b>{{ work.startDate | date: 'MMMM yyyy' }}</b> {{ "experience.to" | transloco }}
+                <b>{{ work.isCurrentRole ? ('experience.present' | transloco) : (work.endDate | date: 'MMMM yyyy') }}</b>
               </p>
               <p class="heading">
-                Company: <a href="{{ work.website }}">
-                  <strong class="shadow has-tooltip-arrow has-tooltip-bottom" data-tooltip="Open LinkedIn">
+                {{ "experience.company" | transloco }} <a href="{{ work.website }}">
+                  <strong class="shadow has-tooltip-arrow has-tooltip-bottom" [attr.data-tooltip]="('experience.openLinkedin' | transloco)">
                     {{ work.company }}
                   </strong>
                 </a>
               </p>
               <span class="heading is-flex">
-                Position: <p class="title is-6 ml-2">{{ work.position }}</p>
+                {{ "experience.position" | transloco }} <p class="title is-6 ml-2">{{ work.position }}</p>
               </span>
             </div>
           </div>
         }
         <div class="timeline-header ml-5">
-          <span class="tag is-medium is-primary">Begining</span>
+          <span class="tag is-medium is-primary">{{ "experience.beginning" | transloco }}</span>
         </div>
       </div>
     </div>

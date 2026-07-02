@@ -1,5 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslocoModule } from '@jsverse/transloco';
 import { CollapseMessageComponent } from '@shared/collapse-message/component/collapse-message.component';
+import { ContentTranslationService } from '@core/i18n/content-translation.service';
 
 interface AboutSection {
   title: string;
@@ -37,9 +40,24 @@ const { presentation, paragraphs } = parseSummary(LOCAL_SUMMARY);
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CollapseMessageComponent]
+    imports: [CollapseMessageComponent, TranslocoModule]
 })
 export class AboutComponent {
-  protected presentation = presentation;
-  protected paragraphs = paragraphs;
+  private contentTranslation = inject(ContentTranslationService);
+  private activeLang = toSignal(this.contentTranslation.langChanges$, {
+    initialValue: this.contentTranslation.activeLang,
+  });
+
+  protected presentation = computed(() => {
+    this.activeLang();
+    return this.contentTranslation.get('about.presentation', presentation);
+  });
+
+  protected paragraphs = computed(() => {
+    this.activeLang();
+    return paragraphs.map((p, i) => ({
+      title: this.contentTranslation.get(`about.${i}.title`, p.title),
+      paragraph: this.contentTranslation.get(`about.${i}.paragraph`, p.paragraph),
+    }));
+  });
 }

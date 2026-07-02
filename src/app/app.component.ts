@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
+import { TranslocoModule } from '@jsverse/transloco';
 import { AppState } from '@core/store/models/app.state';
 import * as appActions from '@core/store/actions/app.action';
 import { AppSelector } from '@core/store/selectors/app.selector';
@@ -17,7 +18,7 @@ import { SplashComponent } from '@shared/splash/component/splash.component';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterOutlet, SplashComponent, NavbarComponent, FooterComponent, ModalComponent]
+    imports: [RouterOutlet, SplashComponent, NavbarComponent, FooterComponent, ModalComponent, TranslocoModule]
 })
 export class AppComponent {
   private appState = toSignal(this.store.select(AppSelector));

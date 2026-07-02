@@ -14,6 +14,10 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { BootstrapService } from './app/core/services/bootstrap.service';
 import { isDevMode, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideTransloco } from '@jsverse/transloco';
+import { translocoConfig } from './app/core/i18n/transloco.config';
+import { TranslocoHttpLoader } from './app/core/i18n/transloco-http.loader';
+import { resolveDefaultLang } from './app/core/i18n/default-lang.util';
 
 
 bootstrapApplication(AppComponent, {
@@ -24,6 +28,13 @@ bootstrapApplication(AppComponent, {
         provideEffects([AppEffects, ContactEffects]),
         provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode(), connectInZone: true }),
         provideToastr(),
+        provideTransloco({
+            config: {
+                ...translocoConfig,
+                defaultLang: resolveDefaultLang(),
+            },
+            loader: TranslocoHttpLoader,
+        }),
         provideAppInitializer(() => {
         const initializerFn = (initApp)(inject(BootstrapService));
         return initializerFn();

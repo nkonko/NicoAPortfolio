@@ -2,11 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import { provideTransloco, TranslocoLoader } from '@jsverse/transloco';
 import { By } from '@angular/platform-browser';
 import { ReposComponent } from './repos.component';
 import { BasicsSelector } from '../../../../core/store/selectors/app.selector';
 import { ProjectsSelector } from '../../../../core/store/selectors/app.selector';
 import { ReposConfig } from '../../models/repos-config.model';
+import { translocoConfig } from '../../../../core/i18n/transloco.config';
+import { of } from 'rxjs';
 
 describe('ReposComponent', () => {
   let component: ReposComponent;
@@ -34,7 +37,13 @@ describe('ReposComponent', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-        provideMockStore({ initialState: { app: { profile: undefined } } })
+        provideMockStore({ initialState: { app: { profile: undefined } } }),
+        provideTransloco({
+          config: translocoConfig,
+          loader: class MockLoader implements TranslocoLoader {
+            getTranslation() { return of({ repos: { title: 'GitHub Repos', empty: 'No repositories configured.' } }); }
+          },
+        }),
       ]
     }).compileComponents();
 

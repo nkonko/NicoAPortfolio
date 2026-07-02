@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, map } from 'rxjs';
 import { AppState } from 'app/core/store/models/app.state';
@@ -15,7 +16,7 @@ import { Basics } from 'app/core/models/gitConnectProfile/base';
     templateUrl: './repos.component.html',
     styleUrls: ['./repos.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [AsyncPipe]
+    imports: [AsyncPipe, TranslocoModule]
 })
 export class ReposComponent implements OnInit {
   repos$!: Observable<Project[]>;

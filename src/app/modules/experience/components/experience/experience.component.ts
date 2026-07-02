@@ -5,6 +5,7 @@ import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
 import { NgClass, DatePipe } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 
 interface SummarySection {
   title: string;
@@ -21,7 +22,7 @@ const SUMMARY_LABELS = [
     templateUrl: './experience.component.html',
     styleUrls: ['./experience.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass, DatePipe]
+    imports: [NgClass, DatePipe, TranslocoModule]
 })
 export class ExperienceComponent {
   private store = inject(Store<AppState>);

@@ -5,13 +5,14 @@ import { SocialsSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, map, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [AsyncPipe]
+    imports: [AsyncPipe, TranslocoModule]
 })
 export class FooterComponent {
   private store = inject(Store<AppState>);

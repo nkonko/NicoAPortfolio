@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslocoModule } from '@jsverse/transloco';
 import { Skill } from '@core/models/gitConnectProfile/skill';
 import { AppState } from '@core/store/models/app.state';
 import { BasicsSelector, SkillSelector } from '@core/store/selectors/app.selector';
@@ -12,7 +13,8 @@ import { combineLatest, map } from 'rxjs';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+    standalone: true,
+    imports: [TranslocoModule]
 })
 export class HomeComponent {
   protected yearsOfExperience = new Date().getFullYear() - 2018;
@@ -21,10 +23,7 @@ export class HomeComponent {
   private skillsData$ = this.store.select(SkillSelector);
 
   protected name = computed(() => this.basics()?.name ?? '');
-  protected jobTitle = computed(() => {
-    const label = this.basics()?.label;
-    return label ? `I'm a ${label}` : '';
-  });
+  protected jobLabel = computed(() => this.basics()?.label ?? '');
   protected location = computed(() => this.basics()?.region ?? '');
 
   private skillsWithIcons$ = combineLatest([

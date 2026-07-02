@@ -9,14 +9,14 @@
         <span class="icon is-large has-text-danger">
           <i class="fas fa-exclamation-triangle fa-3x"></i>
         </span>
-        <h1 class="title mt-4">Oops! Something went wrong</h1>
-        <p class="subtitle">Couldn&apos;t load profile data. Check your connection and try again.</p>
+        <h1 class="title mt-4">{{ "errors.title" | transloco }}</h1>
+        <p class="subtitle">{{ "errors.subtitle" | transloco }}</p>
         @if (loadError()?.status) {
-          <p class="has-text-grey mb-4">Error {{ loadError()?.status }}</p>
+          <p class="has-text-grey mb-4">{{ "errors.errorLabel" | transloco }} {{ loadError()?.status }}</p>
         }
         <button class="button is-link is-medium" (click)="retry()">
           <span class="icon"><i class="fas fa-redo"></i></span>
-          <span>Retry</span>
+          <span>{{ "errors.retry" | transloco }}</span>
         </button>
       </div>
     </div>

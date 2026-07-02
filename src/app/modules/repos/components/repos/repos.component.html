@@ -1,6 +1,6 @@
 <section class="section">
   <div class="container">
-    <h1 class="title">GitHub Repos</h1>
+    <h1 class="title">{{ "repos.title" | transloco }}</h1>
 
     <!-- Loading state -->
     @if (loading$ | async) {
@@ -13,7 +13,7 @@
     @if (!(loading$ | async) && (repos$ | async); as repos) {
       @if (repos.length === 0) {
         <div class="has-text-centered">
-          <p>No repositories configured.</p>
+          <p>{{ "repos.empty" | transloco }}</p>
         </div>
       }
 

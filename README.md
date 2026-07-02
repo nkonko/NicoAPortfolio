@@ -1,27 +1,136 @@
-# NicoAPortfolio
+# NicoAPortfolio — Personal Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+[![Angular](https://img.shields.io/badge/Angular-22-red?logo=angular&logoColor=white)](https://angular.dev)
+[![NGRX](https://img.shields.io/badge/state%20management-NGRX-9C27B0?logo=ngrx&logoColor=white)](https://ngrx.io)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Bulma](https://img.shields.io/badge/CSS-Bulma-00D1B2?logo=bulma&logoColor=white)](https://bulma.io)
+[![Firebase Hosting](https://img.shields.io/badge/hosting-Firebase-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079)](https://github.com/semantic-release/semantic-release)
+[![Build](https://github.com/nkonko/NicoAPortfolio/actions/workflows/firebase-deploy.yml/badge.svg)](https://github.com/nkonko/NicoAPortfolio/actions/workflows/firebase-deploy.yml)
+[![Release](https://img.shields.io/github/v/release/nkonko/NicoAPortfolio)](https://github.com/nkonko/NicoAPortfolio/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-## Development server
+> **Live:** [nicoazzara.web.app](https://nicoazzara.web.app)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Mi portfolio personal — una SPA hecha con **Angular** que muestra mi perfil profesional, experiencia, skills, proyectos y un formulario de contacto. Arrancó como un proyecto con Angular 15, pasó por Angular 17, y actualmente está actualizado a **Angular 22**.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## ✨ Features
 
-## Build
+- 📄 **Perfil profesional** — presentación, experiencia laboral y educacion
+- 🛠 **Skills** — organizados por categorías con tabs (Frontend, Backend, Tools, etc.)
+- 📂 **Repos / Proyectos** — cards con proyectos destacados
+- 📬 **Contacto** — formulario funcional via EmailJS
+- 🌙 **Tema claro/oscuro** — con design tokens, toggle en navbar y persistencia en localStorage
+- 📱 **Responsive** — Bulma + estilos custom adaptados a todos los dispositivos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## 🏗 Arquitectura
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+src/
+├── app/
+│   ├── core/           → Singleton services, store global (NGRX), modelos
+│   │   └── store/      → Actions, Reducers, Selectors, Effects
+│   ├── shared/         → Componentes reutilizables (layout, skill-boxes)
+│   └── modules/        → Feature modules lazy-loaded
+│       ├── home/
+│       ├── about/
+│       ├── skills/     → State propio con NGRX (feature selectors)
+│       ├── experience/
+│       ├── repos/
+│       └── contact/    → State propio con NGRX
+├── assets/
+├── environments/
+└── styles/             → Design tokens y variables custom
+```
 
-## Running end-to-end tests
+### Stack técnico
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+| Capa           | Tecnología                                         |
+| -------------- | -------------------------------------------------- |
+| **Framework**  | Angular 22                                        |
+| **Lenguaje**   | TypeScript 6.0                                    |
+| **Estado**     | NGRX Store + Effects (StoreModule, EffectsModule)  |
+| **CSS**        | Bulma + SCSS + Design Tokens                      |
+| **Contacto**   | EmailJS                                           |
+| **Testing**    | Vitest + Jasmine (via `@angular/build:unit-test`)  |
+| **CI/CD**      | GitHub Actions → semantic-release → Firebase Hosting |
+| **Hosting**    | Firebase Hosting (site: `nicoazzara`)              |
 
-## Further help
+**NGRX** maneja el estado global de la app (datos del perfil, skills, proyectos, experiencia, redes sociales) y también estados locales por feature (contact form, skills tabs). El `BootstrapService` dispara la acción `AppInit` al arranque para cargar datos iniciales via el store.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## 🚀 Dev
+
+```bash
+# Instalar dependencias
+npm install --legacy-peer-deps
+
+# Servidor de desarrollo
+ng serve
+
+# Build
+ng build --configuration production
+
+# Tests
+ng test --watch=false
+```
+
+---
+
+## 🔄 CI/CD
+
+El pipeline en `.github/workflows/firebase-deploy.yml` se ejecuta automáticamente al hacer push a `master`:
+
+1. **Setup** Node 22 + dependencias
+2. **Test** — `ng test --watch=false`
+3. **Build** — producción
+4. **Semantic Release** — versionado automático, genera CHANGELOG y GitHub Release
+5. **Deploy** — a Firebase Hosting (idempotente)
+
+El versionado sigue [Conventional Commits](https://www.conventionalcommits.org/) via semantic-release.
+
+---
+
+## 🧪 Testing
+
+El proyecto usa **Vitest** via `@angular/build:unit-test` con API compatible Jasmine. Los componentes con NGRX usan `provideMockStore` para mockear el store en las pruebas.
+
+```bash
+ng test              # una vuelta
+ng test --watch=true # modo watch (desarrollo)
+```
+
+---
+
+## 📦 Releases
+
+Los releases se generan automáticamente via [semantic-release](https://semantic-release.gitbook.io/) al hacer push a `master`. Cada release produce:
+
+- Version bump en `package.json`
+- `CHANGELOG.md` actualizado
+- GitHub Release con release notes
+- Deploy automático a Firebase
+
+---
+
+## 🧰 Sugerencias para próximos pasos
+
+Esto es lo que **yo agregaría** si fuera mi portfolio:
+
+1. **SEO / SSR** — con Angular 22 y `@angular/ssr` podés servir contenido pre-renderizado para crawlers
+2. **i18n** — si querés versión EN/ES, `@angular/localize` ya viene con el CLI
+3. **GitHub API real** — en lugar de datos mockeados, conectá el módulo de repos a la API de GitHub
+4. **E2E con Playwright** — ya tenés todo el setup, solo falta escribir los tests
+5. **Métricas y analytics** — Firebase Analytics o una integración liviana para saber qué secciones visitan más
+6. **Accessibility audit** — agregá reglas de accesibilidad y pasá un axe DevTools audit
+
+---
+
+## 📄 Licencia
+
+MIT

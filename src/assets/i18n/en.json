@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "repos": "Repositories",
+    "experienceTooltip": "Select a position to display more details",
+    "themeToggle": "Toggle theme",
+    "languageToggle": "Switch language"
+  },
+  "home": {
+    "greeting": "Hey there!. My name is {{ name }}.",
+    "based": "Based in {{ location }}.",
+    "specialized": "Specialized in web development with over {{ years }} years of professional experience in building webs and working with technologies like:"
+  },
+  "about": {
+    "title": "Meet me"
+  },
+  "contact": {
+    "name": "Name",
+    "namePlaceholder": "Alex Smith",
+    "nameRequired": "Name is required",
+    "nameMinLength": "Name must be at least 3 characters",
+    "email": "Email",
+    "emailPlaceholder": "Alex.Smith@gmail.com",
+    "emailRequired": "Email is required",
+    "emailInvalid": "This email is invalid",
+    "phone": "Phone",
+    "phonePlaceholder": "5555-5555",
+    "phoneMinLength": "Phone must be at least 3 characters",
+    "message": "Message",
+    "messagePlaceholder": "Message...",
+    "messageMinLength": "Message must be at least 8 characters",
+    "send": "SEND",
+    "toast": {
+      "successTitle": "Message sent",
+      "successMessage": "Thanks for reaching out.",
+      "errorTitle": "Error sending message",
+      "connectionErrorMessage": "Connection error. Check your internet and try again.",
+      "serverErrorMessage": "Server error ({{ status }}). Please try again later."
+    }
+  },
+  "repos": {
+    "title": "GitHub Repos",
+    "empty": "No repositories configured."
+  },
+  "experience": {
+    "present": "Present",
+    "beginning": "Beginning",
+    "company": "Company:",
+    "position": "Position:",
+    "to": "TO",
+    "openLinkedin": "Open LinkedIn"
+  },
+  "errors": {
+    "title": "Oops! Something went wrong",
+    "subtitle": "Couldn't load profile data. Check your connection and try again.",
+    "retry": "Retry",
+    "errorLabel": "Error"
+  },
+  "footer": {
+    "copyright": "Handcrafted by me."
+  },
+  "jobTitle": "I'm a {{ label }}"
+}

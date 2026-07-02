@@ -16,38 +16,41 @@
       <a class="navbar-item" routerLink="home" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
         <strong class="shadow">
-          Home
+          {{ "nav.home" | transloco }}
         </strong>
       </a>
       <a class="navbar-item" routerLink="about" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
         <strong class="shadow">
-          About
+          {{ "nav.about" | transloco }}
         </strong>
       </a>
       <a class="navbar-item" routerLink="skills" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
         <strong class="shadow">
-          Skills
+          {{ "nav.skills" | transloco }}
         </strong>
       </a>
 
       <a class="navbar-item" routerLink="experience" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
-        <strong class="shadow has-tooltip-arrow has-tooltip-bottom" data-tooltip="Select a position to display more details">
-          Experience
+        <strong class="shadow has-tooltip-arrow has-tooltip-bottom" [attr.data-tooltip]="'nav.experienceTooltip' | transloco">
+          {{ "nav.experience" | transloco }}
         </strong>
       </a>
       <a class="navbar-item" routerLink="repos" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
         <strong class="shadow">
-          Repositories
+          {{ "nav.repos" | transloco }}
         </strong>
       </a>
     </div>
     <div class="navbar-end">
-      <a class="navbar-item theme-toggle" (click)="toggleTheme()" title="Toggle theme">
+      <a class="navbar-item theme-toggle" (click)="toggleTheme()" [title]="'nav.themeToggle' | transloco">
         <i class="fas" [ngClass]="theme === 'light' ? 'fa-moon' : 'fa-sun'"></i>
+      </a>
+      <a class="navbar-item lang-toggle" (click)="toggleLang()" [title]="'nav.languageToggle' | transloco">
+        <strong>{{ currentLang() === 'en' ? 'ES' : 'EN' }}</strong>
       </a>
     </div>
   </div>

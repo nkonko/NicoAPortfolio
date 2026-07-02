@@ -1,20 +1,18 @@
 <section class="hero bg is-medium is-bold">
   <div class="hero-body">
       <h1 class="title is-1">
-        Hey there!. My name is {{ name() }}.
+        {{ "home.greeting" | transloco: { name: name() } }}
       </h1>
 
-      <h1 class="title is-4">{{ jobTitle() }}</h1>
-      <h2 class="subtitle is-5">Based in {{ location() }}.</h2>
+      <h1 class="title is-4">{{ "jobTitle" | transloco: { label: jobLabel() } }}</h1>
+      <h2 class="subtitle is-5">{{ "home.based" | transloco: { location: location() } }}</h2>
     <div class="custom-card">
       <div class="card-content">
         <div class="content">
 
           <h4 class="word-carousel">
             <span>
-              Specialized in web development with over {{yearsOfExperience}} years of professional experience in building webs and
-              working
-              with technologies like:
+              {{ "home.specialized" | transloco: { years: yearsOfExperience } }}
             </span>
             <br>
               <br>

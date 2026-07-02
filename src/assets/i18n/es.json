@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "repos": "Repositorios",
+    "experienceTooltip": "Seleccioná una posición para ver más detalles",
+    "themeToggle": "Cambiar tema",
+    "languageToggle": "Cambiar idioma"
+  },
+  "home": {
+    "greeting": "¡Hola! Mi nombre es {{ name }}.",
+    "based": "Vivo en {{ location }}.",
+    "specialized": "Especializado en desarrollo web con más de {{ years }} años de experiencia profesional creando sitios y trabajando con tecnologías como:"
+  },
+  "about": {
+    "title": "Conóceme"
+  },
+  "contact": {
+    "name": "Nombre",
+    "namePlaceholder": "Alex Smith",
+    "nameRequired": "El nombre es obligatorio",
+    "nameMinLength": "El nombre debe tener al menos 3 caracteres",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Alex.Smith@gmail.com",
+    "emailRequired": "El correo es obligatorio",
+    "emailInvalid": "El correo no es válido",
+    "phone": "Teléfono",
+    "phonePlaceholder": "5555-5555",
+    "phoneMinLength": "El teléfono debe tener al menos 3 caracteres",
+    "message": "Mensaje",
+    "messagePlaceholder": "Mensaje...",
+    "messageMinLength": "El mensaje debe tener al menos 8 caracteres",
+    "send": "ENVIAR",
+    "toast": {
+      "successTitle": "Mensaje enviado",
+      "successMessage": "Gracias por contactarte.",
+      "errorTitle": "Error al enviar el mensaje",
+      "connectionErrorMessage": "Error de conexión. Revisá tu internet e intentá de nuevo.",
+      "serverErrorMessage": "Error del servidor ({{ status }}). Intentá de nuevo más tarde."
+    }
+  },
+  "repos": {
+    "title": "Repositorios",
+    "empty": "No hay repositorios configurados."
+  },
+  "experience": {
+    "present": "Actualidad",
+    "beginning": "Inicio",
+    "company": "Empresa:",
+    "position": "Puesto:",
+    "to": "A",
+    "openLinkedin": "Abrir LinkedIn"
+  },
+  "errors": {
+    "title": "¡Algo salió mal!",
+    "subtitle": "No se pudo cargar la información. Revisá tu conexión e intentá de nuevo.",
+    "retry": "Reintentar",
+    "errorLabel": "Error"
+  },
+  "footer": {
+    "copyright": "Hecho a mano por mí."
+  },
+  "jobTitle": "Soy {{ label }}"
+}

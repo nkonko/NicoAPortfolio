@@ -2,19 +2,21 @@ import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, inject, effect }
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { TranslocoModule } from '@jsverse/transloco';
 import * as contactActions from '../../state/actions/contact.action';
 import { ContactFormState } from '../../state/models/contactForm.state';
 import { ContactSelector } from '@modules/contact/state/selectors/contact.selector';
 import { StateEvents } from '@core/models/state.events';
 import { ToastrService } from 'ngx-toastr';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
     selector: 'app-contact',
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ReactiveFormsModule]
+    imports: [ReactiveFormsModule, TranslocoModule]
 })
 export class ContactComponent implements OnInit, OnDestroy {
   protected contactForm!: FormGroup;
@@ -25,6 +27,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private contactStore = inject(Store<ContactFormState>);
   private toastr = inject(ToastrService);
+  private transloco = inject(TranslocoService);
   private modalContentService = inject(ModalContentService);
   private contactState = toSignal(this.contactStore.select(ContactSelector));
 
@@ -34,12 +37,16 @@ export class ContactComponent implements OnInit, OnDestroy {
       if (!form?.event) return;
 
       if (form.event === StateEvents.Created) {
-        this.toastr.success('', 'Message sent', {
-          closeButton: true,
-          progressBar: true,
-          timeOut: 2500,
-          positionClass: 'toast-bottom-center',
-        });
+        this.toastr.success(
+          this.transloco.translate('contact.toast.successMessage'),
+          this.transloco.translate('contact.toast.successTitle'),
+          {
+            closeButton: true,
+            progressBar: true,
+            timeOut: 2500,
+            positionClass: 'toast-bottom-center',
+          }
+        );
         this.contactForm?.reset();
         this.modalContentService.toggleVisibility();
         this.contactStore.dispatch(contactActions.ResetEvents());
@@ -48,9 +55,9 @@ export class ContactComponent implements OnInit, OnDestroy {
       if (form.event === StateEvents.Failed) {
         const status = form.error?.status;
         const message = status
-          ? `Server error (${status}). Please try again later.`
-          : 'Connection error. Check your internet and try again.';
-        this.toastr.error(message, 'Error sending message', {
+          ? this.transloco.translate('contact.toast.serverErrorMessage', { status })
+          : this.transloco.translate('contact.toast.connectionErrorMessage');
+        this.toastr.error(message, this.transloco.translate('contact.toast.errorTitle'), {
           closeButton: true,
           progressBar: true,
           timeOut: 3500,
