@@ -81,7 +81,7 @@ describe('ReposComponent', () => {
     ]});
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(3);
     expect(cards[0].nativeElement.textContent).toContain('AlphaRepo');
     expect(cards[1].nativeElement.textContent).toContain('BetaRepo');
@@ -96,7 +96,7 @@ describe('ReposComponent', () => {
     flushConfig(null);
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(3);
   });
 
@@ -112,7 +112,7 @@ describe('ReposComponent', () => {
     ]});
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(0);
 
     const emptyMsg = fixture.debugElement.query(By.css('.has-text-centered p'));
@@ -129,7 +129,7 @@ describe('ReposComponent', () => {
     expect(loadingSpinner).toBeTruthy();
 
     // No cards should render (repos$ is not subscribed when loading)
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(0);
   });
 
@@ -145,7 +145,7 @@ describe('ReposComponent', () => {
     ]});
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(2);
     expect(cards[0].nativeElement.textContent).toContain('AlphaRepo');
     expect(cards[1].nativeElement.textContent).toContain('GammaRepo');
@@ -168,7 +168,7 @@ describe('ReposComponent', () => {
     ]});
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(3);
     expect(cards[0].nativeElement.textContent).toContain('AlphaRepo');
     expect(cards[1].nativeElement.textContent).toContain('BetaRepo');
@@ -188,7 +188,7 @@ describe('ReposComponent', () => {
     flushConfig(allEnabled);
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(8);
   });
 
@@ -205,7 +205,7 @@ describe('ReposComponent', () => {
     flushConfig(null);
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(1);
     expect(cards[0].nativeElement.textContent).toContain('HasUrl');
   });
@@ -222,7 +222,7 @@ describe('ReposComponent', () => {
     flushConfig(null);
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(2);
   });
 
@@ -234,7 +234,7 @@ describe('ReposComponent', () => {
     flushConfig({ repos: [{ name: 'AlphaRepo', enabled: true }] });
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(1);
     expect(cards[0].nativeElement.textContent).toContain('AlphaRepo');
   });
@@ -265,7 +265,7 @@ describe('ReposComponent', () => {
     ]});
     fixture.detectChanges();
 
-    const cards = fixture.debugElement.queryAll(By.css('.box'));
+    const cards = fixture.debugElement.queryAll(By.css('.repo-card'));
     expect(cards.length).toBe(3);
     expect(cards[0].nativeElement.textContent).toContain('GammaRepo');
     expect(cards[1].nativeElement.textContent).toContain('AlphaRepo');
