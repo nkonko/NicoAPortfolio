@@ -1,44 +1,32 @@
-<section class="hero bg is-medium is-bold">
+<section class="hero home-hero is-medium">
   <div class="hero-body">
-      <h1 class="title is-1">
-        {{ "home.greeting" | transloco: { name: name() } }}
-      </h1>
+    <div class="hero-content">
+      <p class="hero-label">Hey there!</p>
+      <h1 class="hero-name">{{ name() }}</h1>
+      <h2 class="hero-role">{{ "jobTitle" | transloco: { label: jobLabel() } }}</h2>
 
-      <h1 class="title is-4">{{ "jobTitle" | transloco: { label: jobLabel() } }}</h1>
-    <div class="custom-card">
-      <div class="card-content">
-        <div class="content">
+      <div class="hero-summary">
+        <p class="hero-summary__text">
+          {{ "home.specialized" | transloco: { years: yearsOfExperience() } }}
+        </p>
+      </div>
 
-          <h4 class="word-carousel">
-            <span>
-              {{ "home.specialized" | transloco: { years: yearsOfExperience() } }}
-            </span>
-            <br>
-              <br>
-
-                <div class="box">
-                  <div class="marquee">
-                    <ul class="marquee__content">
-                      @for (skill of completeSkills(); track skill.name) {
-                        <li class="marquee__item pl-4">
-                          @if (skill.icon) {
-                            <span class="icon-text">
-                              <span class="icon">
-                                <i class="{{skill.icon}}" style="font-size: x-large;"></i>
-                              </span>
-                            </span>
-                          }
-                          <span>
-                            {{skill.name}}
-                          </span>
-                        </li>
-                      }
-                    </ul>
-                  </div>
-                </div>
-              </h4>
-            </div>
-          </div>
+      <div class="marquee-wrapper" aria-label="Tech skills marquee" aria-hidden="true">
+        <div class="marquee">
+          <ul class="marquee__content">
+            @for (skill of completeSkills(); track skill.name) {
+              <li class="marquee__item">
+                @if (skill.icon) {
+                  <span class="icon" aria-hidden="true">
+                    <i class="{{skill.icon}}"></i>
+                  </span>
+                }
+                <span class="marquee__item-name">{{skill.name}}</span>
+              </li>
+            }
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>

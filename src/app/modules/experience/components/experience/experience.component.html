@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div class="experience-wrapper mt-5">
   <div class="columns">
     <div class="column is-4">
       <div class="timeline">
@@ -7,27 +7,33 @@
         </header>
         @for (work of worksList(); track $index) {
           <div class="timeline-item"
-            (click)="selectWork($index)">
+            (click)="selectWork($index)"
+            [class.is-active]="selectedWork()?.id === work.id"
+            role="button"
+            [attr.aria-label]="work.position + ' at ' + work.company"
+            tabindex="0"
+            (keydown.enter)="selectWork($index)"
+            (keydown.space)="selectWork($index)">
             <div class="timeline-marker"
               [ngClass]="{
                 'is-primary': selectedWork()?.id !== work.id,
                 'is-link': selectedWork()?.id === work.id
               }"></div>
             <div class="timeline-content">
-              <p class="heading" [class.selected]="selectedWork()?.id === work.id">
-                <b>{{ work.startDate | date: 'MMMM yyyy' }}</b> {{ "experience.to" | transloco }}
-                <b>{{ work.isCurrentRole ? ('experience.present' | transloco) : (work.endDate | date: 'MMMM yyyy') }}</b>
+              <p class="exp-dates">
+                <span class="exp-date">{{ work.startDate | date: 'MMM yyyy' }}</span>
+                <span class="exp-sep">—</span>
+                <span class="exp-date">{{ work.isCurrentRole ? ('experience.present' | transloco) : (work.endDate | date: 'MMM yyyy') }}</span>
               </p>
-              <p class="heading">
-                {{ "experience.company" | transloco }} <a href="{{ work.website }}">
-                  <strong class="shadow has-tooltip-arrow has-tooltip-bottom" [attr.data-tooltip]="('experience.openLinkedin' | transloco)">
-                    {{ work.company }}
-                  </strong>
+              <p class="exp-company">
+                <a [href]="work.website" target="_blank" rel="noopener noreferrer"
+                   class="has-tooltip-arrow has-tooltip-bottom"
+                   [attr.data-tooltip]="('experience.openLinkedin' | transloco)"
+                   [attr.aria-label]="work.company + ' - ' + ('experience.openLinkedin' | transloco)">
+                  {{ work.company }}
                 </a>
               </p>
-              <span class="heading is-flex">
-                {{ "experience.position" | transloco }} <p class="title is-6 ml-2">{{ work.position }}</p>
-              </span>
+              <p class="exp-role">{{ work.position }}</p>
             </div>
           </div>
         }
@@ -41,9 +47,9 @@
       <div class="box summary-content">
         @for (section of selectedWorkSections(); track $index) {
           @if (section.title) {
-            <p class="mb-1"><strong>{{ section.title }}:</strong></p>
+            <p class="summary-section-title"><strong>{{ section.title }}:</strong></p>
           }
-          <p class="mb-3">{{ section.content }}</p>
+          <p class="summary-section-body">{{ section.content }}</p>
         }
       </div>
     </div>

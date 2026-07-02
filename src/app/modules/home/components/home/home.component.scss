@@ -5,100 +5,135 @@
   height: 100%;
 }
 
-.hero-body {
-  h1, h2 {
-    color: var(--color-white, #fff);
-  }
-}
-
 section {
   height: 100%;
 }
 
-.word-carousel {
-  span {
-    color: var(--color-white-ter, #f5f5f5);
-  }
+// Hero background: clean dark with subtle gradient instead of animated chaos
+.home-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0f172a 100%);
+  transition: background 0.4s ease;
+}
 
-  div {
-    overflow: hidden;
-    height: 65px;
-    margin-top: -10px;
-    padding-top: 10px;
+:host-context([data-theme='dark']) .home-hero {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 60%, #020617 100%);
+}
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+// Hero layout
+.hero-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
 
-      li {
-        height: 45px;
-        margin-bottom: 45px;
-        padding: 0;
-        display: block;
-        font-weight: 700;
-      }
-    }
+  @include dt.respond-to('desktop') {
+    padding: 6rem 3rem;
   }
 }
 
-.word-carousel > span:nth-child(1) {
-  color: var(--color-white, #fff);
+.hero-content {
+  max-width: 800px;
+  width: 100%;
 }
 
-.custom-card {
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: var(--color-bg-card, rgba(255, 255, 255, 0.5));
-  border-radius: var(--border-radius-lg, 16px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+// Label above name (small mono)
+.hero-label {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary, #2563eb);
+  margin-bottom: 0.75rem;
+}
 
-  span {
-    color: var(--color-text-primary, #000);
+// Main name — Space Grotesk display
+.hero-name {
+  font-family: var(--font-family-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+// Role subtitle — Archivo light italic feel
+.hero-role {
+  font-family: var(--font-family-primary);
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  font-weight: 300;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+  letter-spacing: 0;
+}
+
+:host-context([data-theme='dark']) .hero-role {
+  color: #64748b;
+}
+
+// Summary paragraph
+.hero-summary {
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+
+  &__text {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: #cbd5e1;
   }
-
-  .word-carousel > span {
-    color: var(--color-text-primary, #1e293b);
-  }
 }
 
-:host-context([data-theme='dark']) .custom-card {
-  border-color: var(--color-gray-400, #64748b);
-  background: rgba(15, 23, 42, 0.82);
+:host-context([data-theme='dark']) .hero-summary__text {
+  color: #475569;
 }
 
-:host-context([data-theme='dark']) .custom-card .word-carousel > span {
-  color: var(--color-text-primary, #f1f5f9);
-}
-
-:host-context([data-theme='dark']) .custom-card .box {
-  background: var(--color-bg-elevated, #334155);
-  color: var(--color-text-primary, #f1f5f9);
+// Marquee wrapper
+.marquee-wrapper {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+  overflow: hidden;
 }
 
 .marquee {
   display: flex;
-  position: relative;
   white-space: nowrap;
 }
 
 .marquee__content {
   display: flex;
   list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 2rem;
   animation: scrolling 60s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 .marquee__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   flex-shrink: 0;
+  color: #64748b;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+
+  .icon {
+    font-size: 1.1rem;
+    color: #475569;
+  }
+
+  &-name {
+    font-size: var(--font-size-sm);
+  }
 }
 
 @keyframes scrolling {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-.bg {
-  background-size: 300% 300%;
-  background-image: linear-gradient(-45deg, DodgerBlue 0%, red 30%, DarkViolet 55%, DodgerBlue 100%);
-  animation: AnimateBG 20s ease infinite;
+  100% { transform: translateX(-50%); }
 }

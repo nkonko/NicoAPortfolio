@@ -1,46 +1,68 @@
 @use 'design-tokens' as dt;
 
-@media (prefers-reduced-motion: no-preference) {
-  .box {
-    animation: hovJumpOut 2s ease 0s 1 alternate backwards;
-    &:hover {
-      animation: hovJumpIn 2s ease 0s 1 normal forwards;
-    }
+.box {
+  background-color: var(--color-bg-card, #fff);
+  border: 1px solid var(--color-border, #e4e4e7);
+  border-radius: var(--border-radius-md, 8px);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+  padding: 1.25rem 1.5rem;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--color-primary, #2563eb);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:hover { transform: none; }
   }
 }
 
-@keyframes hovJumpIn {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+// Skill name
+.title.is-4 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
 }
 
-@keyframes hovJumpOut {
-  0% {
-    animation-timing-function: ease-out;
-    transform: scale(1);
-    transform-origin: center center;
+// Icon
+.box-header i {
+  color: var(--color-primary, #2563eb);
+  font-size: 1.5rem;
+}
+
+// Progress bar
+.progress.is-primary {
+  height: 4px;
+  border-radius: var(--border-radius-full, 9999px);
+}
+
+// Years label
+p {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  margin-top: 0.5rem;
+}
+
+:host-context([data-theme='dark']) .box {
+  background-color: var(--color-bg-card, #1e293b);
+  border-color: var(--color-gray-200, #334155);
+
+  &:hover {
+    border-color: var(--color-primary, #60a5fa);
   }
-  10% {
-    animation-timing-function: ease-in;
-    transform: scale(0.91);
+
+  .title.is-4 {
+    color: var(--color-text-primary, #f1f5f9);
   }
-  17% {
-    animation-timing-function: ease-out;
-    transform: scale(0.98);
-  }
-  33% {
-    animation-timing-function: ease-in;
-    transform: scale(0.87);
-  }
-  45% {
-    animation-timing-function: ease-out;
-    transform: scale(1);
+
+  i {
+    color: var(--color-primary, #60a5fa);
   }
 }

@@ -6,45 +6,56 @@
 }
 
 form {
-  color: var(--color-text-primary, #1e293b);
+  color: var(--color-text-primary, #09090b);
+  font-family: var(--font-family-primary);
 }
 
 .label {
-  color: var(--color-text-primary, #1e293b);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
   font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary, #09090b);
 }
 
 .input,
 .textarea {
   background-color: var(--color-bg-elevated, #ffffff);
-  border: 1px solid var(--color-gray-300, #d1d5db);
-  color: var(--color-text-primary, #1e293b);
+  border: 1px solid var(--color-border, #e4e4e7);
+  color: var(--color-text-primary, #09090b);
+  font-family: var(--font-family-primary);
+  border-radius: var(--border-radius-md, 8px);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--color-text-muted, #71717a);
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: var(--color-primary, #3b82f6);
-  box-shadow: 0 0 0 0.125em rgba(59, 130, 246, 0.22);
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .icon i {
-  color: var(--color-text-secondary, #475569);
+  color: var(--color-text-muted, #71717a);
 }
 
 .button.is-link.is-outlined {
-  border-color: var(--color-primary, #3b82f6);
-  color: var(--color-primary, #3b82f6);
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  border-color: var(--color-primary, #2563eb);
+  color: var(--color-primary, #2563eb);
+  border-radius: var(--border-radius-md, 8px);
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .button.is-link.is-outlined:hover:not([disabled]) {
-  background-color: var(--color-primary, #3b82f6);
-  border-color: var(--color-primary, #3b82f6);
-  color: var(--color-text-inverse, #f8fafc);
+  background-color: var(--color-primary, #2563eb);
+  border-color: var(--color-primary, #2563eb);
+  color: #fff;
 }
 
 .button.is-link.is-outlined[disabled] {
@@ -63,23 +74,23 @@ form {
 :host-context([data-theme='dark']) .input,
 :host-context([data-theme='dark']) .textarea {
   background-color: var(--color-bg-elevated, #334155);
-  border-color: var(--color-gray-300, #475569);
+  border-color: var(--color-border, #27272a);
   color: var(--color-text-primary, #f1f5f9);
 }
 
 :host-context([data-theme='dark']) .input::placeholder,
 :host-context([data-theme='dark']) .textarea::placeholder {
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--color-text-muted, #64748b);
 }
 
 :host-context([data-theme='dark']) .input:focus,
 :host-context([data-theme='dark']) .textarea:focus {
   border-color: var(--color-primary, #60a5fa);
-  box-shadow: 0 0 0 0.125em rgba(96, 165, 250, 0.28);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
 }
 
 :host-context([data-theme='dark']) .icon i {
-  color: var(--color-text-secondary, #cbd5e1);
+  color: var(--color-text-muted, #64748b);
 }
 
 :host-context([data-theme='dark']) .button.is-link.is-outlined {

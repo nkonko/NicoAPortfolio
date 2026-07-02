@@ -1,10 +1,10 @@
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" routerLink="home">
-      <img class="image is-32x32" src="../../../../../../assets/images/logo.png" width="40">
+    <a class="navbar-item" routerLink="home" aria-label="Go to home">
+      <img class="image is-32x32" src="../../../../../../assets/images/logo.png" width="40" alt="Logo">
     </a>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="navMenu">
+    <a role="button" class="navbar-burger" aria-label="Toggle menu" data-target="navMenu">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -15,43 +15,39 @@
     <div class="navbar-start">
       <a class="navbar-item" routerLink="home" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
-        <strong class="shadow">
-          {{ "nav.home" | transloco }}
-        </strong>
+        {{ "nav.home" | transloco }}
       </a>
       <a class="navbar-item" routerLink="about" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
-        <strong class="shadow">
-          {{ "nav.about" | transloco }}
-        </strong>
+        {{ "nav.about" | transloco }}
       </a>
       <a class="navbar-item" routerLink="skills" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
-        <strong class="shadow">
-          {{ "nav.skills" | transloco }}
-        </strong>
+        {{ "nav.skills" | transloco }}
       </a>
-
       <a class="navbar-item" routerLink="experience" [routerLinkActive]="'selected'"
-        [routerLinkActiveOptions]="{ exact: true }">
-        <strong class="shadow has-tooltip-arrow has-tooltip-bottom" [attr.data-tooltip]="'nav.experienceTooltip' | transloco">
-          {{ "nav.experience" | transloco }}
-        </strong>
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="navbar-item has-tooltip-arrow has-tooltip-bottom"
+        [attr.data-tooltip]="'nav.experienceTooltip' | transloco">
+        {{ "nav.experience" | transloco }}
       </a>
       <a class="navbar-item" routerLink="repos" [routerLinkActive]="'selected'"
         [routerLinkActiveOptions]="{ exact: true }">
-        <strong class="shadow">
-          {{ "nav.repos" | transloco }}
-        </strong>
+        {{ "nav.repos" | transloco }}
       </a>
     </div>
     <div class="navbar-end">
-      <a class="navbar-item theme-toggle" (click)="toggleTheme()" [title]="'nav.themeToggle' | transloco">
-        <i class="fas" [ngClass]="theme === 'light' ? 'fa-moon' : 'fa-sun'"></i>
-      </a>
-      <a class="navbar-item lang-toggle" (click)="toggleLang()" [title]="'nav.languageToggle' | transloco">
-        <strong>{{ currentLang() === 'en' ? 'ES' : 'EN' }}</strong>
-      </a>
+      <button class="navbar-item theme-toggle" (click)="toggleTheme()"
+        [attr.aria-label]="'nav.themeToggle' | transloco"
+        [title]="'nav.themeToggle' | transloco">
+        <i class="fas" [ngClass]="theme === 'light' ? 'fa-moon' : 'fa-sun'" aria-hidden="true"></i>
+      </button>
+      <button class="navbar-item lang-toggle" (click)="toggleLang()"
+        [attr.aria-label]="'nav.languageToggle' | transloco"
+        [title]="'nav.languageToggle' | transloco">
+        <span class="lang-flag" aria-hidden="true">{{ currentLang() === 'en' ? '🇦🇷' : '🇺🇸' }}</span>
+        <span class="lang-label">{{ currentLang() === 'en' ? 'ES' : 'EN' }}</span>
+      </button>
     </div>
   </div>
 </nav>

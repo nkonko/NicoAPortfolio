@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="columns is-flex-desktop-only is-flex-wrap-wrap">
+  <div class="columns is-multiline">
     @for (skill of skills(); track skill.name) {
-      <app-skill-box class="column is-one-quarter animated" [skill]="skill"></app-skill-box>
+      <app-skill-box class="column is-12-mobile is-6-tablet is-one-quarter-desktop animated" [skill]="skill"></app-skill-box>
     }
   </div>
 </div>

@@ -1,7 +1,155 @@
 @use 'design-tokens' as dt;
 
-.bg {
-  background-size: 300% 300%;
-  background-image: linear-gradient(-45deg, DodgerBlue 0%, DarkViolet 30%, red 25%, DodgerBlue 100%);
-  animation: AnimateBG 20s ease infinite;
+.splash {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060d1f;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+// Aurora orbs
+.splash__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0;
+  animation: orb-appear 1s ease forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}
+
+.splash__orb--1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #1d4ed8 0%, transparent 70%);
+  top: -160px;
+  left: -160px;
+  animation-delay: 0.1s;
+  animation-name: orb-appear, orb-drift-1;
+  animation-duration: 0.8s, 20s;
+  animation-timing-function: ease, ease-in-out;
+  animation-fill-mode: forwards, none;
+  animation-iteration-count: 1, infinite;
+  animation-direction: normal, alternate;
+}
+
+.splash__orb--2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #6d28d9 0%, transparent 70%);
+  bottom: -120px;
+  right: -120px;
+  animation-delay: 0.3s;
+  animation-name: orb-appear, orb-drift-2;
+  animation-duration: 0.8s, 25s;
+  animation-timing-function: ease, ease-in-out;
+  animation-fill-mode: forwards, none;
+  animation-iteration-count: 1, infinite;
+  animation-direction: normal, alternate;
+}
+
+.splash__orb--3 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, #0891b2 0%, transparent 70%);
+  top: 40%;
+  left: 55%;
+  animation-delay: 0.5s;
+  animation-name: orb-appear, orb-drift-3;
+  animation-duration: 0.8s, 18s;
+  animation-timing-function: ease, ease-in-out;
+  animation-fill-mode: forwards, none;
+  animation-iteration-count: 1, infinite;
+  animation-direction: normal, alternate;
+}
+
+// Content
+.splash__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.splash__logo {
+  margin: 0;
+  animation: splash-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+  opacity: 0;
+
+  img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    filter: drop-shadow(0 0 24px rgba(99, 102, 241, 0.5));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+.splash__bar {
+  width: 140px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-full, 9999px);
+  overflow: hidden;
+}
+
+.splash__bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #6d28d9);
+  border-radius: inherit;
+  animation: splash-progress 3000ms cubic-bezier(0.4, 0, 0.2, 1) 400ms forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    width: 100%;
+    animation: none;
+  }
+}
+
+@keyframes orb-appear {
+  from { opacity: 0; }
+  to   { opacity: 0.45; }
+}
+
+@keyframes orb-drift-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, 50px) scale(1.08); }
+}
+
+@keyframes orb-drift-2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-35px, -45px) scale(1.12); }
+}
+
+@keyframes orb-drift-3 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-50px, 30px) scale(0.92); }
+}
+
+@keyframes splash-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splash-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
 }

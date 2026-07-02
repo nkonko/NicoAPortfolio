@@ -13,16 +13,10 @@ $bp-fullhd: 1408px;
 
 // --- Color Palette (light theme) ---
 $colors: (
-  // Primary
-  'primary': #3b82f6,
-  'primary-hover': #2563eb,
-  'primary-light': #93c5fd,
-  // Secondary
-  'secondary': #8b5cf6,
-  'secondary-hover': #7c3aed,
-  // Accent
-  'accent': #06b6d4,
-  'accent-hover': #0891b2,
+  // Primary (single accent — blue)
+  'primary': #2563eb,
+  'primary-hover': #1d4ed8,
+  'primary-light': #bfdbfe,
   // Neutral grays (9 steps)
   'gray-50': #f9fafb,
   'gray-100': #f3f4f6,
@@ -35,14 +29,16 @@ $colors: (
   'gray-800': #1f2937,
   'gray-900': #111827,
   // Surface / Background
-  'bg-page': #f8fafc,
+  'bg-page': #fafafa,
   'bg-card': #ffffff,
   'bg-elevated': #ffffff,
   // Text
-  'text-primary': #1e293b,
-  'text-secondary': #475569,
-  'text-inverse': #f8fafc,
-  'text-muted': #94a3b8,
+  'text-primary': #09090b,
+  'text-secondary': #3f3f46,
+  'text-inverse': #fafafa,
+  'text-muted': #71717a,
+  // Border
+  'border': #e4e4e7,
   // Semantic
   'success': #22c55e,
   'warning': #f59e0b,
@@ -53,7 +49,7 @@ $colors: (
   'light': #f5f5f5,
   'dark': #363636,
   'white-ter': #f5f5f5,
-  'link': #3b82f6,
+  'link': #2563eb,
 );
 
 // --- Dark Theme Overrides ---
@@ -61,10 +57,6 @@ $colors-dark: (
   'primary': #60a5fa,
   'primary-hover': #93c5fd,
   'primary-light': #1e3a5f,
-  'secondary': #a78bfa,
-  'secondary-hover': #c4b5fd,
-  'accent': #22d3ee,
-  'accent-hover': #67e8f9,
   'gray-50': #0f172a,
   'gray-100': #1e293b,
   'gray-200': #334155,
@@ -82,6 +74,7 @@ $colors-dark: (
   'text-secondary': #cbd5e1,
   'text-inverse': #0f172a,
   'text-muted': #64748b,
+  'border': #27272a,
   'success': #4ade80,
   'warning': #fbbf24,
   'error': #f87171,
@@ -94,9 +87,10 @@ $colors-dark: (
 );
 
 // --- Typography ---
-$font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-primary: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 $font-family-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
-$font-family-mono: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
 $font-sizes: (
   'xs': 0.75rem,
@@ -145,14 +139,14 @@ $spacings: (
 // --- Shadows ---
 $shadows: (
   'sm': (
-    0 1px 2px 0 rgba(0, 0, 0, 0.05),
+    0 1px 3px 0 rgba(0, 0, 0, 0.06),
   ),
   'md': (
-    3px 2px 6px -1px rgba(0, 0, 0, 0.75),
+    0 4px 16px rgba(0, 0, 0, 0.10),
   ),
   'lg': (
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.08),
   ),
 );
 
@@ -298,6 +292,7 @@ $borders: (
 
   // Typography
   --font-family-primary: #{$font-family-primary};
+  --font-family-display: #{$font-family-display};
   --font-family-serif: #{$font-family-serif};
   --font-family-mono: #{$font-family-mono};
 

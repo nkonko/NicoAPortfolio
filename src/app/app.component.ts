@@ -12,6 +12,8 @@ import { NavbarComponent } from '@shared/layout/navbar/component/navbar/navbar.c
 import { ModalComponent } from '@shared/modal/component/modal.component';
 import { ModalContentService } from '@shared/modal/service/modal-content.service';
 import { SplashComponent } from '@shared/splash/component/splash.component';
+import { timer } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -23,10 +25,17 @@ import { SplashComponent } from '@shared/splash/component/splash.component';
 export class AppComponent {
   private appState = toSignal(this.store.select(AppSelector));
 
+  private minTimeElapsed = toSignal(
+    timer(3000).pipe(map(() => true), startWith(false)),
+    { initialValue: false }
+  );
+
   protected loading = computed(() => {
     const state = this.appState();
     return state?.profile === undefined && state?.loadError === undefined;
   });
+
+  protected showSplash = computed(() => this.loading() || !this.minTimeElapsed());
 
   protected hasError = computed(() => this.appState()?.loadError !== undefined);
 

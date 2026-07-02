@@ -9,9 +9,14 @@ export class BurgerDirective {
   @HostBinding('class.is-active')
   isOpen = false;
 
+  @HostBinding('attr.aria-expanded')
+  get ariaExpanded(): string {
+    return String(this.isOpen);
+  }
+
   @HostListener('click')
   toggleBurger() {
-    this.isOpen = ! this.isOpen;
+    this.isOpen = !this.isOpen;
   }
 
 }

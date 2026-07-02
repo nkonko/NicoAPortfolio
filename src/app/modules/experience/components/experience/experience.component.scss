@@ -1,51 +1,133 @@
 @use 'design-tokens' as dt;
 
-.custom-card {
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: var(--color-bg-card, rgba(255, 255, 255, 0.5));
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-
-  .card-content {
-    p {
-      color: var(--color-text-primary, #fff);
-    }
-  }
+.experience-wrapper {
+  padding: 0 0.5rem;
 }
 
-:host-context([data-theme='dark']) {
-  .timeline .timeline-content .heading {
-    color: var(--color-text-primary, #f1f5f9);
-
-    &.selected {
-      color: var(--color-text-inverse, #0f172a);
-    }
-  }
-}
-
-.timeline-content {
-  strong {
-    color: inherit;
-  }
-}
-
+// Timeline item interaction
 .timeline-item {
+  cursor: pointer;
+  border-radius: var(--border-radius-md, 8px);
+  transition: background-color 150ms ease;
+  outline: none;
+
   &:hover {
-    background-color: var(--color-gray-200, rgba(200, 195, 195, 0.518));
+    background-color: var(--color-gray-100, #f3f4f6);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-primary, #2563eb);
+  }
+
+  &.is-active .timeline-content {
+    opacity: 1;
   }
 }
 
+:host-context([data-theme='dark']) .timeline-item:hover {
+  background-color: var(--color-gray-100, #1e293b);
+}
+
+// Typography inside timeline entries
+.exp-dates {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #71717a);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.2rem;
+}
+
+.exp-sep {
+  color: var(--color-border, #e4e4e7);
+}
+
+:host-context([data-theme='dark']) .exp-sep {
+  color: var(--color-gray-300, #475569);
+}
+
+.exp-company {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary, #09090b);
+  margin-bottom: 0.1rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 150ms ease;
+
+    &:hover {
+      border-bottom-color: var(--color-primary, #2563eb);
+      color: var(--color-primary, #2563eb);
+    }
+  }
+}
+
+:host-context([data-theme='dark']) .exp-company {
+  color: var(--color-text-primary, #f1f5f9);
+
+  a:hover {
+    color: var(--color-primary, #60a5fa);
+    border-bottom-color: var(--color-primary, #60a5fa);
+  }
+}
+
+.exp-role {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-secondary, #3f3f46);
+}
+
+:host-context([data-theme='dark']) .exp-role {
+  color: var(--color-text-secondary, #cbd5e1);
+}
+
+// Summary panel
 .summary-content {
   white-space: pre-line;
+  background: var(--color-bg-card, #fff);
+  border: 1px solid var(--color-border, #e4e4e7);
+  box-shadow: var(--shadow-sm);
 
   strong {
     color: inherit;
   }
 }
 
-.selected {
-  padding-left: 2.5rem;
-  margin-left: -2.1rem;
-  background-color: var(--color-accent, aquamarine);
-  border-radius: var(--border-radius-lg, 19px);
+:host-context([data-theme='dark']) .summary-content {
+  background: var(--color-bg-card, #1e293b);
+  border-color: var(--color-gray-200, #334155);
+}
+
+.summary-section-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.summary-section-body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+:host-context([data-theme='dark']) .summary-section-title {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .summary-section-body {
+  color: var(--color-text-secondary, #cbd5e1);
 }

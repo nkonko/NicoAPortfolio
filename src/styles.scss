@@ -9,6 +9,7 @@
 );
 @use 'ngx-toastr/toastr';
 @import '@creativebulma/bulma-tooltip/src/sass/index.sass';
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 * {
   margin: 0;
@@ -16,9 +17,16 @@
 }
 
 body {
-  background-color: var(--color-light, #f5f5f5);
+  background-color: var(--color-bg-page, #fafafa);
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary, #09090b);
   min-height: 100vh;
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  letter-spacing: -0.025em;
 }
 
 body .subtitle,

@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject, ViewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgClass } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { NavbarDirective, BurgerDirective, MenuDirective } from '../../directive/navbar.directive';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-navbar',
@@ -14,8 +15,11 @@ import { NavbarDirective, BurgerDirective, MenuDirective } from '../../directive
 })
 export class NavbarComponent implements OnInit {
 
+  @ViewChild(BurgerDirective) private burger?: BurgerDirective;
+
   theme: 'light' | 'dark' = 'light';
   private transloco = inject(TranslocoService);
+  private router = inject(Router);
   protected currentLang = toSignal(this.transloco.langChanges$, {
     initialValue: this.transloco.getActiveLang(),
   });
@@ -26,6 +30,12 @@ export class NavbarComponent implements OnInit {
       this.theme = 'dark';
       this.applyTheme('dark');
     }
+
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this.burger) this.burger.isOpen = false;
+      });
   }
 
   toggleTheme(): void {
