@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
+import { ES_CONTENT_OVERRIDES } from './es-content-overrides';
 
 export interface ContentOverrides {
   [fieldPath: string]: string;
@@ -28,12 +29,3 @@ export class ContentTranslationService {
     return this.activeLang === 'es';
   }
 }
-
-/** Spanish content overrides for profile data — customize these with your own translations */
-export const ES_CONTENT_OVERRIDES: Record<string, string> = {
-  'about.presentation': 'Soy un desarrollador full-stack comprometido, actualmente trabajando en una empresa de EE.UU. Con una gran pasión por la tecnología, busco constantemente oportunidades para expandir mi conocimiento y contribuir a proyectos innovadores.',
-  'about.0.title': 'Mentalidad de equipo',
-  'about.0.paragraph': 'Disfruto colaborar con otros y creo firmemente en el trabajo en equipo. Trabajar en equipo me ha permitido crecer y aprender.',
-  'about.1.title': 'Énfasis en calidad',
-  'about.1.paragraph': 'Uno de mis valores principales es el compromiso de entregar trabajo de alta calidad. Creo que el código limpio y mantenible es fundamental para construir soluciones escalables.',
-};

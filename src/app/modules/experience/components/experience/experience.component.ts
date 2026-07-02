@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, computed, signal, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Work } from '@core/models/gitConnectProfile/work';
+import { ContentTranslationService } from '@core/i18n/content-translation.service';
 import { AppState } from '@core/store/models/app.state';
 import { WorkSelector } from '@core/store/selectors/app.selector';
 import { Store } from '@ngrx/store';
@@ -13,8 +14,13 @@ interface SummarySection {
 }
 
 const SUMMARY_LABELS = [
-  'Description', 'Backend-Tecnologies', 'Frontend-Tecnologies',
-  'Devops', 'Databases', 'Extra', 'Duties',
+  'Description', 'Descripción',
+  'Backend-Tecnologies', 'Tecnologías backend',
+  'Frontend-Tecnologies', 'Tecnologías frontend',
+  'Devops', 'DevOps',
+  'Databases', 'Bases de datos',
+  'Extra',
+  'Duties', 'Responsabilidades',
 ] as const;
 
 @Component({
@@ -26,11 +32,25 @@ const SUMMARY_LABELS = [
 })
 export class ExperienceComponent {
   private store = inject(Store<AppState>);
-  private works = toSignal(this.store.select(WorkSelector));
+  private contentTranslation = inject(ContentTranslationService);
+  private works = toSignal(this.store.select(WorkSelector), { initialValue: [] as Work[] });
+  private activeLang = toSignal(this.contentTranslation.langChanges$, {
+    initialValue: this.contentTranslation.activeLang,
+  });
 
-  protected worksList = computed(() => this.works() ?? []);
+  protected selectedWorkIndex = signal(0);
 
-  protected selectedWork = signal<Work | null>(null);
+  protected worksList = computed(() => {
+    this.activeLang();
+
+    return (this.works() ?? []).map((work, index) => ({
+      ...work,
+      position: this.contentTranslation.get(`experience.work.${index}.position`, work.position),
+      summary: this.contentTranslation.get(`experience.work.${index}.summary`, work.summary ?? ''),
+    }));
+  });
+
+  protected selectedWork = computed<Work | null>(() => this.worksList()[this.selectedWorkIndex()] ?? null);
 
   protected selectedWorkSections = computed<SummarySection[]>(() => {
     const raw = this.selectedWork()?.summary ?? '';
@@ -40,16 +60,19 @@ export class ExperienceComponent {
   constructor() {
     effect(() => {
       const list = this.worksList();
-      if (list.length > 0 && !this.selectedWork()) {
-        this.selectedWork.set(list[0]);
+      if (list.length === 0) {
+        return;
+      }
+
+      if (this.selectedWorkIndex() >= list.length) {
+        this.selectedWorkIndex.set(0);
       }
     });
   }
 
   selectWork(index: number): void {
-    const work = this.worksList()[index];
-    if (work) {
-      this.selectedWork.set(work);
+    if (this.worksList()[index]) {
+      this.selectedWorkIndex.set(index);
       this.goToSummary();
     }
   }
