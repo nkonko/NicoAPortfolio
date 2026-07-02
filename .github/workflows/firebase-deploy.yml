@@ -57,7 +57,7 @@ jobs:
           printf '%s' "$FIREBASE_SERVICE_ACCOUNT_JSON" > "$SA_FILE"
           export GOOGLE_APPLICATION_CREDENTIALS="$SA_FILE"
 
-          DEPLOY_OUTPUT=$(npx firebase-tools@latest deploy --only hosting --site "$FIREBASE_SITE" --project portfolio-81c7a --json 2>&1)
+          DEPLOY_OUTPUT=$(npx firebase-tools deploy --only hosting --project portfolio-81c7a --json 2>&1)
           DEPLOY_EXIT=$?
 
           echo "$DEPLOY_OUTPUT"
