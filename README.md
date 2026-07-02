@@ -116,21 +116,6 @@ Los releases se generan automáticamente via [semantic-release](https://semantic
 - GitHub Release con release notes
 - Deploy automático a Firebase
 
----
-
-## 🧰 Sugerencias para próximos pasos
-
-Esto es lo que **yo agregaría** si fuera mi portfolio:
-
-1. **SEO / SSR** — con Angular 22 y `@angular/ssr` podés servir contenido pre-renderizado para crawlers
-2. **i18n** — si querés versión EN/ES, `@angular/localize` ya viene con el CLI
-3. **GitHub API real** — en lugar de datos mockeados, conectá el módulo de repos a la API de GitHub
-4. **E2E con Playwright** — ya tenés todo el setup, solo falta escribir los tests
-5. **Métricas y analytics** — Firebase Analytics o una integración liviana para saber qué secciones visitan más
-6. **Accessibility audit** — agregá reglas de accesibilidad y pasá un axe DevTools audit
-
----
-
 ## 📄 Licencia
 
 MIT
