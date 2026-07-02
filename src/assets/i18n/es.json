@@ -45,6 +45,9 @@
     "title": "Repositorios",
     "empty": "No hay repositorios configurados."
   },
+  "skills": {
+    "experienceYears": "Experiencia: {{ years }} años."
+  },
   "experience": {
     "present": "Actualidad",
     "beginning": "Inicio",

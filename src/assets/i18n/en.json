@@ -45,6 +45,9 @@
     "title": "GitHub Repos",
     "empty": "No repositories configured."
   },
+  "skills": {
+    "experienceYears": "Experience: {{ years }} years."
+  },
   "experience": {
     "present": "Present",
     "beginning": "Beginning",

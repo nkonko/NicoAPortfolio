@@ -2,11 +2,13 @@ import { Component, ChangeDetectionStrategy, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Skill } from '@core/models/gitConnectProfile/skill';
+import { Work } from '@core/models/gitConnectProfile/work';
 import { AppState } from '@core/store/models/app.state';
-import { BasicsSelector, SkillSelector } from '@core/store/selectors/app.selector';
+import { BasicsSelector, SkillSelector, WorkSelector } from '@core/store/selectors/app.selector';
 import { IconsService } from '@shared/services/icons.service';
 import { Store } from '@ngrx/store';
 import { combineLatest, map } from 'rxjs';
+import { normalizeJobLabel, resolveYearsOfExperience } from '../../utils/home-profile.util';
 
 @Component({
     selector: 'app-home',
@@ -17,14 +19,16 @@ import { combineLatest, map } from 'rxjs';
     imports: [TranslocoModule]
 })
 export class HomeComponent {
-  protected yearsOfExperience = new Date().getFullYear() - 2018;
-
   private basics = toSignal(this.store.select(BasicsSelector));
+  private work = toSignal(this.store.select(WorkSelector), { initialValue: [] as Work[] });
   private skillsData$ = this.store.select(SkillSelector);
 
   protected name = computed(() => this.basics()?.name ?? '');
-  protected jobLabel = computed(() => this.basics()?.label ?? '');
-  protected location = computed(() => this.basics()?.region ?? '');
+  protected jobLabel = computed(() => normalizeJobLabel(this.basics()?.label ?? ''));
+  protected yearsOfExperience = computed(() => resolveYearsOfExperience(
+    this.basics()?.yearsOfExperience,
+    this.work()
+  ));
 
   private skillsWithIcons$ = combineLatest([
     this.skillsData$,

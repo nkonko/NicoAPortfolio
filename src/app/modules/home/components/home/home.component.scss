@@ -56,6 +56,24 @@ section {
   span {
     color: var(--color-text-primary, #000);
   }
+
+  .word-carousel > span {
+    color: var(--color-text-primary, #1e293b);
+  }
+}
+
+:host-context([data-theme='dark']) .custom-card {
+  border-color: var(--color-gray-400, #64748b);
+  background: rgba(15, 23, 42, 0.82);
+}
+
+:host-context([data-theme='dark']) .custom-card .word-carousel > span {
+  color: var(--color-text-primary, #f1f5f9);
+}
+
+:host-context([data-theme='dark']) .custom-card .box {
+  background: var(--color-bg-elevated, #334155);
+  color: var(--color-text-primary, #f1f5f9);
 }
 
 .marquee {

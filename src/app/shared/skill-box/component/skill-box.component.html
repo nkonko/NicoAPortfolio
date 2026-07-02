@@ -19,5 +19,7 @@
   @if (skill().level === 'Expert') {
     <progress class="progress is-primary" value="90" max="100">90%</progress>
   }
-  <p>Experience: {{skill().yearsOfExperience}} years.</p>
+  @if (skill().yearsOfExperience !== null) {
+    <p>{{ 'skills.experienceYears' | transloco: { years: skill().yearsOfExperience } }}</p>
+  }
 </div>
