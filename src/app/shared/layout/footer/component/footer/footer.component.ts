@@ -26,7 +26,7 @@ export class FooterComponent {
         return socials.map(social => {
           switch (social?.network) {
             case 'LinkedIn':
-              return { ...social, icon: 'fa-brands fa-linkedin', url: social?.url ?? 'https://www.linkedin.com/in/nicolas-azzara/' };
+              return { ...social, icon: 'fa-brands fa-linkedin', url: 'https://www.linkedin.com/in/nicolas-azzara/' };
             case 'GitHub':
               return { ...social, icon: 'fa-brands fa-github' };
             case 'gitconnected':
